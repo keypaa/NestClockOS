@@ -30,6 +30,9 @@ from pathlib import Path
 import numpy as np
 
 import spotify_auth
+from voice.router import RouterService
+from voice.stt import transcribe_parallel
+from stt_session import record_utterance, explain, make_client, SAMPLE_RATE
 
 STATE_PATH = Path(__file__).parent / "companion_state.json"
 PORT = 8765
@@ -197,6 +200,12 @@ class Store:
 
 
 store = Store()
+router_service = RouterService()
+mistral_client = None
+try:
+    mistral_client = make_client()
+except Exception as e:
+    print(f"Mistral: {e}")
 clients = set()
 
 _fallback_process = None
@@ -340,6 +349,69 @@ spotify = spotify_auth.SpotifyAuth(
 )
 
 
+async def handle_voice():
+    """Push-to-talk capture: record, transcribe (P2), route, broadcast result."""
+    global mistral_client
+    if mistral_client is None:
+        try:
+            mistral_client = make_client()
+        except Exception as e:
+            await broadcast({"type": "voice_error", "message": str(e)})
+            return
+    def _capture():
+        info = {}
+        audio = record_utterance(None, info=info)
+        return audio, info
+    await broadcast({"type": "voice_status", "status": "listening"})
+    audio, info = await asyncio.get_event_loop().run_in_executor(None, _capture)
+    if audio is None:
+        await broadcast({"type": "voice_result", "transcript": "", "category": "fallback",
+                         "confidence": 0.0, "overridden": False, "error": explain(info)})
+        return
+    dur = len(audio) / SAMPLE_RATE
+    # P2 transcription (blocking, in executor)
+    def _transcribe():
+        return transcribe_parallel(mistral_client, audio)
+    results = await asyncio.get_event_loop().run_in_executor(None, _transcribe)
+    en = results.get("en", {}).get("text", "")
+    fr = results.get("fr", {}).get("text", "")
+    # Latin guard
+    from voice.text import non_latin
+    en_ok = (not non_latin(en)) and bool(en.strip())
+    fr_ok = (not non_latin(fr)) and bool(fr.strip())
+    # route both surviving transcripts
+    best = None
+    for lang, text in (("en", en), ("fr", fr)):
+        if lang == "en" and not en_ok:
+            continue
+        if lang == "fr" and not fr_ok:
+            continue
+        r = await asyncio.get_event_loop().run_in_executor(None, router_service.route, text)
+        r["lang"] = lang
+        r["text"] = text
+        if best is None or r["category_confidence"] > best["category_confidence"]:
+            best = r
+    if best is None:
+        # fall back to whichever survived
+        for lang, text in (("en", en), ("fr", fr)):
+            if text.strip():
+                best = {"category": "fallback", "category_confidence": 0.0,
+                        "overridden": False, "text": text, "lang": lang, "ms": 0.0}
+                break
+    if best is None:
+        await broadcast({"type": "voice_result", "transcript": "", "category": "fallback",
+                         "confidence": 0.0, "overridden": False, "error": "no speech"})
+        return
+    await broadcast({"type": "voice_result",
+                    "transcript": best["text"],
+                    "language": best.get("lang", ""),
+                    "en_text": en, "fr_text": fr,
+                    "category": best["category"],
+                    "confidence": best["category_confidence"],
+                    "overridden": best["overridden"],
+                    "route_ms": best.get("ms", 0.0),
+                    "audio_s": round(dur, 2)})
+
 async def handle_client(websocket):
     clients.add(websocket)
     try:
@@ -396,6 +468,9 @@ async def handle_client(websocket):
 
             elif action == "dismiss":
                 ringer.dismiss()
+
+            elif action == "voice_listen":
+                asyncio.ensure_future(handle_voice())
 
             elif action == "spotify_login":
                 try:

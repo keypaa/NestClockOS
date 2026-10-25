@@ -876,6 +876,17 @@
           }
         } else if (msg.type === 'alarm_fired' || msg.type === 'timer_fired') {
           showFired(msg);
+        } else if (msg.type === 'voice_status') {
+          const el = document.getElementById('voiceStatus');
+          if (el) el.textContent = (msg.status || '').toUpperCase();
+        } else if (msg.type === 'voice_result') {
+          const el = document.getElementById('voiceStatus');
+          if (el) {
+            if (msg.error) { el.textContent = 'ERR: ' + msg.error; }
+            else { el.textContent = (msg.category || '') + ' · ' + (msg.transcript || '') +
+                    ' (' + Math.round((msg.confidence||0)*100) + '%)'; }
+          }
+          if (micBtn) { micBtn.disabled = false; micBtn.textContent = 'MIC · MIC'; }
         } else if (msg.type === 'spotify_status') {
           spotifyConnected = msg.connected;
           if (msg.connected) { musicError = ''; loadSpotifySDK(); }
@@ -917,6 +928,25 @@
       firedOverlay.classList.remove('active');
       if (ws && ws.readyState === WebSocket.OPEN) {
         ws.send(JSON.stringify({ action: 'dismiss' }));
+      }
+    });
+
+    // voice push-to-talk HUD
+    const voiceStatus = document.createElement('div');
+    voiceStatus.id = 'voiceStatus';
+    voiceStatus.style.cssText = 'position:fixed;bottom:44px;right:10px;max-width:40vw;font-family:monospace;font-size:11px;color:#ffbf00;background:rgba(0,0,0,0.6);padding:4px 6px;z-index:50;';
+    voiceStatus.textContent = 'READY';
+    document.body.appendChild(voiceStatus);
+
+    const micBtn = document.createElement('button');
+    micBtn.textContent = 'MIC · MIC';
+    micBtn.style.cssText = 'position:fixed;bottom:10px;right:10px;z-index:51;';
+    document.body.appendChild(micBtn);
+    micBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (ws && ws.readyState === WebSocket.OPEN) {
+        micBtn.disabled = true; micBtn.textContent = '...';
+        ws.send(JSON.stringify({ action: 'voice_listen' }));
       }
     });
 

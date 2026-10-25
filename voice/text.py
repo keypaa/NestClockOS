@@ -20,3 +20,7 @@ def wer(ref, hyp):
             cur.append(min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + (r != h)))
         prev = cur
     return prev[-1] / len(ref)
+
+
+def non_latin(text):
+    return bool(__import__("re").search(r"[^\u0000-ɏ -⁯₠-⃏]", text))
