@@ -916,6 +916,7 @@
         } else if (msg.type === 'mic_status') {
           const el = document.getElementById('voiceStatus');
           if (el) el.textContent = msg.muted ? 'MIC MUTED' : 'READY';
+          if (typeof muteBtn !== 'undefined' && muteBtn) muteBtn.textContent = msg.muted ? 'MUTED' : 'MUTE · MUTE';
         } else if (msg.type === 'weather') {
           const d = msg.data || {};
           const cond = d.condition_en || d.condition_fr || 'unknown';

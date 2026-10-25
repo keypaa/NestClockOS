@@ -331,6 +331,7 @@ async def scheduler_loop():
         expired_fired = False
         for timer in list(store.timers):
             if timer.get("ends_at") is None:
+                remaining_timers.append(timer)  # paused, keep
                 continue  # paused
             if now_ts >= timer["ends_at"]:
                 overdue = now_ts - timer["ends_at"]
@@ -349,7 +350,6 @@ async def scheduler_loop():
             await broadcast(store.as_message())
 
         # periodic weather broadcast (every 30 min from boot)
-        next_try = 60 if weather_cache is None else (1800 - (time.time() - weather_cache.get("_ts", 0)))
         ready = weather_cache is None or (time.time() - weather_cache.get("_ts", 0)) > 1800
         if ready:
             try:
@@ -518,9 +518,14 @@ async def handle_voice():
         await broadcast({"type": "voice_state", "state": "idle"})
 
     except Exception as e:
+        global voice_busy
+        voice_busy = False
         await broadcast({"type": "voice_state", "state": "error"})
         await broadcast({"type": "voice_result", "transcript": "", "category": "fallback", "confidence": 0.0, "overridden": False, "error": str(e)})
         print("voice error:", e)
+    finally:
+        global voice_busy
+        voice_busy = False
 
 async def handle_client(websocket):
     clients.add(websocket)
