@@ -273,26 +273,50 @@ async def scheduler_loop():
         now = time.localtime()
         now_key = (now.tm_hour, now.tm_min)
 
-        for alarm in store.alarms:
+        for alarm in list(store.alarms):
             if not alarm["enabled"]:
                 continue
-            if alarm["hour"] == now.tm_hour and alarm["minute"] == now.tm_min:
-                if now.tm_wday not in alarm["days"]:
+            if not (alarm["hour"] == now.tm_hour and alarm["minute"] == now.tm_min):
+                continue
+            once = bool(alarm.get("once"))
+            date = alarm.get("date")
+            if once and date:
+                if date != time.strftime("%Y-%m-%d"):
                     continue
-                key = (alarm["id"], now_key)
-                if key in fired_alarm_this_minute:
+            elif not once:
+                if now.tm_wday not in (alarm.get("days") or []):
                     continue
-                fired_alarm_this_minute.add(key)
-                await ringer.start(alarm=True)
-                await broadcast({"type": "alarm_fired", "alarm": alarm})
+            # once without date fires on the next matching time (any day)
+            key = (alarm["id"], now_key)
+            if key in fired_alarm_this_minute:
+                continue
+            fired_alarm_this_minute.add(key)
+            await ringer.start(alarm=True)
+            await broadcast({"type": "alarm_fired", "alarm": alarm})
+            if once:
+                store.alarms = [a for a in store.alarms if a["id"] != alarm["id"]]
+                store.save()
+                await broadcast(store.as_message())
 
+        now_ts = time.time()
         remaining_timers = []
+        expired_fired = False
         for timer in store.timers:
-            if time.time() >= timer["ends_at"]:
+            if now_ts >= timer["ends_at"]:
+                overdue = now_ts - timer["ends_at"]
+                if overdue > 120:
+                    print(f"Dropped expired timer {timer.get('id')} (overdue {overdue:.0f}s)")
+                    expired_fired = True
+                    continue
                 await ringer.start(alarm=False)
                 await broadcast({"type": "timer_fired", "timer": timer})
+                expired_fired = True
             else:
                 remaining_timers.append(timer)
+        if len(remaining_timers) != len(store.timers):
+            store.timers = remaining_timers
+            store.save()
+            await broadcast(store.as_message())
         if len(remaining_timers) != len(store.timers):
             store.timers = remaining_timers
             store.save()
@@ -326,13 +350,17 @@ async def handle_client(websocket):
             action = msg.get("action")
 
             if action == "set_alarm":
+                days = msg.get("days", [0, 1, 2, 3, 4, 5, 6])
+                once = bool(msg.get("once", False)) or (len(days) == 0)
                 alarm = {
                     "id": str(uuid.uuid4()),
                     "hour": msg["hour"],
                     "minute": msg["minute"],
-                    "days": msg.get("days", [0, 1, 2, 3, 4, 5, 6]),
+                    "days": days,
                     "label": msg.get("label", ""),
                     "enabled": True,
+                    "once": once,
+                    "date": msg.get("date"),
                 }
                 store.alarms.append(alarm)
                 store.save()
