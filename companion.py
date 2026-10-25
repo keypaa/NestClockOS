@@ -518,13 +518,11 @@ async def handle_voice():
         await broadcast({"type": "voice_state", "state": "idle"})
 
     except Exception as e:
-        global voice_busy
         voice_busy = False
         await broadcast({"type": "voice_state", "state": "error"})
         await broadcast({"type": "voice_result", "transcript": "", "category": "fallback", "confidence": 0.0, "overridden": False, "error": str(e)})
         print("voice error:", e)
     finally:
-        global voice_busy
         voice_busy = False
 
 async def handle_client(websocket):
