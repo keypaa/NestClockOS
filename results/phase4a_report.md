@@ -40,7 +40,7 @@ Notable: "Lance un minuteur de 5 minutes" heard as "Dans 5 minutes, il y a 2-5 m
 - STT p50 257 ms. Router: load 6619 ms, p50 353.9 ms, p90 400.1 ms, p99 449.9 ms (200 calls), peak RSS 2351 MB (CPU).
 
 ## 5. Exit criteria (E1)
-- [x] recorder-side misses: 0/37 (0%)
+- [x] recorder-side misses: 0 across all sessions (rec1/recA/recB/recC)
 - [x] non-Latin outputs < 2% after the guard (P2 enforces Latin)
 - [x] documented language policy with numbers (P2)
 - [x] router accuracy on real transcripts recorded here (97.3%)
