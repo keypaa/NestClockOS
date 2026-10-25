@@ -24,7 +24,7 @@ Notable: "Lance un minuteur de 5 minutes" heard as "Dans 5 minutes, il y a 2-5 m
 - Tier mapping: Tier 1 (unify). 1 locally-executed error edged out via the 0.6 threshold.
 
 ## 4. Latency & memory (companion)
-- STT p50 257 ms. Router p50/p90 and RAM: _TBD_.
+- STT p50 257 ms. Router: load 6619 ms, p50 353.9 ms, p90 400.1 ms, p99 449.9 ms (200 calls), peak RSS 2351 MB (CPU).
 
 ## 5. Exit criteria (E1)
 - [x] recorder-side misses: 0/37 (0%)
