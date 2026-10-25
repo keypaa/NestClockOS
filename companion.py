@@ -216,6 +216,7 @@ mic_capture = None
 pending_actions = {}
 voice_busy = False
 mic_muted = False
+weather_cache = None
 mistral_client = None
 try:
     mistral_client = make_client()
@@ -344,6 +345,16 @@ async def scheduler_loop():
             store.timers = remaining_timers
             store.save()
             await broadcast(store.as_message())
+
+        # periodic weather broadcast (every 30 min from boot)
+        if weather_cache is None or (time.time() - weather_cache.get("_ts", 0)) > 1800:
+            try:
+                w = await asyncio.get_event_loop().run_in_executor(None, fetch_weather)
+                w["_ts"] = time.time()
+                weather_cache = w
+                await broadcast({"type": "weather", "data": w})
+            except Exception as e:
+                print("weather poll error:", e)
 
         await asyncio.sleep(1)
 
@@ -508,6 +519,8 @@ async def handle_client(websocket):
     clients.add(websocket)
     try:
         await websocket.send(json.dumps(store.as_message()))
+        if weather_cache is not None:
+            await websocket.send(json.dumps({"type": "weather", "data": weather_cache}))
         await websocket.send(json.dumps({"type": "spotify_status", "connected": spotify.connected}))
         async for raw in websocket:
             try:

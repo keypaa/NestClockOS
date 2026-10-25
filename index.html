@@ -626,6 +626,7 @@
       <div class="date-fr" id="dateFr"></div>
     </div>
     <div class="status-line below" id="musicStatus">MUSIC &middot; MUSIQUE</div>
+    <div class="status-line below" id="weatherStrip" style="cursor:pointer;">WEATHER &middot; MÉTÉO</div>
   </div>
 
   <!-- ===================== ALARMS LIST SCREEN ===================== -->
@@ -701,6 +702,14 @@
   </div>
 
   <!-- ===================== TIMER SCREEN ===================== -->
+  <div class="screen" id="weatherScreen">
+    <div class="screen-header">
+      <button class="back-btn" data-target="clockScreen">&larr; CLOCK &middot; HORLOGE</button>
+      <div>WEATHER &middot; MÉTÉO</div>
+    </div>
+    <div id="weatherDetail" style="font-family:monospace;font-size:14px;padding:12px;">AWAITING DATA &middot; DONNÉES EN ATTENTE</div>
+  </div>
+
   <div class="screen" id="timerScreen">
     <div class="screen-header">
       <button class="back-btn" data-target="clockScreen">&larr; CLOCK &middot; HORLOGE</button>
@@ -910,6 +919,13 @@
         } else if (msg.type === 'mic_status') {
           const el = document.getElementById('voiceStatus');
           if (el) el.textContent = msg.muted ? 'MIC MUTED' : 'READY';
+        } else if (msg.type === 'weather') {
+          const d = msg.data || {};
+          const cond = d.condition_en || d.condition_fr || 'unknown';
+          const strip = document.getElementById('weatherStrip');
+          if (strip) strip.textContent = (cond.toUpperCase() + ' · ' + (d.temp_c!=null?d.temp_c+'C':'') + ' · ' + (d.wind_kmh!=null?d.wind_kmh+' km/h':'')).trim();
+          const det = document.getElementById('weatherDetail');
+          if (det) det.textContent = (d.condition_en||'') + ' / ' + (d.condition_fr||'') + '\n' + (d.temp_c!=null?'TEMP ' + d.temp_c + 'C':'') + '  ' + (d.wind_kmh!=null?'WIND ' + d.wind_kmh + ' km/h':'');
         } else if (msg.type === 'spotify_status') {
           spotifyConnected = msg.connected;
           if (msg.connected) { musicError = ''; loadSpotifySDK(); }
@@ -994,6 +1010,9 @@
       if (ws && ws.readyState === WebSocket.OPEN) ws.send(JSON.stringify({ action: 'mic_mute', muted: micMuted }));
       muteBtn.textContent = micMuted ? 'MUTED' : 'MUTE · MUTE';
     });
+
+    const weatherStrip = document.getElementById('weatherStrip');
+    if (weatherStrip) weatherStrip.addEventListener('click', (e) => { e.stopPropagation(); showScreen('weatherScreen'); });
 
     connectCompanion();
 
