@@ -492,6 +492,7 @@ async def handle_client(websocket):
 
 async def main():
     import websockets
+    from wakepy import keep
     print(f"NestClockOS companion service on ws://localhost:{PORT}")
 
     with keep.presenting(on_fail="pass") as mode:  # we print our own explanation below
