@@ -884,7 +884,8 @@
           if (el) {
             if (msg.error) { el.textContent = 'ERR: ' + msg.error; }
             else { el.textContent = (msg.category || '') + ' · ' + (msg.transcript || '') +
-                    ' (' + Math.round((msg.confidence||0)*100) + '%)'; }
+                    ' (' + Math.round((msg.confidence||0)*100) + '%)' +
+                    (msg.action_msg ? ' → ' + msg.action_msg : ''); }
           }
           if (micBtn) { micBtn.disabled = false; micBtn.textContent = 'MIC · MIC'; }
         } else if (msg.type === 'spotify_status') {

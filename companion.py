@@ -32,6 +32,8 @@ import numpy as np
 import spotify_auth
 from voice.router import RouterService
 from voice.stt import transcribe_parallel
+from voice.slots import parse_alarm_set, parse_timer_start
+from voice.actions import try_execute
 from stt_session import record_utterance, explain, make_client, SAMPLE_RATE
 
 STATE_PATH = Path(__file__).parent / "companion_state.json"
@@ -402,6 +404,19 @@ async def handle_voice():
         await broadcast({"type": "voice_result", "transcript": "", "category": "fallback",
                          "confidence": 0.0, "overridden": False, "error": "no speech"})
         return
+    action_ok, action_msg = False, None
+    if best["category_confidence"] >= 0.5 or best["category"] == "fallback":
+        slots = None
+        if best["category"] == "alarm":
+            slots = parse_alarm_set(best["text"])
+        elif best["category"] == "timer":
+            secs = parse_timer_start(best["text"])
+            slots = {"seconds": secs} if secs else None
+        elif best["category"] == "fallback":
+            slots = {}
+        action_ok, action_msg = try_execute(store, best["category"], best["text"], slots)
+        if action_ok:
+            await broadcast(store.as_message())
     await broadcast({"type": "voice_result",
                     "transcript": best["text"],
                     "language": best.get("lang", ""),
@@ -410,7 +425,9 @@ async def handle_voice():
                     "confidence": best["category_confidence"],
                     "overridden": best["overridden"],
                     "route_ms": best.get("ms", 0.0),
-                    "audio_s": round(dur, 2)})
+                    "audio_s": round(dur, 2),
+                    "action_ok": action_ok,
+                    "action_msg": action_msg})
 
 async def handle_client(websocket):
     clients.add(websocket)
