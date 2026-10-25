@@ -5,3 +5,11 @@ rec*/
 *.wav
 .env
 voice_log.jsonl
+
+# training/vendor leftovers
+openwakeword/
+piper-sample-generator/
+automatic_model_training*.ipynb
+automatic_model_training*.py
+target_wake_phrase.txt
+zenno/
