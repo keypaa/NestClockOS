@@ -910,9 +910,6 @@
         } else if (msg.type === 'mic_status') {
           const el = document.getElementById('voiceStatus');
           if (el) el.textContent = msg.muted ? 'MIC MUTED' : 'READY';
-        } else if (msg.type === 'mic_status') {
-          const el = document.getElementById('voiceStatus');
-          if (el) el.textContent = msg.muted ? 'MIC MUTED' : 'READY';
         } else if (msg.type === 'spotify_status') {
           spotifyConnected = msg.connected;
           if (msg.connected) { musicError = ''; loadSpotifySDK(); }

@@ -215,6 +215,7 @@ router_service = RouterService()
 mic_capture = None
 pending_actions = {}
 voice_busy = False
+mic_muted = False
 mistral_client = None
 try:
     mistral_client = make_client()
@@ -375,6 +376,12 @@ async def handle_voice():
                 # fallback to per-call capture
                 audio = record_utterance(None, info=info)
             return audio, info
+        global mic_muted, voice_busy
+        if mic_muted:
+            await broadcast({"type": "voice_result", "transcript": "", "category": "fallback", "confidence": 0.0, "overridden": False, "error": "mic muted"})
+            await broadcast({"type": "voice_state", "state": "idle"})
+            return
+        voice_busy = True
         await broadcast({"type": "voice_status", "status": "listening"})
         await broadcast({"type": "voice_state", "state": "listening"})
         audio, info = await asyncio.get_event_loop().run_in_executor(None, _capture)
@@ -464,7 +471,7 @@ async def handle_voice():
             elif best["category"] == "weather":
                 slots = parse_weather_query(best["text"])
                 try:
-                    w = fetch_weather()
+                    w = await asyncio.get_event_loop().run_in_executor(None, fetch_weather)
                     await broadcast({"type": "weather", "data": w})
                     action_ok = True
                     action_msg = "weather: " + w["condition_" + ("fr" if store.language == "fr" else "en")] + f" {w['temp_c']}C"
@@ -567,6 +574,11 @@ async def handle_client(websocket):
                 except Exception:
                     pass
 
+            elif action == "mic_mute":
+                global mic_muted
+                mic_muted = bool(msg.get("muted", False))
+                await broadcast({"type": "mic_status", "muted": mic_muted})
+
             elif action == "voice_listen":
                 global voice_busy
                 if voice_busy:
@@ -640,6 +652,10 @@ async def main():
                 loop = asyncio.get_event_loop()
 
                 def _trigger():
+                    global voice_busy
+                    if voice_busy:
+                        return
+                    voice_busy = True
                     loop.call_soon_threadsafe(lambda: asyncio.ensure_future(handle_voice()))
 
                 await loop.run_in_executor(None, run_wake_loop, mc, _trigger)
