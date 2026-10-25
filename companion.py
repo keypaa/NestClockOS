@@ -33,6 +33,7 @@ import spotify_auth
 from voice.router import RouterService
 from voice.audio import MicCapture
 from voice.stt import transcribe_parallel
+from voice.reply import detect_reply_language
 from voice.slots import parse_alarm_set, parse_timer_start
 from voice.actions import try_execute
 from stt_session import record_utterance, explain, make_client, SAMPLE_RATE
@@ -431,6 +432,7 @@ async def handle_voice():
                     "overridden": best["overridden"],
                     "route_ms": best.get("ms", 0.0),
                     "audio_s": round(dur, 2),
+                    "reply_language": detect_reply_language(best["text"]),
                     "action_ok": action_ok,
                     "action_msg": action_msg})
 
