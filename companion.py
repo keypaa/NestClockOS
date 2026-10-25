@@ -38,6 +38,7 @@ from voice.llm import ask as ask_llm
 from voice.tts import speak as speak_tts
 from voice.reply import detect_reply_language
 from voice.slots import parse_alarm_set, parse_timer_start, parse_music_subintent, parse_weather_query
+import voice.spotify as vspotify
 from voice.weather import fetch as fetch_weather
 from voice.wakeword import run_loop as run_wake_loop
 from voice.actions import try_execute, is_destructive, cancel
@@ -677,6 +678,25 @@ async def handle_client(websocket):
                     store.settings.update(incoming)
                     store.save()
                     await broadcast(store.as_message())
+
+            elif action == "spotify_control":
+                cmd = msg.get("cmd")
+                token = spotify.get_access_token() if hasattr(spotify, "get_access_token") else None
+                token = token if token else (await spotify.get_access_token())
+                device = vspotify.get_device_id(token) if token else None
+                if cmd == "play":
+                    code, body = vspotify.play_pause(token, True, device)
+                elif cmd == "pause":
+                    code, body = vspotify.play_pause(token, False, device)
+                elif cmd == "next":
+                    code, body = vspotify.next_track(token, device)
+                elif cmd == "prev":
+                    code, body = vspotify.previous_track(token, device)
+                elif cmd == "volume":
+                    code, body = vspotify.set_volume(token, msg.get("value", 50), device)
+                else:
+                    code, body = 400, {"error": "unknown command"}
+                await broadcast({"type": "spotify_control_result", "cmd": cmd, "code": code, "body": body})
 
             elif action == "spotify_login":
                 try:
