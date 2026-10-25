@@ -124,7 +124,7 @@ class OpenWakeWordDetector(WakeWordDetector):
 
 def build_detector():
     """Pick a detector from env vars. Defaults to the placeholder."""
-    path = os.environ.get("NESTCLOCK_WAKE_MODEL")
+    path = os.environ.get("NESTCLOCK_WAKE_MODEL", "hey_jarvis_v0.1")
     if path:
         try:
             thr = float(os.environ.get("NESTCLOCK_WAKE_THRESHOLD", "0.5"))
