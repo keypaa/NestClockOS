@@ -379,6 +379,7 @@ async def handle_voice():
                 audio = record_utterance(None, info=info)
             return audio, info
         await broadcast({"type": "voice_status", "status": "listening"})
+        await broadcast({"type": "voice_state", "state": "listening"})
         audio, info = await asyncio.get_event_loop().run_in_executor(None, _capture)
         if audio is None:
             await broadcast({"type": "voice_result", "transcript": "", "category": "fallback",
@@ -388,6 +389,7 @@ async def handle_voice():
         # P2 transcription (blocking, in executor)
         def _transcribe():
             return transcribe_parallel(mistral_client, audio)
+        await broadcast({"type": "voice_state", "state": "thinking"})
         results = await asyncio.get_event_loop().run_in_executor(None, _transcribe)
         en = results.get("en", {}).get("text", "")
         fr = results.get("fr", {}).get("text", "")
@@ -422,9 +424,11 @@ async def handle_voice():
         # destructive actions require confirmation
         # optional LLM fallback for fallback routing
         if best["category"] == "fallback" and os.environ.get("NESTCLOCK_USE_LLM") == "1":
+            await broadcast({"type": "voice_state", "state": "thinking"})
             reply = await asyncio.get_event_loop().run_in_executor(None, ask_llm, mistral_client, best["text"], detect_reply_language(best["text"], store.language))
             await broadcast({"type": "voice_reply", "text": reply, "language": detect_reply_language(best["text"], store.language)})
-        if os.environ.get("NESTCLOCK_TTS") == "1":
+        if os.environ.get("NESTCLOCK_TTS") == "1" and best["category"] == "fallback":
+            await broadcast({"type": "voice_state", "state": "speaking"})
             await asyncio.get_event_loop().run_in_executor(None, speak_tts, mistral_client, reply)
 
         if is_destructive(best["category"], best["text"]):
