@@ -612,6 +612,17 @@
     .time .colon { animation: none; opacity: 1; }
     .fired-label { animation: none; }
   }
+   /* burn-in mitigation */
+   @keyframes pixel-shift {
+     0% { transform: translate(0, 0); }
+     25% { transform: translate(2px, -1px); }
+     50% { transform: translate(-1px, 2px); }
+     75% { transform: translate(1px, 1px); }
+     100% { transform: translate(0, 0); }
+   }
+   .clock-block { animation: pixel-shift 360s infinite ease-in-out; }
+   .dim-overlay { position: fixed; inset: 0; pointer-events: none; background: #000; opacity:0; transition: opacity 600ms ease; z-index: 998; }
+   .dim-overlay.active { opacity: 0.88; }
 </style>
 </head>
 <body>
@@ -620,7 +631,7 @@
   <div class="screen active" id="clockScreen">
     <div class="status-line" id="alarmStatus">CONNECTING &middot; CONNEXION</div>
     <div class="status-line" id="timerStatus">SET TIMER &middot; MINUTEUR</div>
-    <div class="time" id="time" aria-live="polite"></div>
+    <div class="time clock-block" id="time" aria-live="polite"></div>
     <div class="dates">
       <div class="date-en" id="dateEn"></div>
       <div class="date-fr" id="dateFr"></div>
@@ -1011,6 +1022,70 @@
 
     const weatherStrip = document.getElementById('weatherStrip');
     if (weatherStrip) weatherStrip.addEventListener('click', (e) => { e.stopPropagation(); showScreen('weatherScreen'); });
+
+    // burn-in dim overlay
+    const dimOverlay = document.createElement('div');
+    dimOverlay.className = 'dim-overlay';
+    document.body.appendChild(dimOverlay);
+
+    // settings panel (real settings only)
+    const settingsBtn = document.createElement('button');
+    settingsBtn.textContent = 'SET · RÉG';
+    settingsBtn.style.cssText = 'position:fixed;bottom:10px;right:100px;z-index:51;';
+    document.body.appendChild(settingsBtn);
+    const settingsPanel = document.createElement('div');
+    settingsPanel.style.cssText = 'position:fixed;bottom:50px;right:10px;width:260px;max-height:60vh;overflow:auto;background:rgba(0,0,0,0.9);color:#fff;padding:10px;z-index:52;display:none;font-family:monospace;font-size:12px;';
+    settingsPanel.innerHTML = '<div style="margin-bottom:6px;font-weight:bold;">SETTINGS</div>' +
+      '<label>Brightness<input type=range min=10 max=100 id=setBright value=100 style="width:100%;"></label><br>' +
+      '<label>Dim start<input type=time id=setDimStart value="22:00" style="width:100%;"></label><br>' +
+      '<label>Dim end<input type=time id=setDimEnd value="07:00" style="width:100%;"></label><br>' +
+      '<label><input type=checkbox id=setWake> wake word</label><br>' +
+      '<label><input type=checkbox id=set24> 24h clock</label><br>' +
+      '<button id=setSave style="margin-top:8px;">SAVE / ENREGISTRER</button>';
+    document.body.appendChild(settingsPanel);
+
+    settingsBtn.addEventListener('click', (e) => { e.stopPropagation(); settingsPanel.style.display = settingsPanel.style.display === 'none' ? 'block' : 'none'; });
+
+    // sync whenever state arrives
+    const syncSettings = () => {
+      const st = (companionState && companionState.settings) || {};
+      const b = document.getElementById('setBright'); if (b) b.value = st.brightness || 100;
+      const ds = document.getElementById('setDimStart'); if (ds) ds.value = st.dim_start || '22:00';
+      const de = document.getElementById('setDimEnd'); if (de) de.value = st.dim_end || '07:00';
+      const w = document.getElementById('setWake'); if (w) w.checked = !!st.wake_word;
+      const t = document.getElementById('set24'); if (t) t.checked = st.ui_24h !== false;
+    };
+    const origRender = renderAlarmStatus;
+    renderAlarmStatus = function(){ origRender(); syncSettings(); };
+
+    document.getElementById('setSave').addEventListener('click', (e) => {
+      e.stopPropagation();
+      const st = (companionState && companionState.settings) || {};
+      const next = Object.assign({}, st, {
+        brightness: parseInt(document.getElementById('setBright').value, 10),
+        dim_start: document.getElementById('setDimStart').value,
+        dim_end: document.getElementById('setDimEnd').value,
+        wake_word: document.getElementById('setWake').checked,
+        ui_24h: document.getElementById('set24').checked,
+      });
+      if (ws && ws.readyState === WebSocket.OPEN) ws.send(JSON.stringify({ action: 'set_settings', settings: next }));
+      settingsPanel.style.display = 'none';
+    });
+
+    // auto-dim scheduler
+    const hhmm = () => { const d = new Date(); return (d.getHours()<10?'0':'')+d.getHours()+':'+(d.getMinutes()<10?'0':'')+d.getMinutes(); };
+    const inRange = (now, start, end) => {
+      if (start <= end) return now >= start && now < end;
+      return now >= start || now < end;
+    };
+    setInterval(() => {
+      const st = (companionState && companionState.settings) || {};
+      const start = st.dim_start || '22:00';
+      const end = st.dim_end || '07:00';
+      const dimmed = inRange(hhmm(), start, end);
+      const pct = dimmed ? (st.brightness || 100) / 100 * 0.4 : 0;  // rough CSS fallback
+      dimOverlay.style.opacity = dimmed ? (1 - pct).toFixed(2) : 0;
+    }, 30000);
 
     connectCompanion();
 

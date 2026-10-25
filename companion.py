@@ -192,6 +192,8 @@ class Store:
         self.alarms = []  # [{id, hour, minute, days: [0-6], label, enabled}]
         self.timers = []  # [{id, ends_at, duration, label}]
         self.language = "fr"
+        self.settings = {"brightness": 100, "dim_start": "22:00", "dim_end": "07:00",
+                         "wake_word": False, "assistant_volume": 80, "ui_24h": True}
         self.load()
 
     def load(self):
@@ -200,14 +202,16 @@ class Store:
             self.alarms = data.get("alarms", [])
             self.timers = data.get("timers", [])
             self.language = data.get("language", "fr")
+            self.settings = {**self.settings, **data.get("settings", {})}
 
     def save(self):
         STATE_PATH.write_text(json.dumps(
-            {"alarms": self.alarms, "timers": self.timers, "language": self.language}, indent=2
+            {"alarms": self.alarms, "timers": self.timers, "language": self.language,
+             "settings": self.settings}, indent=2
         ))
 
     def as_message(self):
-        return {"type": "state", "alarms": self.alarms, "timers": self.timers, "language": self.language}
+        return {"type": "state", "alarms": self.alarms, "timers": self.timers, "language": self.language, "settings": self.settings}
 
 
 store = Store()
@@ -664,6 +668,13 @@ async def handle_client(websocket):
                 lang = msg.get("language", "fr")
                 if lang in ("fr", "en"):
                     store.language = lang
+                    store.save()
+                    await broadcast(store.as_message())
+
+            elif action == "set_settings":
+                incoming = msg.get("settings", {})
+                if isinstance(incoming, dict):
+                    store.settings.update(incoming)
                     store.save()
                     await broadcast(store.as_message())
 
