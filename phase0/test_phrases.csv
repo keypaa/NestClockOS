@@ -1,0 +1,31 @@
+phrase,expected_category,language
+Wake me up at 7am tomorrow,alarm,en
+Set an alarm for 8:30,alarm,en
+Mets une alarme pour 7h demain matin,alarm,fr
+Réveille-moi à 6h30,alarm,fr
+Cancel my alarm,alarm,en
+Annule l'alarme,alarm,fr
+Set a timer for 10 minutes,timer,en
+Lance un minuteur de 5 minutes,timer,fr
+How much time is left on the timer,timer,en
+Où en est le minuteur,timer,fr
+Play some music,music,en
+Mets de la musique,music,fr
+Pause the music,music,en
+Passe à la chanson suivante,music,fr
+Turn up the volume,music,en
+Baisse le son,music,fr
+What's the weather like today,weather,en
+Quel temps fait-il demain,weather,fr
+Is it going to rain this afternoon,weather,en
+Va-t-il pleuvoir ce weekend,weather,fr
+What time is it,fallback,en
+Quelle heure est-il,fallback,fr
+Tell me a joke,fallback,en
+Raconte-moi une blague,fallback,fr
+What's the capital of France,fallback,en
+Peux-tu m'expliquer la relativité,fallback,fr
+mets une alarme for 8am demain,alarm,mixed
+can you lancer un minuteur de 5 min,timer,mixed
+euh ouais donc en fait,fallback,fr
+umm so like,fallback,en

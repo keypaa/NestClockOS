@@ -1,0 +1,151 @@
+phrase,expected_category,language,split
+ou en est le compteur,timer,fr,train
+"keep going, continue comme ca",music,mixed,train
+encore nettement moins fort,music,fr,train
+pass along my greetings to john,fallback,en,train
+pass me le sel s'il te plait,fallback,mixed,train
+euh baisse ca d'un cran,music,fr,train
+un cran plus fort s'il te plait,music,fr,train
+"keep listening, reste sur un truc calme",music,mixed,train
+um turn it up a notch,music,en,train
+"euh le chrono, il en est ou",timer,fr,train
+"un cran louder, vas-y",music,mixed,train
+reste sur ce qu'on ecoutait,music,fr,train
+"that was nice, one more time",music,en,train
+"vas-y, run it back",music,mixed,train
+could you turn it up a touch,music,en,train
+pass the salt please,fallback,en,train
+reprends comme tout a l'heure,music,fr,train
+on continue ou on s'etait arrete,music,fr,train
+one notch louder please,music,en,train
+just keep listening,music,en,train
+"le chrono, on en est ou",timer,fr,train
+"la meme chose qu'avant, keep it coming",music,mixed,train
+encore softer s'il te plait,music,mixed,train
+il reste combien de temps au compteur,timer,fr,train
+"go on, keep it rolling",music,en,train
+tell me where the countdown is at,timer,en,train
+crank it down a bit,music,en,train
+je veux entendre something de doux,music,mixed,train
+"encore une fois, keep going now",music,mixed,train
+passe me voir demain quand tu veux,fallback,fr,train
+"encore une fois, continue comme ca",music,fr,train
+"that's blasting, turn it down a bit",music,en,train
+let's hear something calm now,music,en,train
+un peu plus fort encore la,music,fr,train
+continue comme avant,music,fr,train
+ou en est le compte a rebours au juste,timer,fr,train
+how much is left on the countdown,timer,en,train
+euh how is the countdown coming along,timer,en,train
+laisse continuer comme ca,music,fr,train
+where are we on the countdown,timer,en,train
+baisse d'un cran s'il te plait,music,fr,train
+turn it down doucement,music,mixed,train
+make it a touch softer,music,en,train
+is the countdown still running,timer,en,train
+how much remains on the chrono,timer,en,train
+"encore le meme, that was nice",music,mixed,train
+"a bit louder, yeah",music,en,train
+how far along is the countdown,timer,en,train
+back to what we were hearing,music,en,train
+let's listen to something gentle,music,en,train
+could you pass me the bread please,fallback,en,train
+monte-le a notch stp,music,mixed,train
+i feel like hearing something soft,music,en,train
+a notch softer please,music,en,train
+j'ai envie d'ecouter quelque chose de calme,music,fr,train
+has the countdown finished yet,timer,en,train
+i want to keep hearing ce genre calme,music,mixed,train
+could you bring it up a touch,music,en,train
+"encore, turn it up a bit",music,mixed,train
+monte-le un peu,music,fr,train
+"moins fort, turn it down",music,mixed,train
+"euh le chrono, how much left",timer,mixed,train
+monte d'un cran encore,music,fr,train
+je veux ecouter something relaxing,music,mixed,train
+j'ai envie d'ecouter un truc pose,music,fr,train
+"non baisse, trop fort la",music,fr,train
+"run it back, that was good",music,en,train
+could you turn it down a touch,music,en,train
+where's the countdown at,timer,en,train
+je veux ecouter un petit truc doux,music,fr,train
+tu peux me dire ou en est le chrono,timer,fr,train
+tu passeras le bonjour a ton frere,fallback,fr,train
+could you make it quieter,music,en,train
+il reste combien on the countdown stp,timer,mixed,train
+"plus fort, a touch louder",music,mixed,train
+"reprends encore, that was nice",music,mixed,train
+"on reprend comme avant, vas-y",music,fr,train
+i want to keep hearing this kind of calm,music,en,train
+how much time is left on the counter,timer,en,train
+redescends d'un cran s'il te plait,music,fr,train
+passe a la maison when you can,fallback,mixed,train
+passe le bonjour a ta mere de ma part,fallback,fr,train
+on passe te voir dimanche,fallback,fr,train
+pass by demain matin if you want,fallback,mixed,train
+baisse-le down a touch,music,mixed,train
+"continue encore, c'est bien comme ca",music,fr,train
+il reste combien sur le compteur,timer,fr,train
+continue ce qu'on ecoutait,music,fr,train
+un peu louder please,music,mixed,train
+euh passe donc me voir ce week-end,fallback,fr,train
+j'ai envie d'entendre quelque chose de reposant,music,fr,train
+where are we avec le chrono,timer,mixed,train
+vas-y continue,music,fr,train
+bring it down a notch,music,en,train
+resume where we were,music,en,train
+moins fort la,music,fr,train
+keep going,music,en,train
+euh monte encore un cran,music,fr,train
+i want to hear quelque chose de calme,music,mixed,train
+let's pick up where we left off,music,en,train
+passe le bonjour to alice de ma part,fallback,mixed,train
+"louder, encore plus fort",music,mixed,train
+pass by tomorrow if you're around,fallback,en,train
+i want to listen to something quiet,music,en,train
+c'est ou le chrono la,timer,fr,train
+um how much time is left on the chrono,timer,en,train
+encore un peu plus fort,music,fr,train
+dis-moi where the countdown is at,timer,mixed,train
+reprends where we left off stp,music,mixed,train
+le compteur en est ou,timer,fr,train
+how much longer on the counter,timer,en,train
+monte it up please now,music,mixed,train
+ou en est le chrono now,timer,mixed,train
+how much left sur le chrono,timer,mixed,train
+allez reprends ou on s'etait arrete,music,fr,train
+i will pass by the store tomorrow,fallback,en,train
+je veux continuer a ecouter tranquille,music,fr,train
+turn it up un peu,music,mixed,train
+il en est ou the countdown,timer,mixed,train
+"le compte a rebours, il en est ou au juste",timer,fr,train
+i'd really like to hear something relaxing,music,en,train
+baisse-le d'un cran,music,fr,train
+down a touch please,music,en,train
+plus fort encore,music,fr,train
+reprends ou on en etait,music,fr,train
+carry on listening,music,en,train
+keep it coming,music,en,train
+ou en est the countdown,timer,mixed,train
+je veux entendre quelque chose de doux,music,fr,train
+"softer please, just a touch",music,en,train
+"monte encore, c'est trop bas",music,fr,train
+combien il reste au compte a rebours,timer,fr,train
+softer,music,en,train
+"euh continue, laisse aller",music,fr,train
+mets-le un peu plus fort,music,fr,train
+dis-moi ou en est le compteur,timer,fr,train
+on en est ou avec le chrono,timer,fr,train
+louder,music,en,train
+remonte d'un petit cran,music,fr,train
+allez reprends comme ca encore,music,fr,train
+le compteur en est ou now,timer,mixed,train
+baisse encore un peu la,music,fr,train
+let's continue ou on en etait,music,mixed,train
+a little louder please,music,en,train
+passe-moi le sel s'il te plait,fallback,fr,train
+vas-y monte un peu,music,fr,train
+un cran moins fort la,music,fr,train
+il reste combien au chrono,timer,fr,train
+baisse it a notch,music,mixed,train
+more of that calm stuff,music,en,train

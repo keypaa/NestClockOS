@@ -1,0 +1,41 @@
+phrase,expected_category,language,split
+"je fais que fredonner cet air, pardon",fallback,fr,train
+c'est quoi le nom de cet air,fallback,fr,train
+what's that tune called,fallback,en,train
+on écoutait good music hier soir,fallback,mixed,train
+the neighbors are playing loud music,fallback,en,train
+je fredonne this melody depuis ce matin,fallback,mixed,train
+"sorry, that chorus is stuck in my head",fallback,en,train
+who sings ce morceau-là,fallback,mixed,train
+"i keep humming that tune, sorry",fallback,en,train
+il fredonne cette mélodie depuis hier,fallback,fr,train
+euh je fredonnais cet air tout à l'heure,fallback,fr,train
+yesterday j'écoutais some jazz at home,fallback,mixed,train
+les voisins font trop de bruit avec leur musique,fallback,fr,train
+there's loud music outside again,fallback,en,train
+"trop de musique outside tonight, c'est insupportable",fallback,mixed,train
+i was listening to some jazz yesterday,fallback,en,train
+ils passent que de la bonne musique ce soir,fallback,fr,train
+elle chantonne ce refrain toute la journée,fallback,fr,train
+on entend de la musique dehors,fallback,fr,train
+les voisins are playing loud music encore,fallback,mixed,train
+"j'adore cette chanson, what a beautiful tune",fallback,mixed,train
+j'adore cette chanson,fallback,fr,train
+cette mélodie me reste dans la tête,fallback,fr,train
+euh y a de la musique super forte chez les voisins,fallback,fr,train
+"humming that melody encore, sorry",fallback,mixed,train
+je fredonne cet air depuis ce matin,fallback,fr,train
+we heard a great song at the restaurant last night,fallback,en,train
+c'est qui qui chante this song,fallback,mixed,train
+"humming that melody again, sorry",fallback,en,train
+music's too loud next door,fallback,en,train
+i really love this song,fallback,en,train
+"je chantonne ce refrain depuis ce matin, désolée",fallback,fr,train
+she keeps singing that chorus,fallback,en,train
+j'écoutais un truc sympa hier en cuisinant,fallback,fr,train
+hier soir on écoutait du jazz à la maison,fallback,fr,train
+he's been humming that melody all morning,fallback,en,train
+who sings this song anyway,fallback,en,train
+"um, i was humming along in the kitchen earlier",fallback,en,train
+c'est qui qui chante là,fallback,fr,train
+that melody is stuck in my head,fallback,en,train

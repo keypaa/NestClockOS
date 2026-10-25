@@ -1,0 +1,39 @@
+phrase,expected_category,language
+Ajoute 2 minutes au compteur.,timer,fr
+Ajoute 2 minutes au compteur.,timer,fr
+Delete the 7am alarm.,alarm,en
+Est-ce que c'est une autre side ?,weather,en
+Quelle est la température outside ?,weather,mixed
+Peux-tu me réveiller à 8h ?,alarm,fr
+Tell me something interesting.,fallback,en
+Zet een alarm voor 8.30.,alarm,en
+"Ouais, donc en fait,",fallback,fr
+it snow tomorrow.,weather,en
+Redémarre le minuteur.,timer,fr
+Add two more minutes to the timer.,timer,en
+"cancel le timer, please.",timer,mixed
+Annule le timer.,timer,fr
+Je ne sais pas quoi dire.,fallback,mixed
+"Dans 5 minutes, il y a 2-5 minutes.",timer,fr
+Combien font 2 plus 2 ?,fallback,fr
+Set a countdown for half an hour.,timer,en
+Set an alarm pour lundi matin.,alarm,mixed
+Mets une alarme pour 8h demain.,alarm,mixed
+Peux-tu m'expliquer la relativité ?,fallback,fr
+Play something relaxing.,music,en
+Passez à la chanson suivante.,music,fr
+I don't know what I want.,fallback,en
+raconte-moi une blague.,fallback,fr
+Annule l'alarme.,alarm,fr
+Play de la musique relaxante.,music,mixed
+Resume playback.,music,en
+Snooze alarm.,alarm,en
+Mais de la musique.,music,fr
+Mets une alarme pour 7h demain matin.,alarm,fr
+Va-t-il pleuvoir ce week-end ?,weather,fr
+Est-il du vent aujourd'hui ?,weather,fr
+Quel temps fait-il demain ?,weather,fr
+Set a timer for 20 seconds.,timer,en
+Mets ma playlist du matin.,music,fr
+Change d'alarme à 9h.,alarm,fr
+Là où est le volume?,music,en

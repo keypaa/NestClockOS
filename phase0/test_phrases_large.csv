@@ -1,0 +1,126 @@
+phrase,expected_category,language
+Wake me up at 7am tomorrow,alarm,en
+Set an alarm for 8:30,alarm,en
+Set an alarm for 6 in the morning,alarm,en
+Can you wake me up at 9,alarm,en
+I need to get up at 5:45 tomorrow,alarm,en
+Set an alarm every weekday at 7,alarm,en
+Cancel my alarm,alarm,en
+Turn off the alarm,alarm,en
+Delete the 7am alarm,alarm,en
+Snooze the alarm,alarm,en
+Change my alarm to 8,alarm,en
+Is my alarm still set,alarm,en
+Mets une alarme pour 7h demain matin,alarm,fr
+Réveille-moi à 6h30,alarm,fr
+Annule l'alarme,alarm,fr
+Éteins l'alarme,alarm,fr
+Supprime l'alarme de 7h,alarm,fr
+Peux-tu me réveiller à 8h,alarm,fr
+Change l'alarme à 9h,alarm,fr
+Est-ce que mon alarme est toujours active,alarm,fr
+Mets une alarme tous les jours à 7h,alarm,fr
+Repousse l'alarme,alarm,fr
+J'ai besoin de me lever à 6h demain,alarm,fr
+Programme une alarme pour demain matin,alarm,fr
+mets une alarme for 8am demain,alarm,mixed
+can you wake me up à 7h,alarm,mixed
+set an alarm pour lundi matin,alarm,mixed
+cancel mon alarme de 7h,alarm,mixed
+Set a timer for 10 minutes,timer,en
+How much time is left on the timer,timer,en
+Start a 5 minute timer,timer,en
+Cancel the timer,timer,en
+Pause the timer,timer,en
+Set a timer for 20 seconds,timer,en
+Is the timer still running,timer,en
+Add 2 more minutes to the timer,timer,en
+Restart the timer,timer,en
+Set a countdown for half an hour,timer,en
+Lance un minuteur de 5 minutes,timer,fr
+Où en est le minuteur,timer,fr
+Combien de temps il reste sur le minuteur,timer,fr
+Annule le minuteur,timer,fr
+Mets en pause le minuteur,timer,fr
+Lance un compte à rebours de 30 minutes,timer,fr
+Le minuteur est-il encore en marche,timer,fr
+Ajoute 2 minutes au minuteur,timer,fr
+Redémarre le minuteur,timer,fr
+Ça en est où le minuteur,timer,fr
+can you lancer un minuteur de 5 min,timer,mixed
+start a timer pour 10 minutes,timer,mixed
+cancel le timer please,timer,mixed
+Play some music,music,en
+Pause the music,music,en
+Turn up the volume,music,en
+Turn down the volume,music,en
+Skip to the next song,music,en
+Play something relaxing,music,en
+Stop the music,music,en
+Resume playback,music,en
+Lower the volume a bit,music,en
+Increase the volume,music,en
+Play my morning playlist,music,en
+Shuffle my music,music,en
+Mets de la musique,music,fr
+Passe à la chanson suivante,music,fr
+Baisse le son,music,fr
+Monte le son,music,fr
+Coupe la musique,music,fr
+Reprends la lecture,music,fr
+Mets ma playlist du matin,music,fr
+Diminue un peu le volume,music,fr
+Augmente le volume,music,fr
+Joue quelque chose de calme,music,fr
+Mélange ma musique,music,fr
+Arrête la chanson,music,fr
+turn up le son,music,mixed
+pause la musique please,music,mixed
+play de la musique relaxante,music,mixed
+baisse the volume,music,mixed
+What's the weather like today,weather,en
+Is it going to rain this afternoon,weather,en
+What's the temperature outside,weather,en
+Will it snow tomorrow,weather,en
+Do I need an umbrella today,weather,en
+What's the forecast for the weekend,weather,en
+Is it sunny outside,weather,en
+How windy is it today,weather,en
+Quel temps fait-il demain,weather,fr
+Va-t-il pleuvoir ce weekend,weather,fr
+Quelle est la température dehors,weather,fr
+Va-t-il neiger demain,weather,fr
+Ai-je besoin d'un parapluie aujourd'hui,weather,fr
+Quelles sont les prévisions pour le weekend,weather,fr
+Fait-il beau dehors,weather,fr
+Y a-t-il du vent aujourd'hui,weather,fr
+what's la météo aujourd'hui,weather,mixed
+is it going to pleuvoir demain,weather,mixed
+quelle est the temperature outside,weather,mixed
+What time is it,fallback,en
+Tell me a joke,fallback,en
+What's the capital of France,fallback,en
+Can you help me with my homework,fallback,en
+What's 2 plus 2,fallback,en
+Tell me something interesting,fallback,en
+How are you today,fallback,en
+What's your name,fallback,en
+Can you explain photosynthesis,fallback,en
+Play a game with me,fallback,en
+umm so like,fallback,en
+I don't know what I want,fallback,en
+Quelle heure est-il,fallback,fr
+Raconte-moi une blague,fallback,fr
+Peux-tu m'expliquer la relativité,fallback,fr
+Peux-tu m'aider avec mes devoirs,fallback,fr
+Combien font 2 plus 2,fallback,fr
+Dis-moi quelque chose d'intéressant,fallback,fr
+Comment vas-tu aujourd'hui,fallback,fr
+Comment tu t'appelles,fallback,fr
+euh ouais donc en fait,fallback,fr
+Je ne sais pas ce que je veux,fallback,fr
+Raconte-moi une histoire,fallback,fr
+Quelle est la capitale de l'Allemagne,fallback,fr
+umm je ne sais pas quoi dire,fallback,mixed
+what's ton nom,fallback,mixed
+tell me une histoire,fallback,mixed

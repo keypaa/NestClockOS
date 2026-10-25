@@ -1,0 +1,7 @@
+spotify_tokens.json
+companion_state.json
+__pycache__/
+rec*/
+*.wav
+.env
+voice_log.jsonl

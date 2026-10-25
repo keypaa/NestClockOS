@@ -1,0 +1,2001 @@
+phrase,expected_category,language,split
+"ben, chante-moi une chanson douce merci",fallback,fr,train
+take two minutes off the timer thanks,timer,en,train
+"hey nest, is it cloudy in madrid this evening please",weather,en,train
+"hey nest, mets de la lofi",music,fr,train
+"dis, mon reveil est en panne, tu aurais un conseil",fallback,fr,train
+uh set a timer for 20 minutes,timer,en,train
+il pleut en ce moment à marseille,weather,fr,train
+pause la musique now please,music,mixed,train
+"dis, il pleut en ce moment à bordeaux",weather,fr,train
+"hey nest, je m'ennuie, entertain me s'il te plaît",fallback,mixed,train
+should i bring a jacket right now,weather,en,train
+reveille-moi chaque matin a midi,alarm,fr,train
+redescends le son à fond merci,music,fr,train
+"uh, is the timer still running like",timer,en,train
+le minuteur est-il encore en marche s'il te plaît,timer,fr,train
+"um, will it be a good day last night, you reckon",fallback,en,train
+"okay, restart the timer",timer,en,train
+"hey, the air in here feels humid, open a window",fallback,en,train
+add 3 minutes to the timer uh please,timer,en,train
+"ben, il fait quel temps a marseille cet apres-midi",weather,fr,train
+"alors, mélange ma playlist du soir",music,fr,train
+"hey nest, turn up the volume way",music,en,train
+"hey nest, quelle est la maximale a nantes cet apres-midi",weather,fr,train
+"il fait glacial in here, open a window",fallback,mixed,train
+"hey, push the alarm back a bit hmm",alarm,en,train
+"alors, comment ca s'ecrit, embarrasser",fallback,fr,train
+il en est ou le minuteur de 15 minutes merci,timer,fr,train
+"hey, play yesterday's hits please",music,en,train
+"uh, start a 30 minutes timer",timer,en,train
+"je pense tout haut ce matin, fais pas attention merci",fallback,fr,train
+quelle est ta animal preferee,fallback,fr,train
+"um, switch off my alarm for next week",alarm,en,train
+"um, restart le minuteur stp la",timer,mixed,train
+"um, set a recurring alarm for 7:10 am tomorrow",alarm,en,train
+il fait sunny à marseille,weather,mixed,train
+put on a timer for 15 minutes please,timer,en,train
+any storms coming to berlin next week,weather,en,train
+crée une alarme pour 22h,alarm,fr,train
+"tu m'entends mal, parle plus fort s'il te plaît",fallback,fr,train
+"ben, lance un chrono de 2 minutes stp",timer,fr,train
+mets une alarme for 7h10 demain stp,alarm,mixed,train
+passe à la prochaine s'il te plaît,music,fr,train
+"dis, reveille-moi mardi a 9h30",alarm,fr,train
+how warm will it get in lisbon right now thanks,weather,en,train
+set a timer for 5 minutes,timer,en,train
+"um, mets une alarme for 7h30 demain please",alarm,mixed,train
+"ben, baisse le son un peu merci",music,fr,train
+skip to this song,music,en,train
+turn down the volume a lot hmm,music,en,train
+what's the weather like in lisbon today,weather,en,train
+"um, quelle heure is it",fallback,mixed,train
+"ben, mets la musique en pause merci",music,fr,train
+"euh, il fait glacial ici, il faudrait aerer merci",fallback,fr,train
+"uh, set a recurring alarm for half past seven on weekdays please",alarm,en,train
+lance un minuteur de 90 secondes,timer,fr,train
+"um, set une alarme every weekday at 6:30 am s'il te plaît",alarm,mixed,train
+"hey nest, can you lancer un minuteur de 20 minutes",timer,mixed,train
+"hey nest, do i have an alarm set for next week thanks",alarm,en,train
+"hey nest, start a timer pour 2 hours",timer,mixed,train
+"ben, lance un chrono de 45 minutes s'il te plaît",timer,fr,train
+move my alarm to 5:30 am,alarm,en,train
+réveille-moi à 6h et quart,alarm,fr,train
+turn down the volume way,music,en,train
+"um, dois-je prendre un umbrella pour london s'il te plaît",weather,mixed,train
+"okay, launch a countdown of 40 minutes thanks",timer,en,train
+"hey nest, j'adore cette chanson qui passe à la radio ce matin s'il te plaît",fallback,fr,train
+"hey nest, quelle heure il est à lyon en ce moment",fallback,fr,train
+"alors, passe a la chanson suivante",music,fr,train
+il y a beaucoup de vent a paris stp,weather,fr,train
+"hey nest, programme une alarme pour midi la semaine prochaine merci",alarm,fr,train
+"ben, mon enceinte est en panne, tu aurais un conseil",fallback,fr,train
+reveille-moi a 22h stp,alarm,fr,train
+"dis, decale mon alarme a 22h",alarm,fr,train
+"euh, on en est où du compte à rebours",timer,fr,train
+"euh, start a timer pour 7 minutes",timer,mixed,train
+"hey nest, peux-tu m'expliquer les dinosaures",fallback,fr,train
+"dis, mets la chanson s'il te plaît",music,fr,train
+"okay, how tall is niagara falls please",fallback,en,train
+"okay, turn it up a lot",music,en,train
+"euh, tell alice que je dis salut please",fallback,mixed,train
+what's the forecast for madrid tomorrow thanks,weather,en,train
+vérifie que mon alarme est bien mise,alarm,fr,train
+"hey, change my alarm to 8:30 am",alarm,en,train
+set an alarm pour la semaine prochaine matin,alarm,mixed,train
+"alors, peux-tu me réveiller à midi tous les matins hmm",alarm,fr,train
+"hey nest, décale mon alarme à 10h s'il te plaît",alarm,fr,train
+delete l'alarme de half past seven,alarm,mixed,train
+"hey nest, tu trouves pas qu'il fait trop calme ici s'il te plaît",fallback,fr,train
+tell me une histoire sur science,fallback,mixed,train
+rappelle-moi de arroser les plantes s'il te plaît,fallback,fr,train
+time flies when you're having fun please,fallback,en,train
+"euh, mon réveil est en panne, tu aurais un conseil s'il te plaît",fallback,fr,train
+"hey nest, turn the sound up two notches",music,en,train
+"hey nest, set an alarm pour tous les matins matin",alarm,mixed,train
+that alarm at the office kept ringing on monday,fallback,en,train
+"hey nest, quel age as-tu",fallback,fr,train
+"hey nest, what's la météo à new york this evening please",weather,mixed,train
+"ben, lis-moi les nouvelles encore",fallback,fr,train
+"dis, j'ai besoin de me lever à 9h samedi",alarm,fr,train
+"okay, set an alarm for noon daily please",alarm,en,train
+joue my favorites now please,music,mixed,train
+"hey nest, jouons a pendu stp",fallback,fr,train
+"um, take two minutes off the timer hmm",timer,en,train
+um tell me something interesting about black holes,fallback,en,train
+"alors, peux-tu me réveiller à 23h demain",alarm,fr,train
+"hey nest, fait-il beau a toulouse cet apres-midi",weather,fr,train
+start a timer pour 90 seconds,timer,mixed,train
+set a recurring alarm for 8 am on Monday thanks,alarm,en,train
+how do you spell broccoli thanks,fallback,en,train
+"um, bring the volume back up",music,en,train
+"alors, reprends la chanson là s'il te plaît",music,fr,train
+extend the timer by 5 minutes,timer,en,train
+stop the music,music,en,train
+"uh okay, launch a countdown of an hour",timer,en,train
+change mon alarme to 6 am,alarm,mixed,train
+"um, turn it up one notch",music,en,train
+combien de temps il reste sur le minuteur s'il te plaît,timer,fr,train
+"okay, clear the timer please",timer,en,train
+"um, do i need sunglasses in new york today",weather,en,train
+what's the weather like in lisbon this afternoon,weather,en,train
+switch off my alarm for every weekday,alarm,en,train
+peux-tu me réveiller à 5h tous les matins s'il te plaît,alarm,fr,train
+"hey nest, will it be a good day again, you reckon",fallback,en,train
+"alors, peux-tu me reveiller a 9h30 tous les jours",alarm,fr,train
+"okay, keep playing",music,en,train
+"alors, combien font 14 plus 17 stp",fallback,fr,train
+"um, tell me a fun fact about chess",fallback,en,train
+"um, monte le son a little now",music,mixed,train
+play my evening playlist please,music,en,train
+"um, start a 2 hours timer please",timer,en,train
+"um, turn the music down two notches",music,en,train
+joue quelque chose de calme toute la journee,music,fr,train
+"ben, crée une alarme pour 7h45",alarm,fr,train
+can you lancer un minuteur de 45 seconds,timer,mixed,train
+my alarm didn't go off last night and i was late,fallback,en,train
+dial the volume back way,music,en,train
+"hey nest, ajoute 10 minutes to the timer",timer,mixed,train
+how cold is it in new york right now,weather,en,train
+who painted guernica,fallback,en,train
+push the alarm back a bit thanks,alarm,en,train
+"hey nest, ne mets pas le son trop fort",music,fr,train
+"okay, disable my morning alarm thanks",alarm,en,train
+extend the timer by 1 minute,timer,en,train
+"um, restart le minuteur stp",timer,mixed,train
+"hey nest, can you lancer un minuteur de 45 minutes",timer,mixed,train
+"alors, mets le son à moitié",music,fr,train
+"um, move my alarm to 11 pm please",alarm,en,train
+rappelle-moi de prendre rendez-vous chez le dentiste hmm,fallback,fr,train
+"euh, mets une alarme pour 7h et demie hmm",alarm,fr,train
+"uh, unmute the speaker",music,en,train
+"okay, switch off my alarm for daily",alarm,en,train
+"hey nest, qui a gagné le match de natation hier soir",fallback,fr,train
+"euh, recommence le morceau",music,fr,train
+"hey nest, monte le volume encore",music,fr,train
+ou ca en est le minuteur,timer,fr,train
+put on something relaxing,music,en,train
+reveille-moi la semaine prochaine a 9h,alarm,fr,train
+is it going to pleuvoir à tokyo la semaine prochaine,weather,mixed,train
+ajoute 5 minutes au minuteur merci,timer,fr,train
+set my alarm to 6:15 am,alarm,en,train
+"euh, est-ce qu'il fait soleil a nantes",weather,fr,train
+"hey, give me a 10 minutes countdown thanks",timer,en,train
+"euh, on en est où avec le minuteur s'il te plaît",timer,fr,train
+put on a timer for 7 minutes,timer,en,train
+"hey nest, set une alarme every weekday at 5h",alarm,mixed,train
+"dis, reveille-moi a 23h merci",alarm,fr,train
+how's the weather in berlin on sunday,weather,en,train
+play a game with me,fallback,en,train
+"hey nest, tell me une histoire sur history stp",fallback,mixed,train
+prolonge le minuteur de 10 minutes hmm merci,timer,fr,train
+"okay, how long is left on my timer",timer,en,train
+"hey nest, set a countdown for 10 minutes",timer,en,train
+lance a countdown de 3 minutes,timer,mixed,train
+"alors, chante-moi une chanson pour m'endormir",fallback,fr,train
+"um, delete the 10 pm alarm thanks",alarm,en,train
+lance un chrono de 25 minutes,timer,fr,train
+"hey, will it rain in rome this weekend please",weather,en,train
+"hey nest, quelles sont les previsions pour toulouse ce week-end",weather,fr,train
+arrête la chanson s'il te plaît,music,fr,train
+"um, start counting down 20 minutes",timer,en,train
+joue du rock des annees 80 hmm,music,fr,train
+lance a countdown de une heure et demie please,timer,mixed,train
+"ben, mets une alarme pour 6h merci",alarm,fr,train
+"dis, mets ma playlist road-trip",music,fr,train
+parle-moi de la seine,fallback,fr,train
+"dis, peux-tu me reveiller a 22h30 mardi",alarm,fr,train
+"euh, mets les hits du moment",music,fr,train
+"ben, mon alarme est-elle encore activee hmm",alarm,fr,train
+"alors, est-ce qu'il va pleuvoir a lyon cet apres-midi",weather,fr,train
+"euh, est-ce que le minuteur tourne toujours la stp",timer,fr,train
+"je fredonne cet air cette nuit, pardon",fallback,fr,train
+"euh um, cancel my alarm",alarm,en,train
+"dis, quelles sont les prévisions pour nice cet après-midi",weather,fr,train
+joue my morning playlist hmm,music,mixed,train
+"hey nest, quel temps fait-il à nantes demain",weather,fr,train
+"um, make it a bit louder",music,en,train
+"dis, mets une alarme tous les jours à 8h30 quoi",alarm,fr,train
+"alors, baisse le volume au maximum",music,fr,train
+set an alarm pour next week matin,alarm,mixed,train
+"hey, is the 6 am alarm active thanks",alarm,en,train
+"hey nest, help me avec mes devoirs la stp",fallback,mixed,train
+"dis, il pleut en ce moment a toulouse",weather,fr,train
+put on a timer for 40 minutes please,timer,en,train
+"uh, set my alarm to 6:30 am",alarm,en,train
+i love that tune on the radio again,fallback,en,train
+"ben, diminue le volume à fond s'il te plaît",music,fr,train
+"ben, rappelle-moi de arroser les plantes",fallback,fr,train
+comment vas-tu aujourd'hui,fallback,fr,train
+"euh, lance a countdown de 30 secondes",timer,mixed,train
+"i'm bored, entertain me please",fallback,en,train
+"okay, snooze the alarm",alarm,en,train
+"euh um, switch off my alarm for daily thanks",alarm,en,train
+"hey, remove my 7:30 am alarm thanks",alarm,en,train
+"dis, augmente le volume a fond",music,fr,train
+où en est le minuteur de 7 minutes s'il te plaît,timer,fr,train
+"hey nest, help me avec mes devoirs stp",fallback,mixed,train
+"um, what's la météo à madrid next week",weather,mixed,train
+supprime l'alarme de 5h,alarm,fr,train
+euh launch a countdown of 5 minutes,timer,en,train
+turn up le son a little stp,music,mixed,train
+est-ce que my alarm is still set s'il te plaît,alarm,mixed,train
+kill the timer please,timer,en,train
+"ben, remonte le son encore stp",music,fr,train
+will it snow in rome right now,weather,en,train
+"alors, mets quelque chose de calme s'il te plaît",music,fr,train
+"um, wake me up in time for work at midnight",alarm,en,train
+"hey nest, quelle est la température à nice demain s'il te plaît",weather,fr,train
+"hey nest, remind me to water the plants",fallback,en,train
+restart this track,music,en,train
+"euh, tell me une histoire sur space",fallback,mixed,train
+c'est quoi this chanson all day,fallback,mixed,train
+change l'alarme à 9h30,alarm,fr,train
+"um, what's la météo à paris today",weather,mixed,train
+"okay, wake me at 9 am every weekday please",alarm,en,train
+pause the song,music,en,train
+il reste combien au minuteur de 5 minutes,timer,fr,train
+qui a gagné le match de football hier soir,fallback,fr,train
+quelles sont les previsions pour toulouse dimanche,weather,fr,train
+mets du rock des annees 80,music,fr,train
+"dis, j'ai besoin de me lever a 6h15 la semaine prochaine",alarm,fr,train
+tell me une histoire sur dogs,fallback,mixed,train
+"dis, euh ouais donc en fait merci",fallback,fr,train
+i have to be up by 6:15 am daily please,alarm,en,train
+"hey nest, it might rain on my parade again, figuratively",fallback,en,train
+"hey, change my alarm to midnight please",alarm,en,train
+"alors, chante-moi une chanson douce quoi",fallback,fr,train
+"alors, qu'est-ce que je cuisine pour dejeuner merci",fallback,fr,train
+"hey, any storms coming to paris this weekend",weather,en,train
+is the kitchen timer loud enough to hear on main street please,fallback,en,train
+volume up please,music,en,train
+set the volume to ten percent thanks,music,en,train
+la playlist yesterday was vraiment bien,fallback,mixed,train
+"euh, cancel le timer please",timer,mixed,train
+"euh, arrête le minuteur s'il te plaît",timer,fr,train
+"okay, play something relaxing",music,en,train
+est-ce qu'il va neiger a toulouse vendredi,weather,fr,train
+mets a focus playlist for me stp,music,mixed,train
+"hey nest, joue ma playlist du matin cette nuit",music,fr,train
+"um, mon alarme didn't go off again s'il te plaît",fallback,mixed,train
+how windy is it in rome tomorrow,weather,en,train
+"dis, je ne sais pas ce que je veux s'il te plaît",fallback,fr,train
+turn up le son bien stp,music,mixed,train
+"hey, cut the music",music,en,train
+"okay, turn off the alarm",alarm,en,train
+"hey nest, should i bring a jacket this afternoon thanks",weather,en,train
+"euh, il fait combien à nice la semaine prochaine",weather,fr,train
+"hey nest, what's the high for lisbon today thanks",weather,en,train
+"euh, quelle heure est-il",fallback,fr,train
+tell me une histoire sur black holes,fallback,mixed,train
+"alors, ajoute 1 minute au minuteur hmm",timer,fr,train
+"ben hey nest, do i need an umbrella in new york today",weather,en,train
+"um, combien de temps left sur le minuteur quoi stp",timer,mixed,train
+mets la playlist,music,fr,train
+lance a countdown de an hour and a half s'il te plaît,timer,mixed,train
+mets le minuteur sur pause quoi,timer,fr,train
+"uh, any storms coming to berlin this weekend",weather,en,train
+"euh, lance un chrono de 90 secondes",timer,fr,train
+"okay, i need to get up at 7:45 am tomorrow",alarm,en,train
+supprime l'alarme de 23h merci,alarm,fr,train
+is it sunny in lisbon right now,weather,en,train
+what's the forecast for tokyo this weekend please,weather,en,train
+shuffle a focus playlist please,music,en,train
+what does ephemeral mean,fallback,en,train
+"je réfléchis à voix haute, fais pas attention",fallback,fr,train
+mets du jazz merci,music,fr,train
+"ben, décale mon alarme à 7h et demie s'il te plaît",alarm,fr,train
+va-t-il faire beau à bordeaux vendredi s'il te plaît,weather,fr,train
+"uh, tell me about the roman empire",fallback,en,train
+monte the volume bien,music,mixed,train
+"hey nest, j'ai besoin de me lever à 8h30 mardi",alarm,fr,train
+"hey nest, clear the timer please",timer,en,train
+"ben euh, lance un minuteur de 2 heures",timer,fr,train
+"um, reprends the playback stp hmm",music,mixed,train
+"ben, supprime l'alarme de 9h",alarm,fr,train
+peux-tu me reveiller a 6h et quart lundi,alarm,fr,train
+la playlist hier was vraiment bien,fallback,mixed,train
+"euh, mets un chrono de 2 heures merci",timer,fr,train
+"okay, pause the timer uh",timer,en,train
+"euh, peux-tu me reveiller a 9h tous les matins stp",alarm,fr,train
+"um, set an alarm for 9 am tomorrow",alarm,en,train
+"ben, mets moins fort",music,fr,train
+freeze the countdown,timer,en,train
+any storms coming to lisbon this weekend,weather,en,train
+"dis, joue ma playlist road-trip lundi",music,fr,train
+"ben, quelles sont les prévisions pour toulouse demain merci",weather,fr,train
+annule le minuteur merci,timer,fr,train
+mets une alarme for 5:30 am demain,alarm,mixed,train
+"euh, lance un chrono de une heure stp",timer,fr,train
+"hey nest, raconte-moi une blague sur la science",fallback,fr,train
+coupe l'alarme du matin,alarm,fr,train
+mets mes favoris for me stp,music,mixed,train
+"okay, play some music",music,en,train
+do i have an alarm set for daily thanks,alarm,en,train
+"um, mets une alarme for 10h demain",alarm,mixed,train
+how's la météo à rome on sunday,weather,mixed,train
+"um, mets en pause the timer s'il te plaît",timer,mixed,train
+how's the weather in london this afternoon,weather,en,train
+"hey nest, will it rain in lisbon this weekend",weather,en,train
+what time does the match start all day please,fallback,en,train
+"okay, the air in here feels humid, open a window please",fallback,en,train
+"hey nest, remonte le volume au maximum",music,fr,train
+how's it going this morning hmm,fallback,en,train
+"hey nest, qu'est-ce que je cuisine dimanche stp",fallback,fr,train
+est-ce que le minuteur tourne toujours,timer,fr,train
+"uh, switch off my alarm for on weekends",alarm,en,train
+"hey nest, chante-moi une berceuse merci",fallback,fr,train
+repousse l'alarme hmm s'il te plaît,alarm,fr,train
+"hey nest, is there du vent à lisbon vendredi ou pas stp",weather,mixed,train
+"alors, joue ma playlist du matin hier",music,fr,train
+"alors, la playlist lundi etait vraiment bien merci",fallback,fr,train
+raconte-moi une histoire sur l'espace,fallback,fr,train
+"euh hey nest, je ne sais pas ce que je veux",fallback,fr,train
+donne-moi une recette de pâtes,fallback,fr,train
+"okay, how are you today thanks",fallback,en,train
+mets a focus playlist on shuffle now stp,music,mixed,train
+le bulletin météo de la radio se trompe toujours s'il te plaît,fallback,fr,train
+"euh, réveille-moi la semaine prochaine à 6h15",alarm,fr,train
+"dis, mon alarme est-elle encore activée là",alarm,fr,train
+"alors, supprime l'alarme de 6h45",alarm,fr,train
+"dis, supprime le minuteur quoi merci",timer,fr,train
+"hey nest, turn up the volume one notch thanks",music,en,train
+"okay, jump past this song",music,en,train
+"ben, lance un chrono de 30 minutes",timer,fr,train
+peux-tu me réveiller à 10h mardi merci,alarm,fr,train
+set a recurring alarm for 7:10 am on Saturday,alarm,en,train
+ajoute 5 minutes to the timer stp,timer,mixed,train
+"euh, baisse le son bien now quoi",music,mixed,train
+faut-il prendre un parapluie à nantes vendredi,weather,fr,train
+baisse le volume beaucoup s'il te plaît,music,fr,train
+peux-tu me reveiller a 23h tous les jours,alarm,fr,train
+décale mon alarme à 6h15,alarm,fr,train
+euh peux-tu m'expliquer la cuisine s'il te plaît,fallback,fr,train
+alors supprime l'alarme de 8h30,alarm,fr,train
+will it be sunny in madrid right now,weather,en,train
+what's the forecast for rome tomorrow,weather,en,train
+"dis, demarre un compte a rebours de 30 minutes",timer,fr,train
+lance du piano classique for me,music,mixed,train
+"um, skip this song",music,en,train
+"um, create an alarm for 8 am on Tuesday",alarm,en,train
+set a recurring alarm for 5:30 am daily,alarm,en,train
+il pleut en ce moment à paris,weather,fr,train
+"um, turn off the alarm thanks",alarm,en,train
+supprime l'alarme de 22h30 merci,alarm,fr,train
+"hey nest, launch a countdown of 3 minutes",timer,en,train
+y a-t-il du vent a paris ce soir,weather,fr,train
+crank it up,music,en,train
+"ben um, make sure i'm up by 6:45 am",alarm,en,train
+"hey nest, i need to buy a new speaker, any advice please",fallback,en,train
+"hey nest, joue de la lofi cette nuit",music,fr,train
+"um, play my road-trip playlist this morning please",music,en,train
+"hey, think it'll be a good day on monday, huh",fallback,en,train
+"hey, what song is playing on the radio again",fallback,en,train
+baisse the volume a bit,music,mixed,train
+"um um, what's the meaning of life",fallback,en,train
+"hey nest, lance un chrono de 10 minutes",timer,fr,train
+"um, mets une alarme for quarter past six demain euh s'il te plaît",alarm,mixed,train
+"euh, mon alarme didn't go off hier",fallback,mixed,train
+réveille-moi à 6h15,alarm,fr,train
+"dis, change l'alarme a 23h",alarm,fr,train
+fait-il beau a lyon dimanche stp,weather,fr,train
+set a timer for an hour please,timer,en,train
+"okay, kill the timer",timer,en,train
+"um, volume one of the encyclopedia, chapter 7",fallback,en,train
+"euh, dois-je prendre un umbrella pour new york",weather,mixed,train
+quel temps fera-t-il à lyon demain,weather,fr,train
+"il fait humide ici, il faudrait aérer",fallback,fr,train
+"ben, est-ce qu'il va pleuvoir à nantes dimanche",weather,fr,train
+combien font 5 fois 8 s'il te plaît,fallback,fr,train
+"um, quelle est the temperature à berlin stp",weather,mixed,train
+j'ai besoin de me lever à 6h lundi,alarm,fr,train
+how warm will it get in lisbon this afternoon thanks,weather,en,train
+what's the high for tokyo today like,weather,en,train
+"euh, tu connais léa",fallback,fr,train
+"euh, lis-moi les nouvelles ce matin",fallback,fr,train
+who won the tennis game last night thanks,fallback,en,train
+demarre un compte a rebours de 45 minutes,timer,fr,train
+il reste combien au minuteur de 10 minutes,timer,fr,train
+will it rain in tokyo next week please,weather,en,train
+"okay, play my morning playlist please",music,en,train
+should i bring a jacket today,weather,en,train
+"hey, turn it up a touch",music,en,train
+"hey nest, comment tu t'appelles s'il te plaît",fallback,fr,train
+uh dis-moi a fun fact sur space,fallback,mixed,train
+"hey nest, baisse le son a bit now",music,mixed,train
+ben what's la météo à nantes la semaine prochaine stp,weather,mixed,train
+"um, is it going to pleuvoir à london this afternoon",weather,mixed,train
+"think it'll be a good day yesterday, huh",fallback,en,train
+quelle est la capitale de Portugal s'il te plaît,fallback,fr,train
+"euh, mets un minuteur de une heure",timer,fr,train
+put on my favorites,music,en,train
+va-t-il neiger a marseille la semaine prochaine,weather,fr,train
+"alors, mets un minuteur de 45 secondes",timer,fr,train
+dois-je prendre un umbrella pour marseille stp,weather,mixed,train
+"dis, quelle est la maximale à paris cet après-midi",weather,fr,train
+"euh, quelle est the temperature à new york",weather,mixed,train
+"hey, tell me a joke about trains",fallback,en,train
+"dis, quelle est ta film préférée",fallback,fr,train
+"alors, j'ai besoin de me lever à 7h lundi",alarm,fr,train
+"uh, add 5 minutes to the timer",timer,en,train
+what's the humidity like in tokyo like,weather,en,train
+shuffle my road-trip playlist this morning,music,en,train
+mets en pause the timer,timer,mixed,train
+lis-moi les nouvelles hier,fallback,fr,train
+"hey nest, can you lancer un minuteur de 90 seconds",timer,mixed,train
+can you set the mood with some incense,fallback,en,train
+programme une alarme pour 6h15 samedi,alarm,fr,train
+"uh, can you wake me up at 5 am",alarm,en,train
+"hey nest, le minuteur il en est où là",timer,fr,train
+"ben ben, peux-tu m'expliquer la science",fallback,fr,train
+change my alarm to 5:30 am,alarm,en,train
+"hey nest, mets mes favoris merci",music,fr,train
+"alors euh, diminue le volume a fond",music,fr,train
+"euh, donne-moi la météo de marseille lundi",weather,fr,train
+lance a countdown de 30 minutes s'il te plaît,timer,mixed,train
+"dis, jouons a trivial pursuit",fallback,fr,train
+shift the alarm to noon thanks,alarm,en,train
+put an alarm on for 6 am,alarm,en,train
+what's the high for berlin this afternoon,weather,en,train
+"euh, je reve de vacances en ce moment",fallback,fr,train
+"hey nest, is there du vent à nice la semaine prochaine ou pas",weather,mixed,train
+"ben, y a-t-il du vent a paris dimanche",weather,fr,train
+combien de temps restant au minuteur stp,timer,fr,train
+"euh, can you wake me up à 6h30 please",alarm,mixed,train
+"euh, mets du rock des annees 80 encore",music,fr,train
+reprends le minuteur stp,timer,fr,train
+"hey nest, what's la capitale de thailand s'il te plaît",fallback,mixed,train
+"uh, how do metronomes keep time so steadily",fallback,en,train
+"hey, put on a timer for an hour thanks",timer,en,train
+"euh, mets une alarme for 8h30 demain",alarm,mixed,train
+quelle heure is it s'il te plaît,fallback,mixed,train
+"euh euh, y a-t-il du vent a lille ce week-end",weather,fr,train
+start a timer pour 45 minutes,timer,mixed,train
+launch a countdown of 2 hours thanks,timer,en,train
+il fait sunny à tokyo stp,weather,mixed,train
+"hey nest, lance a countdown de 90 seconds please",timer,mixed,train
+"hey nest, create an alarm for 11:30 pm next week thanks",alarm,en,train
+mets une alarme pour 5h30,alarm,fr,train
+extend the timer by 2 minutes,timer,en,train
+"ben, change l'alarme à 8h30",alarm,fr,train
+cancel mon alarme de 8h,alarm,mixed,train
+"ben, baisse le volume a fond",music,fr,train
+"hey, do i need sunglasses in tokyo today thanks",weather,en,train
+"um, my alarm didn't go off again and i was late please",fallback,en,train
+"hey, can you explain trains to me thanks",fallback,en,train
+set a timer for 15 minutes,timer,en,train
+"hey, should i bring a jacket this evening",weather,en,train
+"dis, enleve deux minutes au minuteur stp",timer,fr,train
+va-t-il neiger à toulouse la semaine prochaine hmm s'il te plaît,weather,fr,train
+make sure i'm up by 9 am thanks,alarm,en,train
+"dis, va-t-il faire beau a marseille cet apres-midi",weather,fr,train
+euh how do you spell rhythm,fallback,en,train
+"euh, ajoute 2 minutes to the timer",timer,mixed,train
+cancel the alarm for on weekdays,alarm,en,train
+sing me a bedtime song,fallback,en,train
+va-t-il neiger a marseille vendredi,weather,fr,train
+"dis, faut-il prendre un parapluie à lyon ce soir s'il te plaît",weather,fr,train
+"hey nest, tell me combien font 18 plus 18 stp",fallback,mixed,train
+"um, let's play hangman please",fallback,en,train
+"alors, mets mon mix sport lundi merci",music,fr,train
+quel temps fera-t-il à marseille ce soir,weather,fr,train
+"ben hey, play some jazz",music,en,train
+il y a beaucoup de vent à lyon euh,weather,fr,train
+"ben, y a-t-il du vent a nice demain merci",weather,fr,train
+mets some jazz encore on shuffle now,music,mixed,train
+"ben hey nest, mets la chanson",music,fr,train
+"dis, le reveil du bureau a sonne encore",fallback,fr,train
+donne-moi la meteo de marseille dimanche,weather,fr,train
+tell me une histoire sur cooking stp,fallback,mixed,train
+"hey nest, je reve de voyage en ce moment stp",fallback,fr,train
+"hey nest, lance un minuteur de 45 minutes",timer,fr,train
+"um, play lofi beats all day",music,en,train
+à quelle heure commence le match lundi,fallback,fr,train
+est-ce qu'il va snow à lyon today,weather,mixed,train
+"euh, monte the volume encore",music,mixed,train
+start a timer pour 2 heures,timer,mixed,train
+"okay, put on my evening chill mix",music,en,train
+lance a countdown de 30 minutes,timer,mixed,train
+joue ma playlist road-trip encore,music,fr,train
+delete the 7:30 am alarm,alarm,en,train
+"uh um, what's the capital of italy",fallback,en,train
+"okay, push the alarm back a bit",alarm,en,train
+"alors, traduis bonjour en allemand stp",fallback,fr,train
+programme une alarme pour 7h demain,alarm,fr,train
+"hey, shuffle lofi beats please",music,en,train
+"alors, joue de la lofi encore",music,fr,train
+restart the album,music,en,train
+"alors, ai-je besoin d'un parapluie lundi",weather,fr,train
+"um, create an alarm for 6 am every morning please",alarm,en,train
+what's ton nom à toi,fallback,mixed,train
+"hey, put on a timer for 5 minutes thanks",timer,en,train
+how warm will it get in madrid this weekend,weather,en,train
+remonte le son au maximum,music,fr,train
+"um, reveille-moi at noon please",alarm,mixed,train
+"okay, sing me a song to fall asleep to",fallback,en,train
+"um, how are you today",fallback,en,train
+mets une alarme tous les jours a 8h30 merci,alarm,fr,train
+donne-moi une recette de salade,fallback,fr,train
+cancel le timer please quoi,timer,mixed,train
+donne-moi la météo de toulouse demain,weather,fr,train
+"euh, qui chante ce morceau quoi",music,fr,train
+start a 30 seconds timer,timer,en,train
+"alors, lance un chrono de une heure quoi merci",timer,fr,train
+"hey nest, what's the high for tokyo next week please",weather,en,train
+"ben, tu connais louis",fallback,fr,train
+c'était quoi déjà ce que je disais s'il te plaît,fallback,fr,train
+où en est le minuteur s'il te plaît,timer,fr,train
+"um, cancel mon alarme de 5 am la please",alarm,mixed,train
+mets mes favoris cette nuit,music,fr,train
+"ben, va-t-il faire beau à toulouse cet après-midi euh merci",weather,fr,train
+mets un minuteur de 2 minutes s'il te plaît,timer,fr,train
+tell me something interesting about dinosaurs,fallback,en,train
+faut-il prendre un parapluie a nantes dimanche,weather,fr,train
+"dis, faut-il prendre un parapluie à lille demain merci",weather,fr,train
+"euh, quelle est the temperature à nice please",weather,mixed,train
+"uh, start a 3 minutes timer",timer,en,train
+j'ai besoin de me lever a 22h30 tous les matins la,alarm,fr,train
+"um, set an alarm pour tomorrow matin s'il te plaît",alarm,mixed,train
+"hey, will it be sunny in paris this afternoon uh please",weather,en,train
+"hey nest, mets ma playlist du soir",music,fr,train
+"hey nest, peux-tu me reveiller a 6h15 chaque matin",alarm,fr,train
+"okay, play the next track",music,en,train
+il fait sunny à madrid quoi stp,weather,mixed,train
+"euh, reveille-moi a 5h30 quoi",alarm,fr,train
+"alors, ai-je besoin d'un parapluie lundi hmm",weather,fr,train
+il fait combien à lille lundi,weather,fr,train
+"hey nest, reveille-moi at 23h please",alarm,mixed,train
+what's the high for paris this weekend,weather,en,train
+"okay, is it going to rain in berlin right now please",weather,en,train
+il reste combien sur le minuteur au juste,timer,fr,train
+go to the next song hmm,music,en,train
+"um, tell me a joke about black holes",fallback,en,train
+stop the track,music,en,train
+"um, tell bob que je dis salut please",fallback,mixed,train
+"ben, réveille-moi à 10h merci",alarm,fr,train
+"euh, mets une alarme tous les jours a 7h stp",alarm,fr,train
+mon alarme didn't go off all day stp,fallback,mixed,train
+"euh, monte le volume beaucoup",music,fr,train
+decale mon alarme a 8h30 merci,alarm,fr,train
+how warm will it get in lisbon tomorrow,weather,en,train
+"alors, il fait quel temps a nice vendredi",weather,fr,train
+"hey nest, snooze the alarm thanks",alarm,en,train
+lance a countdown de 45 seconds,timer,mixed,train
+"hey, play my workout mix thanks",music,en,train
+is the noon alarm active,alarm,en,train
+"dis, coupe la playlist s'il te plaît",music,fr,train
+"euh, rajoute 5 minutes au minuteur s'il te plaît",timer,fr,train
+"hey nest, le minuteur est-il encore en marche hmm merci",timer,fr,train
+mets moins fort s'il te plaît,music,fr,train
+"um, is it supposed to hail in rome this afternoon",weather,en,train
+quelle est la temperature a marseille demain merci,weather,fr,train
+ou en est the timer please,timer,mixed,train
+"dis, mets le morceau merci",music,fr,train
+"alors, ça en est où le minuteur de 30 minutes",timer,fr,train
+"um, joue my road-trip playlist now please hmm",music,mixed,train
+mets un minuteur de 40 minutes merci,timer,fr,train
+euh mets un minuteur de 5 minutes,timer,fr,train
+quelle est the temperature à lyon,weather,mixed,train
+"ben, donne-moi une recette de omelette s'il te plaît",fallback,fr,train
+will it snow in madrid this evening please,weather,en,train
+"euh, annule l'alarme s'il te plaît",alarm,fr,train
+what's la météo à marseille ce soir,weather,mixed,train
+fait-il beau a toulouse ce soir,weather,fr,train
+mets la musique la,music,fr,train
+monte le son un peu now,music,mixed,train
+"euh euh, monte le son encore",music,fr,train
+"dis, recommence la lecture",music,fr,train
+"euh, mets une alarme for 8:30 am demain please",alarm,mixed,train
+coupe la musique merci,music,fr,train
+who won the basketball game last night please,fallback,en,train
+cancel mon alarme de 11:30 pm hmm please,alarm,mixed,train
+"euh, umm je ne sais pas quoi dire stp",fallback,mixed,train
+set an alarm pour lundi matin,alarm,mixed,train
+fait-il beau à lyon ce week-end,weather,fr,train
+"euh, mets le son à moitié s'il te plaît",music,fr,train
+euh joue ma playlist du soir,music,fr,train
+what's la capitale de portugal,fallback,mixed,train
+cancel mon alarme de 6:30 am s'il te plaît,alarm,mixed,train
+programme une alarme pour 5h30 lundi,alarm,fr,train
+set une alarme every weekday at 5:30 am,alarm,mixed,train
+"hey nest, où en est mon minuteur s'il te plaît",timer,fr,train
+le réveil du bureau a sonné encore quoi s'il te plaît,fallback,fr,train
+"dis, joue mes favoris toute la journee stp",music,fr,train
+"okay, how cold is it in paris right now",weather,en,train
+"euh, donne-moi une recette de omelette euh",fallback,fr,train
+"hey nest, éteins l'alarme s'il te plaît",alarm,fr,train
+"uh, is there static in this recording or my ears please",fallback,en,train
+what's la météo à bordeaux la semaine prochaine euh,weather,mixed,train
+delete l'alarme de 6 am,alarm,mixed,train
+raise the sound a lot,music,en,train
+"hey nest, start a 20 minutes timer",timer,en,train
+"hey nest, il fait sec ici, il faudrait aerer",fallback,fr,train
+"ben, va-t-il neiger à nice demain",weather,fr,train
+what's your name,fallback,en,train
+reprends the playback stp,music,mixed,train
+ben combien de temps restant au minuteur s'il te plaît,timer,fr,train
+"hey nest, remind me de call mom",fallback,mixed,train
+il fait combien a nantes demain,weather,fr,train
+can you lancer un minuteur de 25 minutes,timer,mixed,train
+"euh, what's la capitale de norway",fallback,mixed,train
+mets le minuteur sur pause s'il te plaît,timer,fr,train
+"je réfléchis out loud, ignore-moi",fallback,mixed,train
+"hey nest, cancel mon alarme de 6:45 am",alarm,mixed,train
+"ben dis, va-t-il neiger a lyon cet apres-midi",weather,fr,train
+"hey nest, what's la forecast pour toulouse vendredi",weather,mixed,train
+how's la météo à lisbon ce soir please,weather,mixed,train
+"hey nest, turn up le son encore",music,mixed,train
+"okay, play my workout playlist",music,en,train
+is the kitchen timer loud enough to hear downtown please,fallback,en,train
+"uh, is it too loud in here or is it just me thanks",fallback,en,train
+mon réveil didn't sonner again,fallback,mixed,train
+"hey nest, what is 20 times 5",fallback,en,train
+"um, my watch stopped ticking, what time do you have thanks",fallback,en,train
+"okay, skip to the next song please",music,en,train
+euh la playlist ce matin était vraiment bien,fallback,fr,train
+launch a countdown of an hour and a half,timer,en,train
+parle-moi de le colisée,fallback,fr,train
+is the midnight alarm active,alarm,en,train
+what's the weather like in tokyo right now please,weather,en,train
+"um, dois-je prendre un umbrella pour lille",weather,mixed,train
+what's la météo à lyon this evening please,weather,mixed,train
+"um, how old are you",fallback,en,train
+"hey nest, monte le son au maximum",music,fr,train
+"euh, va-t-il faire beau à lyon lundi",weather,fr,train
+"hey, is the 10 pm alarm active",alarm,en,train
+"uh, put on a timer for 90 seconds please",timer,en,train
+what's the weather like in london this evening,weather,en,train
+"hey nest, lance un chrono de 3 minutes",timer,fr,train
+cancel mon alarme de 5:30 am,alarm,mixed,train
+"dis, mets mon mix sport ce matin",music,fr,train
+mets un chrono de 15 minutes,timer,fr,train
+"dis, lance un chrono de 7 minutes la stp",timer,fr,train
+"ben, prolonge le minuteur de 1 minute",timer,fr,train
+tell me something interesting about history like,fallback,en,train
+"dis, vérifie le minuteur",timer,fr,train
+"um hey nest, turn down le son un peu stp",music,mixed,train
+il en est où le compte à rebours,timer,fr,train
+"ben, recommence la chanson",music,fr,train
+set a timer for 2 minutes,timer,en,train
+demarre un compte a rebours de 20 minutes quoi stp,timer,fr,train
+wake me at 10 am every morning,alarm,en,train
+"euh, play du rock des annees 80 pour moi s'il te plaît",music,mixed,train
+"hey nest, quelle est ta chanson préférée",fallback,fr,train
+ou en est le minuteur de 90 secondes,timer,fr,train
+"hey nest, will it be sunny in lisbon this evening thanks",weather,en,train
+"hey nest, j'adore this song à la radio yesterday",fallback,mixed,train
+"euh, quel temps fait-il à lille demain",weather,fr,train
+who sings this tune,music,en,train
+start a timer pour 30 seconds,timer,mixed,train
+"euh, faut-il prendre un parapluie a bordeaux ce week-end",weather,fr,train
+can you lancer un minuteur de 90 secondes,timer,mixed,train
+"hey, what's the forecast for rome this afternoon please",weather,en,train
+"euh, coupe la chanson s'il te plaît",music,fr,train
+"hey nest, give me the tomorrow forecast for berlin",weather,en,train
+"alors, mets le son moins fort merci",music,fr,train
+est-ce qu'il va neiger a paris lundi,weather,fr,train
+set an alarm for 9:30 am on weekends,alarm,en,train
+reveille-moi mardi a 6h45 merci,alarm,fr,train
+j'adore this song à la radio toute la journee,fallback,mixed,train
+cancel mon alarme de 10 pm,alarm,mixed,train
+programme une alarme pour 6h et quart tous les jours,alarm,fr,train
+faut-il prendre un parapluie à marseille dimanche merci,weather,fr,train
+"dis, j'ai besoin de me lever a 7h mardi merci",alarm,fr,train
+how's it going all day,fallback,en,train
+"okay, will it rain in paris tomorrow",weather,en,train
+"okay, do i need an umbrella in rome this evening",weather,en,train
+"hey nest, mets du jazz ce matin stp",music,fr,train
+"okay, restart this song",music,en,train
+"uh, i need to get up at 6 am every morning please",alarm,en,train
+"euh, delete l'alarme de 7:30 am",alarm,mixed,train
+est-ce qu'il fait soleil à lille,weather,fr,train
+"hey nest, diminue le volume beaucoup",music,fr,train
+can you explain dogs to me,fallback,en,train
+"ben, augmente le volume au maximum stp",music,fr,train
+"euh, est-ce qu'il va neiger à paris vendredi merci",weather,fr,train
+i don't know what i want,fallback,en,train
+"ben um, mon réveil didn't sonner lundi s'il te plaît",fallback,mixed,train
+"uh, create an alarm for 5 am daily",alarm,en,train
+il fait sunny à lille quoi s'il te plaît,weather,mixed,train
+set an alarm for 6 am,alarm,en,train
+"um, turn the music up one notch please",music,en,train
+"okay, give me a 2 minutes countdown",timer,en,train
+"okay, translate hello into spanish",fallback,en,train
+check the timer for me,timer,en,train
+il reste combien sur le minuteur exactement,timer,fr,train
+cancel the timer,timer,en,train
+"hey nest, dois-je prendre une veste dimanche",weather,fr,train
+"dis, c'est quoi cette chanson a la radio ce matin",fallback,fr,train
+check the timer for me hmm thanks,timer,en,train
+"hey nest, comment tu t'appelles",fallback,fr,train
+"hey nest, mets du rock des annees 80 ce matin on shuffle now",music,mixed,train
+baisse le son un peu now,music,mixed,train
+"il fait freezing in here, open a window stp",fallback,mixed,train
+"euh, mon reveil n'a pas sonne lundi, je suis en retard",fallback,fr,train
+"euh, mets une alarme for midi demain",alarm,mixed,train
+ben play something relaxing,music,en,train
+"hey nest, lance un chrono de 15 minutes",timer,fr,train
+"hey, skip to this track",music,en,train
+"um, quelle est the temperature à rome please",weather,mixed,train
+"dis, mets l'ambiance avec des bougies s'il te plaît",fallback,fr,train
+"hey nest, donne-moi la météo de nantes cet après-midi s'il te plaît",weather,fr,train
+"alors, quelle est la temperature a nice dimanche",weather,fr,train
+"dis, lance un minuteur de 30 secondes",timer,fr,train
+"um, is it sunny in rome right now",weather,en,train
+is the 6:45 am alarm active,alarm,en,train
+programme une alarme pour 10h tous les matins,alarm,fr,train
+"okay, can you explain chess to me",fallback,en,train
+"uh hey nest, who won the cycling game last night thanks",fallback,en,train
+"uh, set a countdown for 30 seconds",timer,en,train
+joue quelque chose de calme s'il te plaît,music,fr,train
+"ben, melange une playlist concentration",music,fr,train
+rappelle-moi de nourrir le chat merci,fallback,fr,train
+"alors, il fait combien a nice ce soir",weather,fr,train
+can you lancer un minuteur de 45 minutes s'il te plaît,timer,mixed,train
+"ben ben, explique-moi l'espace stp",fallback,fr,train
+"tu m'entends mal, parle plus fort",fallback,fr,train
+"hey nest, tell me une histoire sur bees",fallback,mixed,train
+"ben, crée une alarme pour minuit",alarm,fr,train
+i need to get up at 8 am on Tuesday thanks,alarm,en,train
+"hey nest, cancel the alarm for on weekends",alarm,en,train
+"hey nest, will it snow in paris today",weather,en,train
+"hey, stop the timer",timer,en,train
+skip à la next song,music,mixed,train
+do i have an alarm set for every morning,alarm,en,train
+launch a countdown of 12 minutes,timer,en,train
+what's la forecast pour rome ce week-end stp,weather,mixed,train
+"ben, démarre un compte à rebours de 2 minutes s'il te plaît",timer,fr,train
+what's la forecast pour marseille this afternoon s'il te plaît,weather,mixed,train
+delete l'alarme de 22h30 la please,alarm,mixed,train
+"uh, can you wake me up at 7:10 am",alarm,en,train
+"um, lance a countdown de 10 minutes",timer,mixed,train
+teach me about the ocean,fallback,en,train
+"euh, est-ce qu'il va neiger a lyon la semaine prochaine",weather,fr,train
+"ben, donne-moi une recette de pain",fallback,fr,train
+"hey nest, set a countdown for 15 minutes thanks",timer,en,train
+ajoute 3 minutes au minuteur,timer,fr,train
+"um, play ma playlist du soir encore pour moi s'il te plaît",music,mixed,train
+"hey nest, what time commence le concert",fallback,mixed,train
+"euh, lis-moi les nouvelles lundi euh",fallback,fr,train
+"okay, snooze it for ten minutes",alarm,en,train
+ca en est ou le minuteur de une heure merci,timer,fr,train
+"dis, est-ce qu'il va pleuvoir a nantes cet apres-midi",weather,fr,train
+mon alarme est-elle encore activée,alarm,fr,train
+y a-t-il du vent à lyon vendredi,weather,fr,train
+"um, how warm will it get in paris next week thanks",weather,en,train
+ajoute 2 minutes au minuteur stp,timer,fr,train
+qui chante ce titre,music,fr,train
+"uh, how's it going this morning thanks",fallback,en,train
+"euh, mets une alarme for midnight demain stp",alarm,mixed,train
+lance a countdown de 12 minutes,timer,mixed,train
+"euh, cree une alarme pour 6h30",alarm,fr,train
+"um, how cold is it in rome right now",weather,en,train
+change mon alarme to 6:30 am s'il te plaît,alarm,mixed,train
+set a countdown for 45 seconds please,timer,en,train
+start a an hour and a half timer,timer,en,train
+can you wake me up à 9 am,alarm,mixed,train
+"dis, cree une alarme pour 7h et demie stp",alarm,fr,train
+"ben, joue de la lofi lundi",music,fr,train
+start a timer pour 40 minutes,timer,mixed,train
+"hey nest, what's the meaning of life hmm",fallback,en,train
+"euh, il y a beaucoup de vent a lille",weather,fr,train
+what song c'est à la radio again,fallback,mixed,train
+"hey nest, turn down le son a bit stp",music,mixed,train
+à quelle heure commence le match encore s'il te plaît,fallback,fr,train
+"hey, i have to be up by quarter past six next week",alarm,en,train
+put on a timer for 30 seconds,timer,en,train
+supprime le minuteur s'il te plaît,timer,fr,train
+"the forecast says my team will win, you agree",fallback,en,train
+turn it up a little,music,en,train
+"uh, how warm will it get in paris this evening",weather,en,train
+"euh, monte le volume au maximum",music,fr,train
+"hey nest, redescends le volume au maximum",music,fr,train
+"dis, demarre un compte a rebours de 40 minutes",timer,fr,train
+"dis, il fait quel temps a nantes cet apres-midi",weather,fr,train
+"hey nest, can you wake me up à 7h quoi s'il te plaît",alarm,mixed,train
+"hey nest, will it be sunny in madrid next week",weather,en,train
+"dis, va-t-il neiger à bordeaux la semaine prochaine",weather,fr,train
+"um, change my alarm to 6:45 am",alarm,en,train
+dois-je prendre un umbrella pour rome stp,weather,mixed,train
+"hey nest, launch a countdown of 10 minutes thanks",timer,en,train
+lance un minuteur de 15 minutes,timer,fr,train
+what's the high for lisbon on sunday,weather,en,train
+"um, mets some classical piano for me stp",music,mixed,train
+"ben, lance un chrono de 12 minutes s'il te plaît",timer,fr,train
+"okay, how windy is it in new york this weekend thanks",weather,en,train
+"ben ben, combien font 15 plus 14",fallback,fr,train
+fais pas trop fort,music,fr,train
+play ma playlist du matin pour moi,music,mixed,train
+mets une alarme tous les jours à 6h30,alarm,fr,train
+"hey nest, can you explain cooking to me",fallback,en,train
+mets un minuteur de 25 minutes,timer,fr,train
+how's la météo à tokyo this evening,weather,mixed,train
+"hey nest, shuffle something relaxing all day",music,en,train
+lance a countdown de une heure,timer,mixed,train
+"hey nest, il fait lourd in here, open a window",fallback,mixed,train
+mets du piano classique for me stp,music,mixed,train
+va-t-il neiger a lyon la semaine prochaine stp,weather,fr,train
+"hey nest, est-ce qu'il va snow à nice cet apres-midi",weather,mixed,train
+"um, skip à la next song s'il te plaît",music,mixed,train
+ajoute 1 minute to the timer please,timer,mixed,train
+"alors, j'ai besoin de me lever a 7h45 chaque matin",alarm,fr,train
+quel temps fera-t-il a lille ce soir,weather,fr,train
+"alors, dois-je prendre une veste la semaine prochaine",weather,fr,train
+"hey nest, fait-il beau a bordeaux dimanche stp",weather,fr,train
+"um, delete the 9 am alarm",alarm,en,train
+joue les hits du moment hier,music,fr,train
+"hey nest, remind me de appeler maman stp",fallback,mixed,train
+"um, can you lancer un minuteur de 2 hours",timer,mixed,train
+"hey nest, mon reveil n'a pas sonne toute la journee, je suis en retard hmm",fallback,fr,train
+melange du piano classique,music,fr,train
+"um, turn down the volume a bit",music,en,train
+"ben, le minuteur en est ou la",timer,fr,train
+"alors, mets une alarme pour 5h merci",alarm,fr,train
+"um, le temps passe vite when you're having fun please",fallback,mixed,train
+"okay, dial the volume back a little",music,en,train
+uh bring the volume up a little,music,en,train
+"ben, ou en est le minuteur de 45 secondes",timer,fr,train
+turn the sound down one notch,music,en,train
+"okay, start counting down 30 seconds thanks",timer,en,train
+"um, shuffle some jazz please",music,en,train
+play some classical piano again please,music,en,train
+how much time is left on the timer,timer,en,train
+a quelle heure commence le piece lundi merci,fallback,fr,train
+mets some 80s rock on shuffle now,music,mixed,train
+coupe le son stp,music,fr,train
+"um hey nest, joue my workout mix now please",music,mixed,train
+le minuteur en est ou euh merci,timer,fr,train
+baisse the volume bien,music,mixed,train
+"ben, demarre un compte a rebours de 2 heures",timer,fr,train
+"okay, is my alarm still set",alarm,en,train
+"hey nest, reveille-moi tous les jours a 6h30 stp",alarm,fr,train
+"alors, quelle est la maximale à lyon lundi",weather,fr,train
+raconte-moi a joke now please,fallback,mixed,train
+"ben hey nest, peux-tu me réveiller à 8h chaque matin s'il te plaît",alarm,fr,train
+"euh, mets mes favoris on shuffle now",music,mixed,train
+"ben, coupe le morceau merci",music,fr,train
+"hey nest, la playlist encore was vraiment bien",fallback,mixed,train
+soften the music a bit please,music,en,train
+the radio weather guy is always depressing thanks,fallback,en,train
+lance some jazz for me stp,music,mixed,train
+"ben, peux-tu m'aider avec mes dissertations",fallback,fr,train
+"ben, je m'ennuie, distrais-moi",fallback,fr,train
+c'est quoi this chanson ce matin s'il te plaît,fallback,mixed,train
+"okay, delete the quarter past six alarm",alarm,en,train
+read me the latest news headlines thanks,fallback,en,train
+mets de la lofi lundi,music,fr,train
+put on my road-trip playlist,music,en,train
+"hey nest, supprime l'alarme de 6h stp",alarm,fr,train
+joue ma playlist du matin hier quoi merci,music,fr,train
+"euh il fait lourd ici, il faudrait aerer",fallback,fr,train
+"okay, turn up the volume a bit",music,en,train
+how many days until new year,fallback,en,train
+quel temps fait-il a nice cet apres-midi,weather,fr,train
+"dis, est-ce qu'il fait soleil a bordeaux",weather,fr,train
+"ben, combien font 19 plus 9",fallback,fr,train
+"uh, i have to be up by noon every morning",alarm,en,train
+"hey nest, il reste combien de temps au minuteur",timer,fr,train
+démarre un compte à rebours de 7 minutes,timer,fr,train
+"uh, how long is left on my timer like",timer,en,train
+combien de temps left sur le minuteur please,timer,mixed,train
+"uh, remove my 6:45 am alarm",alarm,en,train
+je rêve de week-end en ce moment s'il te plaît,fallback,fr,train
+"dis, quel temps fait-il a marseille dimanche merci",weather,fr,train
+"ben, mets une alarme pour 7h30",alarm,fr,train
+"um, can you wake me up à 5:30 am s'il te plaît",alarm,mixed,train
+"hey nest, joue something relaxing now please",music,mixed,train
+peux-tu me reveiller a 7h30 mardi,alarm,fr,train
+"euh ben, va-t-il faire beau à bordeaux cet après-midi s'il te plaît",weather,fr,train
+"euh, il fait stuffy in here please",fallback,mixed,train
+"hey nest, chante-moi une chanson douce s'il te plaît",fallback,fr,train
+"okay, freeze the countdown thanks",timer,en,train
+"hey nest, play mon mix sport pour moi",music,mixed,train
+"okay, is it supposed to hail in tokyo next week thanks",weather,en,train
+"hey nest, give me a 12 minutes countdown hmm",timer,en,train
+"dis, peux-tu me réveiller à 22h lundi",alarm,fr,train
+"i need to buy a new lamp, any advice",fallback,en,train
+mets un chrono de 90 secondes,timer,fr,train
+make sure i'm up by quarter past six,alarm,en,train
+"okay, check whether my alarm is on",alarm,en,train
+what's 2 plus 20,fallback,en,train
+"alors, il fait combien a bordeaux ce week-end",weather,fr,train
+y a-t-il du vent à lille la semaine prochaine,weather,fr,train
+"dis, mets une alarme pour 6h45",alarm,fr,train
+"um, delete l'alarme de 6 am s'il te plaît",alarm,mixed,train
+faut-il prendre un parapluie à marseille ce week-end,weather,fr,train
+play the next track,music,en,train
+"okay, set an alarm for noon thanks",alarm,en,train
+do i need sunglasses in paris today,weather,en,train
+"um, il fait sunny à lille stp",weather,mixed,train
+start a timer pour 30 minutes,timer,mixed,train
+"hey nest, what's la forecast pour tokyo lundi",weather,mixed,train
+lance a countdown de 45 minutes s'il te plaît,timer,mixed,train
+"okay, set a countdown for 90 seconds",timer,en,train
+"okay, what's playing right now",music,en,train
+"okay, give me the this weekend forecast for lisbon thanks",weather,en,train
+quelle est la capitale de Portugal,fallback,fr,train
+snooze it for ten minutes,alarm,en,train
+"okay, what's your name",fallback,en,train
+"alors, va-t-il neiger a paris ce week-end",weather,fr,train
+j'ai besoin de me lever à 9h30 la semaine prochaine merci,alarm,fr,train
+quel temps fait-il a toulouse la semaine prochaine stp,weather,fr,train
+what's la capitale de italy la stp,fallback,mixed,train
+start a timer pour 7 minutes hmm stp,timer,mixed,train
+"euh, quelle est la capitale de Thaïlande",fallback,fr,train
+lance a countdown de 20 minutes,timer,mixed,train
+quelle est ta couleur preferee stp,fallback,fr,train
+joue quelque chose de calme cette nuit,music,fr,train
+"okay, how windy is it in new york next week thanks",weather,en,train
+cree une alarme pour 22h30,alarm,fr,train
+"alors, mets un minuteur de 3 minutes s'il te plaît",timer,fr,train
+"euh uh, make sure i'm up by 7:45 am please",alarm,en,train
+set a recurring alarm for 11:30 pm on Tuesday,alarm,en,train
+reveille-moi a 7h et demie,alarm,fr,train
+"alors, quelles sont les prévisions pour nice dimanche",weather,fr,train
+is it going to rain in tokyo this weekend please,weather,en,train
+"hey nest, melange du rock des annees 80",music,fr,train
+ben switch off my alarm for on weekdays,alarm,en,train
+combien font 13 plus 7 stp,fallback,fr,train
+"euh, combien de temps il reste sur le minuteur",timer,fr,train
+mets some 80s rock on monday on shuffle now please,music,mixed,train
+"uh, remind me with an alarm at 8 am please",alarm,en,train
+mets le volume moins fort,music,fr,train
+"hey, do you think it'll be a good day last night",fallback,en,train
+"ben, raconte-moi une blague sur les dinosaures",fallback,fr,train
+"euh, can you lancer un minuteur de 7 minutes please",timer,mixed,train
+il y a beaucoup de vent a nice,weather,fr,train
+"hey nest, mets some jazz on shuffle now",music,mixed,train
+"euh, is le minuteur still running s'il te plaît",timer,mixed,train
+il fait quel temps a bordeaux dimanche,weather,fr,train
+"ben, désactive mon alarme s'il te plaît",alarm,fr,train
+"euh dis, mets plus fort",music,fr,train
+"comment ca s'ecrit, brocoli stp",fallback,fr,train
+"dis, va-t-il neiger a nantes la semaine prochaine stp",weather,fr,train
+turn it down a touch,music,en,train
+what's the high for madrid this afternoon,weather,en,train
+"okay, turn the music up one notch",music,en,train
+how's la météo à lisbon on sunday,weather,mixed,train
+"ben, peux-tu me reveiller a 7h demain stp",alarm,fr,train
+"alors, est-ce que mon alarme est toujours active",alarm,fr,train
+"dis, fait-il beau à nantes lundi",weather,fr,train
+"comment ca s'ecrit, rythme",fallback,fr,train
+"okay, how cold is it in new york right now",weather,en,train
+"um, is it sunny in paris right now",weather,en,train
+set a timer for 45 minutes,timer,en,train
+snooze l'alarme for ten minutes hmm please,alarm,mixed,train
+"euh, joue ma playlist du matin",music,fr,train
+"hey nest, will it snow in rome tomorrow",weather,en,train
+lance a countdown de 2 minutes stp,timer,mixed,train
+"alors dis, quelle est la capitale de Espagne",fallback,fr,train
+reveille-moi lundi a 23h merci,alarm,fr,train
+"hey, resume the timer thanks",timer,en,train
+change mon alarme to 6:45 am,alarm,mixed,train
+"je fredonne cet air lundi, pardon",fallback,fr,train
+"dis, réveille-moi à 8h merci",alarm,fr,train
+"euh, j'ai besoin de me lever a minuit le week-end",alarm,fr,train
+is le minuteur still running quoi stp,timer,mixed,train
+turn it down a little pour moi,music,mixed,train
+change my alarm to noon,alarm,en,train
+"uh, can you explain space to me",fallback,en,train
+"ça en est où, le minuteur s'il te plaît",timer,fr,train
+"okay, can you wake me up at 7:30 am",alarm,en,train
+reveille-moi tous les matins a 9h30,alarm,fr,train
+give me a 3 minutes countdown,timer,en,train
+reveille-moi at minuit please,alarm,mixed,train
+lance a countdown de 2 hours,timer,mixed,train
+raconte-moi une histoire sur l'océan,fallback,fr,train
+"um, start a 15 minutes timer thanks",timer,en,train
+"ben, il en est ou le minuteur de 45 secondes stp",timer,fr,train
+"alors, remonte le son beaucoup",music,fr,train
+"hey nest, tell me va-t-il faire beau à tokyo next week",weather,mixed,train
+"um, put an alarm on for 11 pm thanks",alarm,en,train
+"ben, y a-t-il du vent à paris lundi",weather,fr,train
+"um, do i have an alarm set for every weekday thanks",alarm,en,train
+remind me de charge my phone,fallback,mixed,train
+"okay, put on some classical piano",music,en,train
+"okay, wake me up in time for work at 10 pm",alarm,en,train
+"dis, relance le minuteur quoi",timer,fr,train
+"alors, mets un minuteur de 30 secondes s'il te plaît",timer,fr,train
+"um, mets ma playlist road-trip for me stp",music,mixed,train
+"um, lance a countdown de 7 minutes",timer,mixed,train
+"ben, il fait quel temps à lyon ce soir",weather,fr,train
+"hey nest, is le minuteur still running la please",timer,mixed,train
+"hey, start a 12 minutes timer",timer,en,train
+"euh, chanson suivante s'il te plaît",music,fr,train
+"euh, le minuteur en est où maintenant",timer,fr,train
+est-ce qu'il va faire froid à toulouse vendredi merci,weather,fr,train
+"dis, est-ce qu'il va neiger à lyon lundi",weather,fr,train
+play my road-trip playlist,music,en,train
+"ben, où ça en est le minuteur s'il te plaît",timer,fr,train
+um is it going to rain in tokyo next week please,weather,en,train
+"alors, demarre un compte a rebours de 5 minutes",timer,fr,train
+"ben okay, play some jazz all day please",music,en,train
+"okay, can you help me with my math uh thanks",fallback,en,train
+delete l'alarme de 11:30 pm euh stp,alarm,mixed,train
+"euh, diminue le volume un peu",music,fr,train
+"alors, fait-il beau à toulouse la semaine prochaine",weather,fr,train
+"okay, switch off my alarm for on Tuesday please",alarm,en,train
+"dis, c'est quoi cette chanson a la radio toute la journee",fallback,fr,train
+"hey, set a timer for 25 minutes",timer,en,train
+"ben, mets ma playlist du matin",music,fr,train
+"okay, how much longer on the countdown hmm",timer,en,train
+j'ai besoin de me lever à 6h30 demain,alarm,fr,train
+"hey nest, lance my workout mix for me s'il te plaît",music,mixed,train
+"dis, joue mon mix sport ce matin",music,fr,train
+"um, set a timer for 40 minutes",timer,en,train
+what's the high for berlin tomorrow,weather,en,train
+ajoute 3 minutes to the timer,timer,mixed,train
+"euh, decale mon alarme a 7h45 merci",alarm,fr,train
+"dis, il fait combien à marseille vendredi s'il te plaît",weather,fr,train
+set une alarme every weekday at 6h45 s'il te plaît,alarm,mixed,train
+reveille-moi at 9h please,alarm,mixed,train
+alors raconte-moi une histoire sur l'histoire,fallback,fr,train
+"euh, fait-il beau à lille ce week-end",weather,fr,train
+that alarm at the office kept ringing last night,fallback,en,train
+"okay, stop the timer",timer,en,train
+"ben, peux-tu me reveiller a 23h tous les matins stp",alarm,fr,train
+pump up the volume way thanks,music,en,train
+"hey nest, lance a countdown de 7 minutes s'il te plaît",timer,mixed,train
+"alors, où en est le compte à rebours",timer,fr,train
+"hey, i need to get up at 7 am on Tuesday",alarm,en,train
+"ben, lance un minuteur de 5 minutes merci",timer,fr,train
+relance le minuteur la,timer,fr,train
+can you wake me up à midnight,alarm,mixed,train
+"hey, turn the sound down a bit",music,en,train
+ben est-ce qu'il va snow à madrid demain,weather,mixed,train
+"uh, is it supposed to hail in paris this weekend",weather,en,train
+repousse l'alarme s'il te plaît,alarm,fr,train
+"uh, skip to the next song thanks",music,en,train
+j'ai besoin de me lever à 6h et quart mardi merci,alarm,fr,train
+mets un minuteur de 3 minutes,timer,fr,train
+"um, what's la capitale de japan euh",fallback,mixed,train
+quelle est ta livre préférée,fallback,fr,train
+"uh, how warm will it get in berlin this evening",weather,en,train
+euh delete the quarter past six alarm please,alarm,en,train
+melange de la lofi,music,fr,train
+donne-moi une recette de cookies,fallback,fr,train
+what song c'est à la radio toute la journee s'il te plaît,fallback,mixed,train
+"alors, prolonge le minuteur de 2 minutes",timer,fr,train
+"dis, il en est ou le minuteur de 10 minutes",timer,fr,train
+il y a beaucoup de vent à toulouse,weather,fr,train
+"hey nest, is it going to rain in tokyo today",weather,en,train
+"alors, mets un chrono de 20 minutes hmm",timer,fr,train
+"okay, what's your favorite color thanks",fallback,en,train
+"um, dois-je prendre un umbrella pour tokyo",weather,mixed,train
+programme une alarme pour 6h30 samedi merci,alarm,fr,train
+"alors, est-ce qu'il va faire froid a lille dimanche stp",weather,fr,train
+stop the playback please,music,en,train
+j'ai besoin de me lever à 23h le week-end,alarm,fr,train
+set my alarm to 11:30 pm,alarm,en,train
+coupe le son s'il te plaît,music,fr,train
+supprime l'alarme de 6h30 merci,alarm,fr,train
+"um, skip to the last track",music,en,train
+"okay, i need to buy a new lamp, any advice",fallback,en,train
+ça en est où le minuteur de 15 minutes s'il te plaît,timer,fr,train
+what's the temperature in rome on sunday,weather,en,train
+quel temps fera-t-il à paris demain,weather,fr,train
+"dis, crée une alarme pour 6h15",alarm,fr,train
+is it cloudy in madrid this afternoon,weather,en,train
+um teach me about trains,fallback,en,train
+can you lancer un minuteur de 30 seconds please,timer,mixed,train
+cancel le timer please la,timer,mixed,train
+lance un minuteur de 7 minutes,timer,fr,train
+"uh, i need to get up at quarter past six daily",alarm,en,train
+"um, turn the sound up a bit",music,en,train
+il fait lourd in here stp,fallback,mixed,train
+turn up le son un peu quoi,music,mixed,train
+j'adore this song à la radio cette nuit s'il te plaît,fallback,mixed,train
+"alors, mets en pause le minuteur quoi",timer,fr,train
+"euh, lance a countdown de 2 hours s'il te plaît",timer,mixed,train
+"ben, joue ma playlist road-trip hier",music,fr,train
+"uh, what time does the concert start last night",fallback,en,train
+démarre un compte à rebours de 30 secondes,timer,fr,train
+"ca en est ou, le minuteur hmm",timer,fr,train
+"dis, joue une playlist concentration encore s'il te plaît",music,fr,train
+mets une alarme tous les jours a 6h15,alarm,fr,train
+euh est-ce qu'il fait soleil a paris merci,weather,fr,train
+play une playlist concentration pour moi,music,mixed,train
+dois-je prendre une veste lundi,weather,fr,train
+"ben, quelle est la capitale de Norvege euh",fallback,fr,train
+"um, mon alarme didn't go off last night",fallback,mixed,train
+is it going to pleuvoir à bordeaux this weekend,weather,mixed,train
+il reste combien sur le minuteur,timer,fr,train
+mets ma playlist du matin toute la journée,music,fr,train
+rajoute 3 minutes au minuteur,timer,fr,train
+"hey nest, raconte-moi a joke sur cooking",fallback,mixed,train
+my alarm didn't go off on monday and i was late,fallback,en,train
+"euh, cree une alarme pour 7h30 stp",alarm,fr,train
+"alors, mets une alarme pour 6h45 s'il te plaît",alarm,fr,train
+"ben, joue du piano classique hier merci",music,fr,train
+what's the humidity like in rome please,weather,en,train
+"euh, change mon alarme to 11:30 pm",alarm,mixed,train
+"hey nest, mets une alarme tous les jours a 6h et quart",alarm,fr,train
+"dis, quel temps fait-il a bordeaux lundi stp",weather,fr,train
+turn down the volume a little,music,en,train
+mets le son plus fort,music,fr,train
+"ben, passe a la chanson suivante la",music,fr,train
+pause the playback,music,en,train
+lance un chrono de 7 minutes,timer,fr,train
+mets quelque chose de calme ce matin,music,fr,train
+lance un minuteur de 40 minutes,timer,fr,train
+"hey nest, est-ce qu'il fait soleil a nice",weather,fr,train
+mets une alarme pour 9h30 stp,alarm,fr,train
+"hey nest, qu'est-ce que je cuisine ce week-end",fallback,fr,train
+"euh, dois-je prendre un umbrella pour nantes euh",weather,mixed,train
+"uh, notch the volume up",music,en,train
+"um, turn down le son encore",music,mixed,train
+"hey, translate hello into english",fallback,en,train
+turn down le son a little,music,mixed,train
+mets une alarme for 23h demain,alarm,mixed,train
+uh start a 5 minutes timer please,timer,en,train
+how windy is it in tokyo on sunday,weather,en,train
+do i need an umbrella in paris this afternoon,weather,en,train
+"hey nest, j'adore cette chanson qui passe à la radio ce matin",fallback,fr,train
+"hey nest, mon réveil didn't sonner encore euh",fallback,mixed,train
+"um, dis-moi a fun fact sur black holes",fallback,mixed,train
+il fait quel temps à toulouse la semaine prochaine,weather,fr,train
+set the volume to fifty percent,music,en,train
+"hey nest, rajoute 10 minutes au minuteur",timer,fr,train
+"alors, change l'alarme à 22h",alarm,fr,train
+crank up le volume un peu,music,mixed,train
+"hey nest, c'est où le minuteur là",timer,fr,train
+is the timer still running thanks,timer,en,train
+"okay, tell me about the roman empire",fallback,en,train
+"dis, quel temps fait-il a lyon demain",weather,fr,train
+remind me de water the plants stp,fallback,mixed,train
+"alors, baisse le son beaucoup s'il te plaît",music,fr,train
+"hey nest, what's the high for paris today like",weather,en,train
+start a timer pour 25 minutes,timer,mixed,train
+"alors, joue quelque chose de calme ce matin",music,fr,train
+"um, reveille-moi at 11 pm please",alarm,mixed,train
+"hey, my alarm didn't go off yesterday and i was late please",fallback,en,train
+"hey nest, keep playing",music,en,train
+"ben, recommence le morceau s'il te plaît",music,fr,train
+"euh, je m'ennuie, entertain me",fallback,mixed,train
+quel temps fera-t-il a toulouse dimanche merci,weather,fr,train
+"hey nest, passe a la prochaine hmm stp",music,fr,train
+"um, play my morning playlist last night",music,en,train
+"hey nest, il reste combien au minuteur de 12 minutes",timer,fr,train
+"je pense tout haut ce matin, fais pas attention s'il te plaît",fallback,fr,train
+quelle heure il est à nantes en ce moment merci,fallback,fr,train
+"okay, change my alarm to quarter past six",alarm,en,train
+"uh, how tall is niagara falls",fallback,en,train
+is it going to pleuvoir à nice on sunday,weather,mixed,train
+chanson suivante,music,fr,train
+"hey nest, va-t-il pleuvoir à nice vendredi",weather,fr,train
+"um, dial the volume back two notches",music,en,train
+"alors, demarre un compte a rebours de 2 minutes merci",timer,fr,train
+can you wake me up à 6 am,alarm,mixed,train
+mets une alarme pour 22h stp,alarm,fr,train
+"alors, ou en est le minuteur merci",timer,fr,train
+ajoute 2 minutes au minuteur s'il te plaît,timer,fr,train
+"okay, i don't know what i want",fallback,en,train
+"okay, who won the rugby game last night",fallback,en,train
+mon alarme est-elle encore activée s'il te plaît,alarm,fr,train
+what time is it thanks,fallback,en,train
+"hey, what's the humidity like in lisbon thanks",weather,en,train
+"alors, mon reveil n'a pas sonne encore, je suis en retard quoi",fallback,fr,train
+"euh, mets ma playlist du matin all day on shuffle now",music,mixed,train
+cancel mon alarme de 6h45,alarm,mixed,train
+"alors, c'est quand pâques",fallback,fr,train
+"okay, notch the volume down",music,en,train
+"alors, c'est quoi cette chanson à la radio cette nuit",fallback,fr,train
+joue quelque chose de calme lundi,music,fr,train
+"hey nest, rappelle-moi de appeler maman",fallback,fr,train
+delete l'alarme de 7h et demie,alarm,mixed,train
+raconte-moi une histoire sur les échecs merci,fallback,fr,train
+"hey nest, crank up le volume a bit",music,mixed,train
+"ben, redemarre le minuteur",timer,fr,train
+"ben, quel temps fera-t-il a nantes ce week-end",weather,fr,train
+"hey, shift the alarm to 7:10 am",alarm,en,train
+"alors, va-t-il neiger à lyon dimanche",weather,fr,train
+launch a countdown of 30 minutes,timer,en,train
+ben le minuteur de la cuisine s'entend depuis le jardin,fallback,fr,train
+put on a timer for 25 minutes,timer,en,train
+what's the temperature in new york this weekend,weather,en,train
+"euh, le réveil du bureau a sonné lundi",fallback,fr,train
+"okay, put on something relaxing",music,en,train
+make sure i'm up by midnight,alarm,en,train
+give me the this afternoon forecast for tokyo thanks,weather,en,train
+reveille-moi demain a 6h30,alarm,fr,train
+"uh hey nest, play lofi beats on monday",music,en,train
+passe à la suivante merci,music,fr,train
+"dis, reprends la lecture",music,fr,train
+ben arrête le minuteur,timer,fr,train
+"okay, play my morning playlist like thanks",music,en,train
+"euh, quelles sont les previsions pour lille dimanche",weather,fr,train
+est-ce qu'il va snow à nantes cet apres-midi,weather,mixed,train
+"dis, va-t-il pleuvoir a marseille cet apres-midi",weather,fr,train
+"euh, reprends la chanson",music,fr,train
+"dis, programme une alarme pour 6h15 demain stp",alarm,fr,train
+"dis, relance le minuteur merci",timer,fr,train
+"hey nest, mets my road-trip playlist on shuffle now",music,mixed,train
+what's the forecast for rome this weekend,weather,en,train
+"alors, ca en est ou le minuteur maintenant",timer,fr,train
+set an alarm pour on Tuesday matin,alarm,mixed,train
+"euh, décale mon alarme à 7h45 s'il te plaît",alarm,fr,train
+change l'alarme à 7h10 s'il te plaît,alarm,fr,train
+"ca en est ou, le minuteur stp",timer,fr,train
+what's la forecast pour toulouse this evening,weather,mixed,train
+"ben, change l'alarme a 7h et demie",alarm,fr,train
+"okay, hold the timer",timer,en,train
+"hey nest, le temps passe vite quand on s'amuse",fallback,fr,train
+who painted girl with a pearl earring,fallback,en,train
+what's the temperature in london this evening,weather,en,train
+give me a 2 minutes countdown,timer,en,train
+est-ce qu'il va neiger à nice vendredi merci,weather,fr,train
+repousse l'alarme,alarm,fr,train
+"um my morning routine is a mess, help me sort it out please",fallback,en,train
+"il fait freezing in here, open a window quoi",fallback,mixed,train
+"ben, faut-il prendre un parapluie à paris lundi s'il te plaît",weather,fr,train
+prolonge le minuteur de 2 minutes s'il te plaît,timer,fr,train
+"ben okay, take two minutes off the timer",timer,en,train
+"um, is my alarm still set",alarm,en,train
+"ben, enlève deux minutes au minuteur s'il te plaît",timer,fr,train
+"hey nest, is it going to rain in lisbon next week please",weather,en,train
+"hey nest, va-t-il faire beau a lille lundi",weather,fr,train
+qui a gagné le match de basket hier soir,fallback,fr,train
+"uh, make sure i'm up by 11:30 pm",alarm,en,train
+"hey nest, snooze l'alarme for ten minutes please",alarm,mixed,train
+"ben, eteins l'alarme",alarm,fr,train
+mets some classical piano cette nuit on shuffle now,music,mixed,train
+"um, set an alarm pour daily matin",alarm,mixed,train
+reveille-moi at 6h please,alarm,mixed,train
+"euh, j'ai besoin de me lever à 10h tous les jours s'il te plaît",alarm,fr,train
+"ben uh, extend the timer by 10 minutes",timer,en,train
+"uh, is it supposed to snow in lisbon next week thanks",weather,en,train
+pause the timer please,timer,en,train
+tell me va-t-il faire beau à new york tomorrow,weather,mixed,train
+éteins l'alarme quoi,alarm,fr,train
+fait-il beau à nantes vendredi,weather,fr,train
+"uh, will it snow in rome on sunday",weather,en,train
+make sure i'm up by 5:30 am,alarm,en,train
+play my favorites yesterday pour moi please,music,mixed,train
+"euh, lance un chrono de 2 heures merci",timer,fr,train
+"okay, go to the next song thanks",music,en,train
+"uh, what's the high for madrid on sunday",weather,en,train
+ça en est où le minuteur de 45 secondes hmm merci,timer,fr,train
+"hey nest, j'adore this song à la radio encore please",fallback,mixed,train
+"okay, play my favorites last night",music,en,train
+à quelle heure commence le film hier s'il te plaît,fallback,fr,train
+joue mon mix sport ce matin là,music,fr,train
+"uh, start counting down 12 minutes",timer,en,train
+"alors, mon réveil n'a pas sonné hier, je suis en retard merci",fallback,fr,train
+"um, how windy is it in berlin right now please",weather,en,train
+shuffle something relaxing,music,en,train
+is there du vent à lyon this afternoon ou pas s'il te plaît,weather,mixed,train
+"euh, mets lofi beats for me stp",music,mixed,train
+"euh, change l'alarme à 5h30 hmm",alarm,fr,train
+"hey, put on a timer for 45 minutes",timer,en,train
+"ben, mets une alarme tous les jours à 7h30 hmm",alarm,fr,train
+"euh, mets un chrono de 25 minutes",timer,fr,train
+mets de la lofi ce matin on shuffle now stp,music,mixed,train
+mets une alarme pour 8h stp,alarm,fr,train
+"euh, mets une alarme pour 22h30 merci",alarm,fr,train
+wake me up at 11 pm,alarm,en,train
+"alors, fait-il beau a bordeaux ce soir",weather,fr,train
+"euh, crank up le volume bien s'il te plaît",music,mixed,train
+"alors, vérifie que mon alarme est bien mise s'il te plaît",alarm,fr,train
+"alors, baisse le volume beaucoup",music,fr,train
+play lofi beats,music,en,train
+cancel the alarm for tomorrow thanks,alarm,en,train
+supprime l'alarme de 7h,alarm,fr,train
+"ben, melange ma musique",music,fr,train
+"um, start a 2 minutes timer",timer,en,train
+"hey nest, cancel the alarm for on Tuesday",alarm,en,train
+set an alarm pour on Saturday matin,alarm,mixed,train
+"alors, combien font 9 fois 14",fallback,fr,train
+qui chante ce morceau,music,fr,train
+"euh, rajoute 5 minutes au minuteur",timer,fr,train
+what song c'est à la radio all day,fallback,mixed,train
+"dis, peux-tu me réveiller à 5h30 lundi hmm s'il te plaît",alarm,fr,train
+um i love that tune on the radio this morning please,fallback,en,train
+tell me va-t-il faire beau à madrid demain,weather,mixed,train
+any storms coming to paris this afternoon please,weather,en,train
+"ben hey nest, la playlist hier était vraiment bien",fallback,fr,train
+"dis, il fait combien a nantes dimanche",weather,fr,train
+"ben, on en est ou avec le minuteur merci",timer,fr,train
+i had a dream about showing up with no shoes last night thanks,fallback,en,train
+"um, set my alarm to 7:10 am",alarm,en,train
+"hey nest, change my alarm to 11:30 pm thanks",alarm,en,train
+"hey nest, mets un minuteur de 45 minutes",timer,fr,train
+"dis, programme une alarme pour 7h30 la semaine prochaine",alarm,fr,train
+est-ce qu'il va faire froid à nantes ce soir s'il te plaît,weather,fr,train
+"uh, i need to get up at 7:45 am every weekday please",alarm,en,train
+ça en est où le compte à rebours s'il te plaît,timer,fr,train
+mets une alarme for 5h demain,alarm,mixed,train
+"um, combien de temps left sur le minuteur s'il te plaît",timer,mixed,train
+"hey, launch a countdown of 40 minutes thanks",timer,en,train
+"hey nest, mets en pause le minuteur",timer,fr,train
+"dis, mets ma playlist du soir cette nuit",music,fr,train
+"uh, do i need sunglasses in lisbon today",weather,en,train
+"dis, qui a gagne le match de velo hier soir",fallback,fr,train
+"dis, mets le volume plus fort quoi",music,fr,train
+give me a 45 seconds countdown thanks,timer,en,train
+"hey nest, cancel mon alarme de 11 pm please",alarm,mixed,train
+va-t-il faire beau a bordeaux cet apres-midi merci,weather,fr,train
+how's la météo à madrid vendredi,weather,mixed,train
+mets mes favoris lundi,music,fr,train
+"um, quelle est the temperature à madrid",weather,mixed,train
+mets une alarme pour 6h15 merci,alarm,fr,train
+can you wake me up à 7:30 am,alarm,mixed,train
+il fait combien a lille la semaine prochaine,weather,fr,train
+je reve de sieste en ce moment stp,fallback,fr,train
+"uh, set a timer for an hour and a half",timer,en,train
+"hey nest, umm so like",fallback,en,train
+le minuteur est-il encore en marche merci,timer,fr,train
+"hey, play my favorites",music,en,train
+"dis, fait-il beau à lille lundi",weather,fr,train
+"je fredonne cet air lundi, pardon s'il te plaît",fallback,fr,train
+"um, what should on manger tonight s'il te plaît",fallback,mixed,train
+"hey nest, mets ma playlist du matin again on shuffle now stp",music,mixed,train
+"um, est-ce qu'il va snow à london vendredi please",weather,mixed,train
+"okay, make it louder",music,en,train
+il reste combien au minuteur de 30 minutes merci,timer,fr,train
+"je réfléchis out loud, ignore-moi s'il te plaît",fallback,mixed,train
+"dis, euh ouais donc en fait s'il te plaît",fallback,fr,train
+joue quelque chose de calme now please,music,mixed,train
+est-ce qu'il va pleuvoir à marseille lundi,weather,fr,train
+"alors, vérifie le minuteur s'il te plaît",timer,fr,train
+ben put on a timer for 3 minutes,timer,en,train
+va-t-il pleuvoir à nice cet après-midi,weather,fr,train
+à quelle heure commence le concert cette nuit s'il te plaît,fallback,fr,train
+add 10 minutes to the timer thanks,timer,en,train
+"ben, rajoute 2 minutes au minuteur",timer,fr,train
+"alors, peux-tu me reveiller a 5h30 demain stp",alarm,fr,train
+check whether my alarm is on please,alarm,en,train
+"okay, read me the evening news headlines",fallback,en,train
+"hey nest, put on my workout mix please",music,en,train
+"hey nest, monte le son beaucoup",music,fr,train
+va-t-il pleuvoir à lyon lundi s'il te plaît,weather,fr,train
+"hey, is it going to rain in paris right now",weather,en,train
+"dis, pousse le volume encore merci",music,fr,train
+tu trouves pas qu'il fait trop calme ici,fallback,fr,train
+uh start counting down an hour thanks,timer,en,train
+mets ma playlist du soir for me stp,music,mixed,train
+jump past this song,music,en,train
+quel temps fait-il à nantes dimanche merci,weather,fr,train
+"um, give me a 20 minutes countdown",timer,en,train
+"hey nest, desactive mon alarme",alarm,fr,train
+mets une alarme for 6h demain,alarm,mixed,train
+"euh, fais pas trop fort s'il te plaît",music,fr,train
+wake me up in time for work at half past seven thanks,alarm,en,train
+ou en est le minuteur la,timer,fr,train
+il fait combien a paris la semaine prochaine merci,weather,fr,train
+"hey nest, is it going to rain in tokyo tomorrow",weather,en,train
+il reste combien sur le minuteur la,timer,fr,train
+"hey nest, mets un minuteur de 7 minutes stp",timer,fr,train
+"um, start counting down 30 seconds",timer,en,train
+"okay, what time does the game start this morning",fallback,en,train
+start a timer pour 7 minutes s'il te plaît,timer,mixed,train
+"okay, how much longer on the countdown please",timer,en,train
+"ben, mets ma playlist du matin s'il te plaît",music,fr,train
+"hey, wake me up at 7:45 am thanks",alarm,en,train
+"alors, comment ça s'écrit, sérendipité",fallback,fr,train
+"ben, raconte-moi une blague sur les trous noirs",fallback,fr,train
+"dis, faut-il prendre un parapluie à lille la semaine prochaine s'il te plaît",weather,fr,train
+"uh, will it rain in madrid today",weather,en,train
+is it going to pleuvoir à new york on sunday,weather,mixed,train
+soften the music a lot,music,en,train
+lis-moi les nouvelles toute la journee,fallback,fr,train
+"hey nest, give me a 25 minutes countdown thanks",timer,en,train
+"ben, ca en est ou le minuteur de 30 secondes euh stp",timer,fr,train
+ça en est où le compte à rebours merci,timer,fr,train
+is it supposed to snow in tokyo right now,weather,en,train
+"alors, quel temps fera-t-il à nice dimanche quoi",weather,fr,train
+"play it by ear, we'll see how it goes thanks",fallback,en,train
+j'adore cette chanson qui passe a la radio encore,fallback,fr,train
+"je pense tout haut hier, fais pas attention",fallback,fr,train
+"ben, mets de la lofi ce matin",music,fr,train
+il fait sunny à london,weather,mixed,train
+quelle heure il est à marseille en ce moment quoi,fallback,fr,train
+can you help me with my homework,fallback,en,train
+will it rain in madrid right now please,weather,en,train
+euh ou en est le minuteur exactement,timer,fr,train
+what's the high for lisbon this weekend,weather,en,train
+"alors, y a-t-il du vent a paris demain",weather,fr,train
+repousse l'alarme de dix minutes s'il te plaît,alarm,fr,train
+joue du jazz,music,fr,train
+"wake up, i think we're running late",fallback,en,train
+any storms coming to new york this weekend,weather,en,train
+start a timer pour 10 minutes please,timer,mixed,train
+"okay, cut the music",music,en,train
+peux-tu me réveiller à 7h30 samedi s'il te plaît,alarm,fr,train
+let's play trivia,fallback,en,train
+"hey nest, il fait lourd in here, open a window s'il te plaît",fallback,mixed,train
+"my morning routine is a mess, help me fix it",fallback,en,train
+remind me with an alarm at 7:30 am please,alarm,en,train
+"euh, demarre un compte a rebours de 12 minutes stp",timer,fr,train
+"uh, do i need an umbrella in madrid right now",weather,en,train
+melange mon mix sport stp,music,fr,train
+réveille-moi à 22h s'il te plaît,alarm,fr,train
+"um, start a timer pour 45 secondes",timer,mixed,train
+faut-il prendre un parapluie à toulouse dimanche,weather,fr,train
+"dis, j'adore cette chanson qui passe à la radio toute la journée",fallback,fr,train
+"hey nest, joue du jazz cette nuit",music,fr,train
+prolonge le minuteur de 3 minutes quoi s'il te plaît,timer,fr,train
+"hey nest, is the quarter past six alarm active please",alarm,en,train
+"uh hey, translate hello into german thanks",fallback,en,train
+play my morning playlist pour moi s'il te plaît,music,mixed,train
+"hey, what is 10 times 16",fallback,en,train
+"euh, cree une alarme pour 7h stp",alarm,fr,train
+"okay, will it be sunny in tokyo this evening",weather,en,train
+il fait combien à lyon ce soir,weather,fr,train
+"ben, explique-moi le cinema",fallback,fr,train
+mets un chrono de 45 minutes,timer,fr,train
+est-ce qu'il va snow à tokyo demain,weather,mixed,train
+est-ce qu'il va pleuvoir à lille ce week-end euh,weather,fr,train
+"hey, set a timer for 7 minutes thanks",timer,en,train
+"euh, dis-moi a fun fact sur history",fallback,mixed,train
+"alors, va-t-il neiger a marseille dimanche merci",weather,fr,train
+"ben, jouons à cartes merci",fallback,fr,train
+"dis, mets une alarme tous les jours a 22h merci",alarm,fr,train
+"hey nest, restart the timer",timer,en,train
+"euh, quelles sont les prévisions pour nice ce week-end",weather,fr,train
+"okay, skip to this track",music,en,train
+ajoute 3 minutes to the timer s'il te plaît,timer,mixed,train
+il fait quel temps a toulouse vendredi merci,weather,fr,train
+"il fait lourd ici, il faudrait aérer s'il te plaît",fallback,fr,train
+"hey nest, mets un minuteur de 30 minutes",timer,fr,train
+remind me with an alarm at 6 am,alarm,en,train
+"euh, annule le minuteur là",timer,fr,train
+what is 16 times 8,fallback,en,train
+"hey nest, il fait glacial in here stp",fallback,mixed,train
+"je pense tout haut cette nuit, fais pas attention",fallback,fr,train
+um what's the high for new york next week please,weather,en,train
+"um, how's the weather in paris on sunday thanks",weather,en,train
+"um hey nest, delete l'alarme de 23h",alarm,mixed,train
+"euh, can you lancer un minuteur de une heure et demie please",timer,mixed,train
+tell me va-t-il faire beau à london lundi,weather,mixed,train
+"okay, launch a countdown of 2 hours",timer,en,train
+"okay, how much time is left on the timer",timer,en,train
+quelles sont les prévisions pour paris ce soir merci,weather,fr,train
+"ben, décale mon alarme à 7h10",alarm,fr,train
+"okay, resume the timer please",timer,en,train
+"okay, any storms coming to london this weekend thanks",weather,en,train
+"hey nest, remind me with an alarm at 8:30 am",alarm,en,train
+start a 7 minutes timer,timer,en,train
+mon alarme didn't go off encore,fallback,mixed,train
+i need to get up at 6 am on Monday thanks,alarm,en,train
+is it going to pleuvoir à paris today please,weather,mixed,train
+"hey, remind me with an alarm at 6:45 am",alarm,en,train
+should i bring a jacket next week thanks,weather,en,train
+repousse l'alarme de dix minutes,alarm,fr,train
+"um, will it be sunny in lisbon this afternoon",weather,en,train
+"okay, how far along is the timer",timer,en,train
+"hey nest, mets un minuteur de 90 secondes s'il te plaît",timer,fr,train
+"hey, cancel the alarm for every morning",alarm,en,train
+augmente le volume beaucoup,music,fr,train
+"hey nest, is it going to pleuvoir à lille ce soir please",weather,mixed,train
+"alors, mets une alarme pour 7h10 s'il te plaît",alarm,fr,train
+"um, i love that tune on the radio last night please",fallback,en,train
+set a countdown for an hour and a half,timer,en,train
+"hey nest, restart the playlist",music,en,train
+"okay, what's the meaning of life thanks",fallback,en,train
+il fait sunny à madrid la stp,weather,mixed,train
+"ben, ajoute 10 minutes au minuteur",timer,fr,train
+"dis, le minuteur de la cuisine s'entend depuis le salon",fallback,fr,train
+parle-moi de les pyramides,fallback,fr,train
+is there du vent à lille cet apres-midi ou pas,weather,mixed,train
+lance un chrono de 5 minutes s'il te plaît,timer,fr,train
+turn it down a bit,music,en,train
+start a 90 seconds timer thanks,timer,en,train
+"ben, le minuteur en est où au juste s'il te plaît",timer,fr,train
+"euh, lance a countdown de 5 minutes please",timer,mixed,train
+start a 45 minutes timer,timer,en,train
+"ben, arrête la chanson merci",music,fr,train
+ça fait quel effet d'être un réveil intelligent,fallback,fr,train
+"ben, crée une alarme pour 23h là s'il te plaît",alarm,fr,train
+do i need an umbrella in new york this evening,weather,en,train
+tu connais hugo merci,fallback,fr,train
+"alors alors, y a-t-il du vent a toulouse la semaine prochaine stp",weather,fr,train
+joue my morning playlist please,music,mixed,train
+"hey nest, any storms coming to tokyo on sunday",weather,en,train
+"hey nest, resume playback",music,en,train
+"euh, mon alarme didn't go off ce matin",fallback,mixed,train
+push the alarm back a bit like,alarm,en,train
+is it sunny in london right now please,weather,en,train
+"ben, decale mon alarme a 7h et demie merci",alarm,fr,train
+joue quelque chose de calme,music,fr,train
+"hey nest, wake up, i think we're late already thanks",fallback,en,train
+delete l'alarme de 22h30,alarm,mixed,train
+va-t-il pleuvoir à lille lundi,weather,fr,train
+shuffle my favorites all day,music,en,train
+"alors, va-t-il faire beau a bordeaux vendredi merci",weather,fr,train
+faut-il prendre un parapluie à lille ce soir,weather,fr,train
+on en est où du compte à rebours euh s'il te plaît,timer,fr,train
+"um, ajoute 1 minute to the timer s'il te plaît",timer,mixed,train
+"hey nest, set a recurring alarm for 9:30 am next week please",alarm,en,train
+mets la musique,music,fr,train
+who sings this song,music,en,train
+alors dis-moi ou en est le minuteur,timer,fr,train
+"alors, mets le son à vingt",music,fr,train
+"uh, start counting down 30 minutes",timer,en,train
+"hey nest, raconte-moi une histoire sur le cinema stp",fallback,fr,train
+"hey, do i need sunglasses in berlin today thanks",weather,en,train
+"hey, tell me something interesting about cooking",fallback,en,train
+mets du rock des années 80 s'il te plaît,music,fr,train
+"euh, fait-il beau à nice la semaine prochaine",weather,fr,train
+tell me va-t-il faire beau à madrid ce soir s'il te plaît,weather,mixed,train
+"ben alors, baisse le son beaucoup",music,fr,train
+what's on tv on sunday,fallback,en,train
+"euh, mon réveil didn't sonner toute la journee",fallback,mixed,train
+"mon lampe est en panne, tu aurais un conseil",fallback,fr,train
+"hey nest, can you lancer un minuteur de 2 minutes please",timer,mixed,train
+what's la météo à bordeaux lundi,weather,mixed,train
+"alors, prolonge le minuteur de 5 minutes",timer,fr,train
+"euh, is le minuteur still running",timer,mixed,train
+"um, cancel the alarm for every weekday",alarm,en,train
+"ben, reprends le morceau merci",music,fr,train
+skip à la next song la please,music,mixed,train
+tell me va-t-il faire beau à new york ce week-end stp,weather,mixed,train
+c'est quand les grandes vacances merci,fallback,fr,train
+"hey, set my alarm to half past seven thanks",alarm,en,train
+"ben, quelle est la maximale a nantes lundi",weather,fr,train
+lance some 80s rock for me stp,music,mixed,train
+"ben, euh mets, mets, oh laisse tomber",fallback,fr,train
+can you lancer un minuteur de 40 minutes quoi,timer,mixed,train
+"hey nest, who won the swimming game last night thanks",fallback,en,train
+"okay, launch a countdown of 20 minutes",timer,en,train
+"uh, change my alarm to 9:30 am thanks",alarm,en,train
+blast it a little louder,music,en,train
+baisse le volume un peu,music,fr,train
+"ben, mets du piano classique",music,fr,train
+mets un minuteur de 45 minutes s'il te plaît,timer,fr,train
+"um hey nest, turn it down a lot",music,en,train
+"hey nest, who sings this track thanks",music,en,train
+"dis, dois-je prendre une veste vendredi",weather,fr,train
+"dis, decale mon alarme a minuit",alarm,fr,train
+y a-t-il du vent à lyon demain s'il te plaît,weather,fr,train
+"euh, change l'alarme a 8h",alarm,fr,train
+mets la musique en pause là,music,fr,train
+mets un minuteur de 30 secondes merci,timer,fr,train
+où en est le minuteur de 40 minutes,timer,fr,train
+"euh, mets un minuteur de une heure et demie",timer,fr,train
+"okay, is the timer still running",timer,en,train
+"dis, est-ce qu'il va pleuvoir à toulouse la semaine prochaine s'il te plaît",weather,fr,train
+ben lower the sound a little please,music,en,train
+ça en est où le minuteur au juste,timer,fr,train
+"uh, extend the timer by 3 minutes",timer,en,train
+"okay, is it supposed to snow in new york this weekend",weather,en,train
+"ben euh, redescends le son au maximum",music,fr,train
+coupe la chanson stp,music,fr,train
+is there du vent à berlin this evening ou pas,weather,mixed,train
+is there du vent à paris this weekend ou pas,weather,mixed,train
+"alors, ca en est ou le minuteur la",timer,fr,train
+"hey, what's the temperature in tokyo today hmm please",weather,en,train
+"okay, how do you spell necessary please",fallback,en,train
+"uh, launch a countdown of 30 seconds",timer,en,train
+what's la forecast pour marseille this weekend please,weather,mixed,train
+give me a an hour and a half countdown thanks,timer,en,train
+"um, raise the sound one notch",music,en,train
+"euh, passe a la prochaine",music,fr,train
+"je réfléchis à voix haute, fais pas attention quoi merci",fallback,fr,train
+"euh, dois-je prendre un umbrella pour bordeaux stp",weather,mixed,train
+delete l'alarme de midnight stp,alarm,mixed,train
+joue du jazz now please,music,mixed,train
+"uh, the air in here feels stuffy, open a window thanks",fallback,en,train
+"alors, diminue le volume au maximum",music,fr,train
+le minuteur de la cuisine s'entend depuis l'étage,fallback,fr,train
+euh dois-je prendre une veste lundi s'il te plaît,weather,fr,train
+"uh, that song on the radio all day was great like",fallback,en,train
+"hey, will it snow in paris on sunday",weather,en,train
+"okay, raise the sound two notches",music,en,train
+"euh, qui a gagné le match de tennis hier soir",fallback,fr,train
+"hey nest, quelle est the temperature à london s'il te plaît",weather,mixed,train
+raconte-moi a joke sur black holes stp,fallback,mixed,train
+"ben, mets un minuteur de 2 minutes",timer,fr,train
+how cold is it in london right now,weather,en,train
+um mets le volume down,music,mixed,train
+va-t-il pleuvoir a nantes cet apres-midi quoi,weather,fr,train
+"um, tell me a joke about movies",fallback,en,train
+réveille-moi à minuit,alarm,fr,train
+shuffle my road-trip playlist last night please,music,en,train
+"hey, what should i cook this weekend thanks",fallback,en,train
+je rêve de week-end en ce moment,fallback,fr,train
+mélange ma musique s'il te plaît,music,fr,train
+melange quelque chose de calme la merci,music,fr,train
+"hey nest, il fait combien à marseille la semaine prochaine",weather,fr,train
+raconte-moi a joke sur movies,fallback,mixed,train
+who painted the scream,fallback,en,train
+"um, delete l'alarme de noon s'il te plaît",alarm,mixed,train
+set a countdown for an hour thanks,timer,en,train
+"um, what's la forecast pour paris la semaine prochaine quoi please",weather,mixed,train
+change l'alarme a 7h10,alarm,fr,train
+"dis, quelle est la capitale de Grece",fallback,fr,train
+"alors, combien font 5 fois 20",fallback,fr,train
+what's la météo à berlin right now stp,weather,mixed,train
+"euh, mon réveil n'a pas sonné ce matin, je suis en retard",fallback,fr,train
+is the 8 am alarm active please,alarm,en,train
+quelles sont les previsions pour bordeaux vendredi,weather,fr,train
+"dis, mets une alarme tous les jours à 10h",alarm,fr,train
+"um, start a an hour timer",timer,en,train
+"hey nest, stop the song like",music,en,train
+"euh, qui chante cette chanson",music,fr,train
+can you lancer un minuteur de 3 minutes quoi please,timer,mixed,train
+donne-moi la météo de lille ce week-end,weather,fr,train
+"hey nest, va-t-il neiger à paris ce soir",weather,fr,train
+cancel mon alarme de 7:30 am,alarm,mixed,train
+"hey nest, mets mon mix sport on shuffle now",music,mixed,train
+will it rain in paris on sunday,weather,en,train
+"alors, le bulletin météo de la radio se trompe toujours",fallback,fr,train
+"uh, shuffle my evening chill mix yesterday",music,en,train
+décale mon alarme à 6h45,alarm,fr,train
+"um, is there du vent à nantes demain ou pas please",weather,mixed,train
+le minuteur de la cuisine s'entend depuis la chambre,fallback,fr,train
+"hey nest, what's the forecast for paris on sunday",weather,en,train
+mets le morceau quoi,music,fr,train
+"hey, set a countdown for 90 seconds",timer,en,train
+"okay, set an alarm for 7:45 am please",alarm,en,train
+"uh, delete the noon alarm thanks",alarm,en,train
+"ben, réveille-moi à 9h merci",alarm,fr,train
+how much longer on the countdown,timer,en,train
+what song is playing on the radio last night,fallback,en,train
+set a countdown for 30 minutes,timer,en,train
+how windy is it in london right now,weather,en,train
+"hey nest, mets de la musique stp",music,fr,train
+ben ai-je besoin d'un parapluie vendredi,weather,fr,train
+"hey nest, play my favorites again pour moi please",music,mixed,train
+set an alarm pour tous les matins matin s'il te plaît,alarm,mixed,train
+ou en est le minuteur maintenant,timer,fr,train
+"euh, tell me combien font 10 plus 6 please",fallback,mixed,train
+raconte-moi une histoire sur les chiens,fallback,fr,train
+"je fredonne cet air toute la journee, pardon",fallback,fr,train
+"hey, what's the forecast for lisbon on sunday",weather,en,train
+"um, mets the volume louder",music,mixed,train
+what's the forecast for london this evening,weather,en,train
+i need to get up at 9:30 am on weekdays,alarm,en,train
+that playlist yesterday was great by the way,fallback,en,train
+"hey nest, do i need sunglasses in madrid today",weather,en,train
+"hey nest, ou en est le minuteur de 25 minutes merci",timer,fr,train
+tell me something interesting about the ocean please,fallback,en,train
+start a timer pour 2 minutes,timer,mixed,train
+"hey, add 2 minutes to the timer",timer,en,train
+do i need an umbrella in london next week,weather,en,train
+"hey, turn it, turn it, oh never mind",fallback,en,train
+"hey nest, will it snow in london on sunday",weather,en,train
+give me a recipe for salad,fallback,en,train
+is it cloudy in paris next week,weather,en,train
+will it be sunny in new york this weekend,weather,en,train
+"okay, how far along is the timer like",timer,en,train
+will it snow in tokyo today please,weather,en,train
+ben est-ce qu'il va pleuvoir a bordeaux ce week-end merci,weather,fr,train
+"alors, réveille-moi demain à 23h",alarm,fr,train
+"hey nest, quelle heure il est à marseille en ce moment",fallback,fr,train
+quelle est la maximale a toulouse lundi,weather,fr,train
+"um, play some music",music,en,train
+can you wake me up at noon,alarm,en,train
+"alors, quelle est la capitale de France",fallback,fr,train
+"ben, decale mon alarme a 7h",alarm,fr,train
+mélange les hits du moment,music,fr,train
+"um, lance a countdown de 2 minutes s'il te plaît",timer,mixed,train
+"uh hey nest, est-ce qu'il va snow à paris on sunday please",weather,mixed,train
+start counting down 40 minutes,timer,en,train
+"dis, c'etait quoi deja ce que je disais",fallback,fr,train
+il y a beaucoup de vent à nice s'il te plaît,weather,fr,train
+"dis, quelle heure est-il s'il te plaît",fallback,fr,train
+"okay, put on a timer for 2 hours thanks",timer,en,train
+"ben, mets une alarme tous les jours à 5h30",alarm,fr,train
+"hey nest, mets mon mix sport cette nuit merci",music,fr,train
+remind me with an alarm at 10 pm,alarm,en,train
+il fait combien à lille cet après-midi s'il te plaît,weather,fr,train
+"okay, what should i cook for lunch",fallback,en,train
+quelles sont les previsions pour lille cet apres-midi merci,weather,fr,train
+"hey nest, lance my workout mix for me",music,mixed,train
+"euh, play du jazz ce matin pour moi",music,mixed,train
+"alors, il y a beaucoup de vent a marseille",weather,fr,train
+that song on the radio all day was great,fallback,en,train
+"euh, can you lancer un minuteur de 5 minutes please",timer,mixed,train
+"hey nest, switch off my alarm for on Monday thanks",alarm,en,train
+"um, shuffle some 80s rock",music,en,train
+set the volume to full like,music,en,train
+"um, what's the forecast for tokyo right now please",weather,en,train
+"ben, est-ce qu'il va pleuvoir à paris cet après-midi",weather,fr,train
+"dis, jouons à trivial pursuit s'il te plaît",fallback,fr,train
+what's playing right now thanks,music,en,train
+turn down the volume a lot,music,en,train
+tell me combien font 8 plus 4,fallback,mixed,train
+"hey nest, reveille-moi le week-end a 6h15 stp",alarm,fr,train
+how's la météo à tokyo vendredi,weather,mixed,train
+"okay, start a 3 minutes timer",timer,en,train
+euh il reste combien au minuteur de une heure et demie,timer,fr,train
+"alors, augmente le volume encore",music,fr,train
+"um, who painted the starry night please",fallback,en,train
+va-t-il pleuvoir a nantes ce soir merci,weather,fr,train
+start a timer pour 5 minutes,timer,mixed,train
+"hey nest, set an alarm for 9:30 am",alarm,en,train
+"okay, what's 15 plus 9",fallback,en,train
+"um, start a timer pour 3 minutes",timer,mixed,train
+"euh, où en est le compte à rebours s'il te plaît",timer,fr,train
+"hey nest, mets de la musique hmm",music,fr,train
+"ben, ajoute 1 minute au minuteur",timer,fr,train
+"euh, quel temps fait-il à nantes ce soir",weather,fr,train
+how far along is the timer,timer,en,train
+"dis, joue une playlist concentration encore merci",music,fr,train
+"hey, stop the song",music,en,train
+est-ce qu'il va faire froid a marseille demain merci,weather,fr,train
+ben programme une alarme pour 7h30 tous les matins,alarm,fr,train
+"euh, ai-je besoin d'un parapluie ce week-end",weather,fr,train
+"hey, what's the weather like in madrid tomorrow",weather,en,train
+"ben hey nest, change l'alarme à 6h30",alarm,fr,train
+"hey nest, is the timer still running hmm",timer,en,train
+tu connais gabriel,fallback,fr,train
+"hey nest, demarre un compte a rebours de une heure et demie",timer,fr,train
+quel temps fait-il à bordeaux dimanche,weather,fr,train
+"hey nest, annule l'alarme",alarm,fr,train
+"euh dis, prolonge le minuteur de 3 minutes",timer,fr,train
+"okay, switch off my alarm for on weekdays thanks",alarm,en,train
+parle-moi de la tour eiffel stp,fallback,fr,train
+"hey nest, dis-moi quelque chose d'intéressant sur la cuisine s'il te plaît",fallback,fr,train
+joue ma playlist du soir cette nuit,music,fr,train
+"okay, set a countdown for 5 minutes",timer,en,train
+"euh, quel temps fera-t-il à paris ce week-end",weather,fr,train
+"hey nest, do i have an alarm set for tomorrow",alarm,en,train
+"dis, décale mon alarme à 22h30",alarm,fr,train
+um joue my evening chill mix now please,music,mixed,train
+reveille-moi at 5 am please,alarm,mixed,train
+réveille-moi la semaine prochaine à 10h,alarm,fr,train
+"alors, monte le volume au maximum là",music,fr,train
+"alors, joue du rock des années 80 hier s'il te plaît",music,fr,train
+"hey, go to the next song thanks",music,en,train
+"alors, fait-il beau à lille cet après-midi s'il te plaît",weather,fr,train
+"hey, play a focus playlist",music,en,train
+mets une playlist concentration for me stp hmm,music,mixed,train
+joue ma playlist road-trip s'il te plaît,music,fr,train
+"um, hold the timer thanks",timer,en,train
+give me a 2 hours countdown,timer,en,train
+"euh, mets le minuteur sur pause",timer,fr,train
+"uh, how long is left on my timer",timer,en,train
+"um, what's the weather like in tokyo this weekend thanks",weather,en,train
+kill the alarm please,alarm,en,train
+is it supposed to snow this weekend,weather,en,train
+"euh, le minuteur en est où au juste hmm",timer,fr,train
+lance de la lofi for me,music,mixed,train
+va-t-il faire beau a marseille vendredi,weather,fr,train
+"ben, mets le volume plus fort merci",music,fr,train
+réveille-moi à 7h10,alarm,fr,train
+y a-t-il du vent à toulouse demain,weather,fr,train
+mets un chrono de 10 minutes,timer,fr,train
+"hey nest, shuffle my evening chill mix last night please",music,en,train
+peux-tu me reveiller a 22h30 tous les jours stp,alarm,fr,train
+"okay, restart the countdown thanks",timer,en,train
+"alors, je reve de plage en ce moment merci",fallback,fr,train
+shift the alarm to 9:30 am,alarm,en,train
+"dis, supprime l'alarme de 7h45",alarm,fr,train
+c'est quand mon anniversaire merci,fallback,fr,train
+"um okay, how cold is it in berlin right now please",weather,en,train
+"okay, freeze the countdown hmm",timer,en,train
+do you think it'll be a good day this morning please,fallback,en,train
+"ben, mélange ma playlist road-trip",music,fr,train
+"euh, mets quelque chose de calme cette nuit",music,fr,train
+"okay, do i need an umbrella in lisbon tomorrow",weather,en,train
+uh play my workout playlist,music,en,train
+"dis, pousse le volume un peu s'il te plaît",music,fr,train
+"uh, any storms coming to madrid this afternoon please",weather,en,train
+"hey nest, do you think it'll be a good day yesterday please",fallback,en,train
+set an alarm pour on Monday matin,alarm,mixed,train
+"hey nest, est-ce que mon alarme est toujours active s'il te plaît",alarm,fr,train
+pousse le son encore merci,music,fr,train
+start a 25 minutes timer,timer,en,train
+can you help me with my essay,fallback,en,train
+diminue le volume encore,music,fr,train
+"dis, j'ai besoin de me lever à 23h chaque matin",alarm,fr,train
+"alors, crée une alarme pour 8h30 merci",alarm,fr,train
+lance a countdown de 15 minutes,timer,mixed,train
+can you wake me up à 7 am,alarm,mixed,train
+programme une alarme pour 9h tous les matins,alarm,fr,train
+demarre un compte a rebours de 45 secondes,timer,fr,train
+mon réveil didn't sonner yesterday,fallback,mixed,train
+"hey nest, réveille-moi le week-end à 5h30 s'il te plaît",alarm,fr,train
+reveille-moi a 5h stp,alarm,fr,train
+"hey nest, is it cloudy in madrid next week",weather,en,train
+"alors, réveille-moi chaque matin à minuit s'il te plaît",alarm,fr,train
+décale mon alarme à 10h,alarm,fr,train
+shuffle lofi beats all day thanks,music,en,train
+do i need an umbrella in rome tomorrow please,weather,en,train
+"um, can you lancer un minuteur de une heure",timer,mixed,train
+"dis, il en est où le minuteur de 15 minutes s'il te plaît",timer,fr,train
+what's la capitale de egypt s'il te plaît,fallback,mixed,train
+"hey, that alarm at the office kept ringing yesterday",fallback,en,train
+turn it up encore pour moi,music,mixed,train
+"alors, chante-moi une chanson douce hmm",fallback,fr,train
+"hey nest, mets mon mix sport toute la journée",music,fr,train
+quelle est the temperature à marseille,weather,mixed,train
+put an alarm on for 6:30 am,alarm,en,train
+is there du vent à lille tomorrow ou pas,weather,mixed,train
+"euh, mets un chrono de 30 minutes euh",timer,fr,train
+"dis, programme une alarme pour midi mardi",alarm,fr,train
+"hey nest, the air in here feels freezing, open a window",fallback,en,train
+"okay, play a focus playlist this morning",music,en,train
+what song c'est à la radio toute la journee,fallback,mixed,train
+j'adore this song à la radio ce matin,fallback,mixed,train
+"um, it might rain on my parade yesterday, figuratively",fallback,en,train
+mets un chrono de 45 secondes,timer,fr,train
+mets le volume à zéro,music,fr,train
+"euh, set une alarme every weekday at 6:45 am",alarm,mixed,train
+"hey, is the 9 am alarm active thanks",alarm,en,train
+"ben, programme une alarme pour 23h la semaine prochaine",alarm,fr,train
+"uh, restart the countdown",timer,en,train
+quelle heure il est a toulouse en ce moment stp,fallback,fr,train
+decale mon alarme a 6h et quart merci,alarm,fr,train
+mets les hits du moment toute la journée,music,fr,train
+"alors, le temps passe vite quand on s'amuse là s'il te plaît",fallback,fr,train
+can you lancer un minuteur de 15 minutes,timer,mixed,train
+"dis, ou en est mon minuteur",timer,fr,train
+c'est quoi cette chanson à la radio hier,fallback,fr,train
+"hey nest, lance a countdown de 90 secondes please",timer,mixed,train
+"alors, coupe la playlist",music,fr,train
+give me a 7 minutes countdown,timer,en,train
+il pleut en ce moment à nice,weather,fr,train
+what should i cook tonight,fallback,en,train
+"hey nest, j'ai besoin de me lever a 7h30 la semaine prochaine",alarm,fr,train
+"hey, give me a an hour countdown",timer,en,train
+mets une alarme tous les jours à minuit s'il te plaît,alarm,fr,train
+a quelle heure commence le spectacle hier merci,fallback,fr,train
+what's new in tech today,fallback,en,train
+"hey, what does serendipity mean",fallback,en,train
+"dis, est-ce qu'il va neiger a nice la semaine prochaine",weather,fr,train
+combien font 17 plus 11,fallback,fr,train
+"euh, reveille-moi at 7h30 please",alarm,mixed,train
+set an alarm pour tomorrow matin,alarm,mixed,train
+"um, can you lancer un minuteur de 40 minutes stp",timer,mixed,train
+the radio weather guy is always wrong,fallback,en,train
+"hey nest, le temps passe vite when you're having fun s'il te plaît",fallback,mixed,train
+"hey nest, passe à la chanson suivante s'il te plaît",music,fr,train
+tell me combien font 10 plus 9,fallback,mixed,train
+"hey nest, tu peux me dire où en est le minuteur",timer,fr,train
+"okay, resume playback please",music,en,train
+dis-moi a fun fact sur cooking,fallback,mixed,train
+mets une playlist concentration for me stp,music,mixed,train
+joue ma playlist du matin toute la journée,music,fr,train
+"hey nest, quelles sont les previsions pour nantes ce week-end merci",weather,fr,train
+"okay, remind me with an alarm at 9:30 am",alarm,en,train
+"ben, mets une alarme pour 9h",alarm,fr,train
+pump it up please,music,en,train
+supprime l'alarme de 7h10 stp,alarm,fr,train
+"hey nest, décale mon alarme à 8h",alarm,fr,train
+put an alarm on for quarter past six thanks,alarm,en,train
+"euh, remets le son",music,fr,train
+"uh, set an alarm for half past seven on weekends please",alarm,en,train
+"hey nest, va-t-il faire beau a toulouse demain",weather,fr,train
+crée une alarme pour 9h30 s'il te plaît,alarm,fr,train
+"hey nest, shuffle a focus playlist yesterday thanks",music,en,train
+"dis, remets le son s'il te plaît",music,fr,train
+"hey nest, start counting down 7 minutes thanks",timer,en,train
+mets l'ambiance avec des bougies euh merci,fallback,fr,train
+"alors, dis-moi quelque chose d'intéressant sur la cuisine",fallback,fr,train
+"um, est-ce qu'il va snow à nantes vendredi please",weather,mixed,train
+"okay, my watch stopped ticking, what time do you have",fallback,en,train
+give me the today forecast for lisbon,weather,en,train
+"um, play my morning playlist thanks",music,en,train
+"hey nest, put on some 80s rock please",music,en,train
+"hey nest, i had a dream about an exam I forgot last night",fallback,en,train
+"hey nest, mets du piano classique ce matin stp",music,fr,train
+"dis, mets un minuteur de 12 minutes stp",timer,fr,train
+mets l'ambiance with some candles stp,fallback,mixed,train
+"okay, start a 25 minutes timer thanks",timer,en,train
+"okay, start a 45 seconds timer thanks",timer,en,train
+supprime l'alarme de midi,alarm,fr,train
+j'adore this song à la radio lundi,fallback,mixed,train
+"um, set une alarme every weekday at quarter past six stp",alarm,mixed,train
+mets mon mix sport stp,music,fr,train
+peux-tu me reveiller a 9h tous les jours merci,alarm,fr,train
+mélange ma playlist du matin,music,fr,train
+will it be sunny in rome today,weather,en,train
+y a-t-il du vent a nantes lundi,weather,fr,train
+start counting down 45 seconds,timer,en,train
+"okay, set an alarm for 6:30 am every weekday",alarm,en,train
+"uh, is it sunny in new york right now thanks",weather,en,train
+remind me with an alarm at 11 pm,alarm,en,train
+prolonge le minuteur de 10 minutes stp,timer,fr,train
+il fait sunny à lyon,weather,mixed,train
+is it cloudy in paris this weekend please,weather,en,train
+"okay, check the timer for me thanks",timer,en,train
+ou en est the timer s'il te plaît,timer,mixed,train
+"hey nest, baisse le son a fond",music,fr,train
+disable my morning alarm,alarm,en,train
+"euh, quelle est la capitale de Italie",fallback,fr,train
+"hey nest, est-ce que le minuteur tourne toujours s'il te plaît",timer,fr,train
+raconte-moi une blague sur l'océan merci,fallback,fr,train
+"hey nest, do i need an umbrella in london on sunday",weather,en,train
+"hey nest, redescends le volume encore",music,fr,train
+launch a countdown of 45 seconds,timer,en,train
+"okay, make sure i'm up by 6:15 am please",alarm,en,train
+monte le volume a fond,music,fr,train
+"comment ça s'écrit, nécessaire s'il te plaît",fallback,fr,train
+"euh, il fait sunny à nice stp",weather,mixed,train
+what's la forecast pour paris cet apres-midi,weather,mixed,train
+"alors, supprime l'alarme de 7h30",alarm,fr,train
+"uh, what should i cook for dinner please",fallback,en,train
+mets un minuteur de 2 heures merci,timer,fr,train
+il reste combien sur le minuteur s'il te plaît,timer,fr,train
+set a countdown for 40 minutes,timer,en,train
+"euh, cree une alarme pour 6h45 merci",alarm,fr,train
+mets une alarme for 22h30 demain,alarm,mixed,train
+"dis, il en est où le minuteur",timer,fr,train
+"hey nest, soften the music way thanks",music,en,train
+"ben, est-ce qu'il fait soleil à toulouse hmm",weather,fr,train
+"uh, that playlist last night was great by the way",fallback,en,train
+"dis, je fredonne cet air ce matin, pardon",fallback,fr,train
+"ben, joue ma playlist road-trip",music,fr,train
+"hey nest, joue du rock des annees 80",music,fr,train
+"euh, baisse le son encore stp",music,fr,train
+"euh, mets un chrono de 40 minutes",timer,fr,train
+combien font 11 plus 5,fallback,fr,train
+"i need to buy a new alarm clock, any advice please",fallback,en,train
+"um, shuffle my evening chill mix",music,en,train
+"hey, will it be sunny in new york today",weather,en,train
+"um, shuffle my evening chill mix all day",music,en,train
+mets une alarme pour minuit merci,alarm,fr,train
+"dis, mets ma playlist du matin là merci",music,fr,train
+"um, what's the traffic like on the highway",fallback,en,train
+should i bring a jacket tomorrow,weather,en,train
+wake me up at midnight please,alarm,en,train
+"hey nest, play lofi beats again",music,en,train
+j'ai besoin de me lever a 9h tous les jours,alarm,fr,train
+what's the temperature in tokyo this weekend,weather,en,train
+"okay, who sings this tune",music,en,train
+reprends le morceau s'il te plaît,music,fr,train
+is there du vent à marseille tomorrow ou pas,weather,mixed,train
+"je pense tout haut lundi, fais pas attention quoi",fallback,fr,train
+"euh, c'est où le minuteur là s'il te plaît",timer,fr,train
+"dis, mets le volume a moitie stp",music,fr,train
+"euh, rajoute 3 minutes au minuteur quoi s'il te plaît",timer,fr,train
+"hey nest, change l'alarme à 8h s'il te plaît",alarm,fr,train
+joue mon mix sport,music,fr,train
+"hey nest, pause the music thanks",music,en,train
+"ben, donne-moi la météo de paris ce week-end",weather,fr,train
+fait-il beau a nice dimanche,weather,fr,train
+"hey nest, mets un chrono de une heure et demie",timer,fr,train
+dois-je prendre une veste ce week-end,weather,fr,train
+"alors, mon réveil n'a pas sonné cette nuit, je suis en retard",fallback,fr,train
+"uh, add 1 minute to the timer",timer,en,train
+qui chante cette chanson s'il te plaît,music,fr,train
+"um, change mon alarme to 11 pm",alarm,mixed,train
+"hey nest, play some classical piano pour moi stp",music,mixed,train
+pump up the volume one notch,music,en,train
+"alors ben, j'ai besoin de me lever à 6h30 la semaine prochaine",alarm,fr,train
+"hey nest, change l'alarme a 22h30",alarm,fr,train
+ou en est the timer quoi please,timer,mixed,train
+est-ce qu'il va faire froid à bordeaux demain là,weather,fr,train
+"um, what's the temperature in london today",weather,en,train
+"hey nest, est-ce que my alarm is still set stp",alarm,mixed,train
+is there du vent à rome today ou pas,weather,mixed,train
+"um, kill the timer hmm thanks",timer,en,train
+mets l'ambiance avec des bougies la,fallback,fr,train
+"hey nest, decale mon alarme a 5h",alarm,fr,train
+"alors, mets ma playlist du matin ce matin",music,fr,train
+quelle est la maximale a nice ce week-end,weather,fr,train
+"ben, est-ce qu'il va faire froid à paris ce soir",weather,fr,train
+"um, cancel mon alarme de 22h please",alarm,mixed,train
+quelle est the temperature à paris,weather,mixed,train
+"hey nest, set an alarm pour samedi matin",alarm,mixed,train
+tell me the remaining time thanks,timer,en,train
+est-ce qu'il va pleuvoir à toulouse ce week-end s'il te plaît,weather,fr,train
+silence the speaker please,music,en,train
+"ben, rajoute 1 minute au minuteur",timer,fr,train
+lance my road-trip playlist for me,music,mixed,train
+est-ce qu'il va neiger à toulouse ce soir s'il te plaît,weather,fr,train
+what song is playing on the radio this morning thanks,fallback,en,train
+demarre un compte a rebours de une heure,timer,fr,train
+"hey nest, wake me at 7:10 am every weekday",alarm,en,train
+monte the volume a little s'il te plaît,music,mixed,train
+"euh, explique-moi les echecs stp",fallback,fr,train
+pump up the volume a little,music,en,train
+"hey nest, read me the evening news headlines",fallback,en,train
+move past this song,music,en,train
+"hey nest, shift the alarm to 5:30 am thanks",alarm,en,train
+"dis, redescends le son un peu euh",music,fr,train
+play my evening chill mix this morning,music,en,train
+"um, change mon alarme to 9 am",alarm,mixed,train
+"okay, i need to get up at midnight on Monday",alarm,en,train
+set an alarm for 10 am,alarm,en,train
+"hey, teach me about black holes",fallback,en,train
+"um, set an alarm pour tous les jours matin",alarm,mixed,train
+"okay, add 3 minutes to the timer",timer,en,train
+"hey nest, supprime le minuteur",timer,fr,train
+play my chill playlist,music,en,train
+joue du piano classique encore merci,music,fr,train
+uh play my workout mix toute la journee pour moi stp,music,mixed,train
+remove my 9:30 am alarm thanks,alarm,en,train
+"okay, start counting down 7 minutes",timer,en,train
