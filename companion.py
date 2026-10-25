@@ -31,6 +31,7 @@ import numpy as np
 
 import spotify_auth
 from voice.router import RouterService
+from voice.audio import MicCapture
 from voice.stt import transcribe_parallel
 from voice.slots import parse_alarm_set, parse_timer_start
 from voice.actions import try_execute
@@ -203,6 +204,7 @@ class Store:
 
 store = Store()
 router_service = RouterService()
+mic_capture = None
 mistral_client = None
 try:
     mistral_client = make_client()
@@ -362,7 +364,10 @@ async def handle_voice():
             return
     def _capture():
         info = {}
-        audio = record_utterance(None, info=info)
+        audio = mic_capture.capture_one(info=info) if mic_capture is not None else None
+        if audio is None and mic_capture is None:
+            # fallback to per-call capture
+            audio = record_utterance(None, info=info)
         return audio, info
     await broadcast({"type": "voice_status", "status": "listening"})
     audio, info = await asyncio.get_event_loop().run_in_executor(None, _capture)
