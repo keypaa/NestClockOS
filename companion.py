@@ -36,6 +36,7 @@ from voice.stt import transcribe_parallel
 from voice.llm import ask as ask_llm
 from voice.reply import detect_reply_language
 from voice.slots import parse_alarm_set, parse_timer_start, parse_music_subintent, parse_weather_query
+from voice.weather import fetch as fetch_weather
 from voice.actions import try_execute, is_destructive, cancel
 from stt_session import record_utterance, explain, make_client, SAMPLE_RATE
 
@@ -456,9 +457,19 @@ async def handle_voice():
                 slots = {"subintent": parse_music_subintent(best["text"])}
             elif best["category"] == "weather":
                 slots = parse_weather_query(best["text"])
+                try:
+                    w = fetch_weather()
+                    await broadcast({"type": "weather", "data": w})
+                    action_ok = True
+                    action_msg = "weather: " + w["condition_" + ("fr" if store.language == "fr" else "en")] + f" {w['temp_c']}C"
+                    slots = None
+                except Exception as e:
+                    action_ok = False
+                    action_msg = f"weather unavailable: {e}"
             elif best["category"] == "fallback":
                 slots = {}
-            action_ok, action_msg = try_execute(store, best["category"], best["text"], slots)
+            if slots is not None:
+                action_ok, action_msg = try_execute(store, best["category"], best["text"], slots)
             if action_ok:
                 await broadcast(store.as_message())
         await broadcast({"type": "voice_result",

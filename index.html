@@ -901,6 +901,9 @@
         } else if (msg.type === 'voice_reply') {
           const el = document.getElementById('voiceStatus');
           if (el) el.textContent = 'AI: ' + (msg.text || '');
+        } else if (msg.type === 'weather') {
+          const el = document.getElementById('voiceStatus');
+          if (el && msg.data) { el.textContent = (msg.data.condition_en || '') + ' ' + (msg.data.temp_c||'') + 'C'; }
         } else if (msg.type === 'spotify_status') {
           spotifyConnected = msg.connected;
           if (msg.connected) { musicError = ''; loadSpotifySDK(); }
