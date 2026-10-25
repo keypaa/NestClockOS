@@ -37,80 +37,14 @@ import numpy as np
 
 SAMPLE_RATE = 16000
 FRAME = 800  # 50 ms
+from voice.endpoint import Endpointer, PRE_FRAMES, TAIL_FRAMES, GLITCH_RMS
+from voice.audio import to_16k
+from voice.text import normalize, wer
+
 MODEL = "voxtral-mini-latest"
 PRE_FRAMES = 6   # 0.3 s kept before speech onset, so the first phoneme isn't clipped
 TAIL_FRAMES = 5  # 0.25 s kept after the last loud frame
 GLITCH_RMS = 0.5  # louder than any real room or voice: a saturated signal
-
-
-# ---------------------------------------------------------------------------
-# Endpointing: pure logic, fed one frame loudness at a time (testable without a mic)
-# ---------------------------------------------------------------------------
-
-class Endpointer:
-    """Energy-based speech start/end detector."""
-
-    def __init__(self, frame_s=0.05, calib_s=0.4, silence_s=0.8, start_frames=3,
-                 min_speech_s=0.25, max_s=10.0, start_timeout_s=6.0, min_threshold=0.012):
-        self.frame_s, self.calib_s, self.silence_s = frame_s, calib_s, silence_s
-        self.start_frames, self.min_speech_s, self.max_s = start_frames, min_speech_s, max_s
-        self.start_timeout_s, self.min_threshold = start_timeout_s, min_threshold
-        self.i = -1                 # index of the frame being processed
-        self.calib = []
-        self.floor = None           # measured room noise
-        self.glitches = 0           # saturated frames seen while calibrating (device start-up garbage)
-        self.threshold = None
-        self.state = "calibrating"  # -> waiting -> speech
-        self.run = 0                # consecutive loud frames while waiting
-        self.onset = None           # frame index where the current speech began
-        self.last_loud = None
-        self.quiet = 0.0
-
-    def feed(self, rms):
-        """Returns 'wait', 'done' or 'timeout'."""
-        self.i += 1
-        if self.state == "calibrating":
-            if rms >= GLITCH_RMS:  # full-scale garbage, e.g. the stream's first buffers: not room noise
-                self.glitches += 1
-                return "timeout" if self.glitches * self.frame_s > 3.0 else "wait"
-            self.calib.append(rms)
-            if len(self.calib) * self.frame_s >= self.calib_s:
-                # a low percentile, not the median: robust if speech starts early in the window
-                self.floor = sorted(self.calib)[len(self.calib) // 4]
-                self.threshold = max(3.0 * self.floor, self.min_threshold)
-                self.state = "waiting"
-            return "wait"
-
-        if self.state == "waiting":
-            self.run = self.run + 1 if rms >= self.threshold else 0
-            if self.run >= self.start_frames:
-                self.state = "speech"
-                self.onset = self.i - self.run + 1
-                self.last_loud = self.i
-                self.quiet = 0.0
-            elif (self.i + 1) * self.frame_s >= self.calib_s + self.start_timeout_s:
-                return "timeout"
-            return "wait"
-
-        # speech
-        if rms >= 0.6 * self.threshold:  # hysteresis: stay in speech through softer syllables
-            self.last_loud = self.i
-            self.quiet = 0.0
-        else:
-            self.quiet += self.frame_s
-        spoken = (self.last_loud - self.onset + 1) * self.frame_s
-        if self.quiet >= self.silence_s:
-            if spoken < self.min_speech_s:  # a click or a cough, not speech
-                self.state, self.run, self.onset = "waiting", 0, None
-                return "wait"
-            return "done"
-        if (self.i - self.onset) * self.frame_s >= self.max_s:
-            return "done"
-        return "wait"
-
-    def span(self):
-        """(start, end) frame indices of the utterance, with pre-roll and tail."""
-        return max(0, self.onset - PRE_FRAMES), self.last_loud + 1 + TAIL_FRAMES
 
 
 def _open_settings(device):
@@ -125,20 +59,6 @@ def _open_settings(device):
         except Exception:
             continue
     raise RuntimeError(f"Cannot open input device {device!r} (tried 16 kHz and {native} Hz, mono and stereo).")
-
-
-def to_16k(audio, rate):
-    """Resample float audio to 16 kHz (scipy if installed, plain interpolation otherwise)."""
-    if rate == SAMPLE_RATE:
-        return audio
-    try:
-        from math import gcd
-        from scipy.signal import resample_poly
-        g = gcd(SAMPLE_RATE, rate)
-        return resample_poly(audio, SAMPLE_RATE // g, rate // g).astype(np.float32)
-    except ImportError:
-        n = int(len(audio) * SAMPLE_RATE / rate)
-        return np.interp(np.linspace(0, len(audio) - 1, n), np.arange(len(audio)), audio).astype(np.float32)
 
 
 def record_utterance(device=None, info=None, **endpointer_kwargs):
@@ -274,26 +194,6 @@ def transcribe_audio(client, audio, language=None):
 # ---------------------------------------------------------------------------
 # Scoring
 # ---------------------------------------------------------------------------
-
-def normalize(text):
-    t = unicodedata.normalize("NFKC", text).lower()
-    t = re.sub(r"[\u2019'`\-]", " ", t)   # l'alarme -> l alarme, reveille-moi -> reveille moi
-    t = re.sub(r"[^\w\s]", " ", t)         # drop punctuation, keep accented letters and digits
-    return t.split()
-
-
-def wer(ref, hyp):
-    """Word error rate between two word lists (Levenshtein over words)."""
-    if not ref:
-        return 0.0 if not hyp else 1.0
-    prev = list(range(len(hyp) + 1))
-    for i, r in enumerate(ref, 1):
-        cur = [i]
-        for j, h in enumerate(hyp, 1):
-            cur.append(min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + (r != h)))
-        prev = cur
-    return prev[-1] / len(ref)
-
 
 def pick_phrases(rows, n, seed=7, weights=(("fr", 0.5), ("en", 0.35), ("mixed", 0.15))):
     """Stratified sample: languages by weight, categories round-robin inside each language."""
