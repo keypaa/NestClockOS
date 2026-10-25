@@ -33,6 +33,7 @@ import spotify_auth
 from voice.router import RouterService
 from voice.audio import MicCapture
 from voice.stt import transcribe_parallel
+from voice.llm import ask as ask_llm
 from voice.reply import detect_reply_language
 from voice.slots import parse_alarm_set, parse_timer_start, parse_music_subintent, parse_weather_query
 from voice.actions import try_execute, is_destructive, cancel
@@ -417,6 +418,11 @@ async def handle_voice():
             return
         action_ok, action_msg = False, None
         # destructive actions require confirmation
+        # optional LLM fallback for fallback routing
+        if best["category"] == "fallback" and os.environ.get("NESTCLOCK_USE_LLM") == "1":
+            reply = await asyncio.get_event_loop().run_in_executor(None, ask_llm, mistral_client, best["text"], detect_reply_language(best["text"], store.language))
+            await broadcast({"type": "voice_reply", "text": reply, "language": detect_reply_language(best["text"], store.language)})
+
         if is_destructive(best["category"], best["text"]):
             import uuid as _u
             pid = str(_u.uuid4())
