@@ -956,7 +956,7 @@
             <div class="alarm-time">${t.h}:${t.m}<span class="alarm-period">${t.period}</span></div>
             <div class="alarm-meta">
               <div class="alarm-label">${a.label || 'Alarm / Alarme'}</div>
-              <div class="alarm-days">${daysSummary(a.days)}</div>
+              <div class="alarm-days">${a.once ? ('ONCE · UNE FOIS' + (a.date ? ' · ' + a.date : '')) : daysSummary(a.days)}</div>
             </div>
             <label class="toggle">
               <input type="checkbox" ${a.enabled ? 'checked' : ''} data-id="${a.id}">
@@ -1070,16 +1070,13 @@
 
     document.getElementById('saveAlarmBtn').addEventListener('click', (e) => {
       e.stopPropagation();
-      if (editingAlarm.days.size === 0) {
-        alert('Pick at least one day / Choisissez au moins un jour');
-        return;
-      }
       ws.send(JSON.stringify({
         action: 'set_alarm',
         hour: editingAlarm.hour,
         minute: editingAlarm.minute,
         days: [...editingAlarm.days],
         label: editingAlarm.label,
+        once: editingAlarm.days.size === 0,
       }));
       showScreen('alarmsScreen');
     });
