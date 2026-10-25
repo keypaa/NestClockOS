@@ -73,13 +73,19 @@ class OpenWakeWordDetector(WakeWordDetector):
             self._error = "onnxruntime not installed"
             return
         self._lib = openwakeword
-        try:
-            if self.model_path.lower().endswith(".onnx"):
-                self._model = openwakeword.Model(wakeword_model_paths=[self.model_path],
-                                                inference_framework="onnx")
+        path = self.model_path
+        if not path.lower().endswith(".onnx"):
+            import os as _os
+            import openwakeword
+            base = _os.path.join(_os.path.dirname(openwakeword.__file__), "resources", "models")
+            cand = _os.path.join(base, self.model_path if self.model_path.endswith(".onnx") else self.model_path + ".onnx")
+            if os.path.exists(cand):
+                path = cand
             else:
-                self._model = openwakeword.Model(wakeword_models=[self.model_path],
-                                                inference_framework="onnx")
+                self._error = f"model file not found: {cand}"
+                return
+        try:
+            self._model = openwakeword.Model(wakeword_model_paths=[path])
         except Exception as e:
             self._error = f"failed to load model: {e}"
             self._model = None
