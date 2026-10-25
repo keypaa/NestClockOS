@@ -38,6 +38,7 @@ from voice.tts import speak as speak_tts
 from voice.reply import detect_reply_language
 from voice.slots import parse_alarm_set, parse_timer_start, parse_music_subintent, parse_weather_query
 from voice.weather import fetch as fetch_weather
+from voice.wakeword import run_loop as run_wake_loop
 from voice.actions import try_execute, is_destructive, cancel
 from stt_session import record_utterance, explain, make_client, SAMPLE_RATE
 
@@ -632,6 +633,14 @@ async def main():
         await asyncio.get_event_loop().run_in_executor(None, mc.open)
         mic_capture = mc
         print("Mic stream open.")
+        if os.environ.get("NESTCLOCK_WAKE_WORD") == "1":
+
+            async def _wake():
+                import asyncio
+                def _trigger():
+                    asyncio.ensure_future(handle_voice())
+                await asyncio.get_event_loop().run_in_executor(None, run_wake_loop, mc, _trigger)
+            asyncio.ensure_future(_wake())
     except Exception as e:
         print(f"Mic stream failed, using per-call capture: {e}")
         mic_capture = None
