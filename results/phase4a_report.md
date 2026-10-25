@@ -18,8 +18,10 @@ Notable: "Lance un minuteur de 5 minutes" heard as "Dans 5 minutes, il y a 2-5 m
 - Candidate P1 (auto, retry on non-Latin): recovers the Russian outlier and few wording errors; needs P2-style for code-switched phrases.
 - Candidate P2 (parallel en+fr, keep higher router confidence, Latin sanity guard): best for code-switched phrases (e.g. "mets une alarme for 8am demain" → 33% vs 100%, "Is it sunny outside" unaffected). Latency unchanged because calls are concurrent. **Adopt P2 as runtime STT policy.**
 
-## 3. Router on real transcripts
-- _TBD — run `phase0_pipeline_test.py batch` on `*_for_router.csv` once the local router checkpoint is wired up._
+## 3. Router on real transcripts (via r_en_for_router.csv, --split all, --device cpu)
+- Overall: 36/37 = 97.3%; EN 13/13 (100%), FR 17/18 (94.4%), mixed 6/6 (100%)
+- ECE (post-temp): 0.083; safe thresholds (local_WRONG==0): overall 0.6, en_slice 0.3, fr_mixed_slice 0.6
+- Tier mapping: Tier 1 (unify). 1 locally-executed error edged out via the 0.6 threshold.
 
 ## 4. Latency & memory (companion)
 - STT p50 257 ms. Router p50/p90 and RAM: _TBD_.
@@ -28,4 +30,4 @@ Notable: "Lance un minuteur de 5 minutes" heard as "Dans 5 minutes, il y a 2-5 m
 - [x] recorder-side misses: 0/37 (0%)
 - [x] non-Latin outputs < 2% after the guard (P2 enforces Latin)
 - [x] documented language policy with numbers (P2)
-- [ ] router accuracy on real transcripts recorded here
+- [x] router accuracy on real transcripts recorded here (97.3%)
