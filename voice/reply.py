@@ -5,12 +5,12 @@ _EN = {"the","a","an","and","is","are","i","you","he","she","we","they","not","w
        "how","when","where","do","does","please","alarm","timer"}
 
 
-def detect_reply_language(text):
+def detect_reply_language(text, default="fr"):
     toks = [w.strip(".,?!'’").lower() for w in text.split()]
     fr = sum(1 for w in toks if w in _FR)
     en = sum(1 for w in toks if w in _EN)
     if fr > en:
-        return "fr"
+        return default if default in ("fr", "en") else "fr"
     if en > fr:
         return "en"
     return "fr"

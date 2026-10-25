@@ -186,6 +186,7 @@ class Store:
     def __init__(self):
         self.alarms = []  # [{id, hour, minute, days: [0-6], label, enabled}]
         self.timers = []  # [{id, ends_at, duration, label}]
+        self.language = "fr"
         self.load()
 
     def load(self):
@@ -193,14 +194,15 @@ class Store:
             data = json.loads(STATE_PATH.read_text())
             self.alarms = data.get("alarms", [])
             self.timers = data.get("timers", [])
+            self.language = data.get("language", "fr")
 
     def save(self):
         STATE_PATH.write_text(json.dumps(
-            {"alarms": self.alarms, "timers": self.timers}, indent=2
+            {"alarms": self.alarms, "timers": self.timers, "language": self.language}, indent=2
         ))
 
     def as_message(self):
-        return {"type": "state", "alarms": self.alarms, "timers": self.timers}
+        return {"type": "state", "alarms": self.alarms, "timers": self.timers, "language": self.language}
 
 
 store = Store()
@@ -431,7 +433,7 @@ async def handle_voice():
                             "overridden": best["overridden"],
                             "route_ms": best.get("ms", 0.0),
                             "audio_s": round(dur, 2),
-                            "reply_language": detect_reply_language(best["text"]),
+                            "reply_language": detect_reply_language(best["text"], default=store.language),
                             "action_ok": False,
                             "action_msg": "confirm?",
                             "pending_id": pid,
@@ -562,6 +564,13 @@ async def handle_client(websocket):
 
             elif action == "deny":
                 pending_actions.pop(msg.get("id"), None)
+
+            elif action == "set_language":
+                lang = msg.get("language", "fr")
+                if lang in ("fr", "en"):
+                    store.language = lang
+                    store.save()
+                    await broadcast(store.as_message())
 
             elif action == "spotify_login":
                 try:

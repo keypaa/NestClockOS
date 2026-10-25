@@ -871,6 +871,7 @@
           renderAlarmStatus();
           renderAlarmsList();
           renderTimerStatus();
+          if (langBtn) langBtn.textContent = (msg.language || 'fr').toUpperCase();
           if (document.getElementById('timerScreen').classList.contains('active')) {
             renderTimerScreen();
           }
@@ -958,6 +959,16 @@
         micBtn.disabled = true; micBtn.textContent = '...';
         ws.send(JSON.stringify({ action: 'voice_listen' }));
       }
+    });
+
+    const langBtn = document.createElement('button');
+    langBtn.textContent = 'FR';
+    langBtn.style.cssText = 'position:fixed;bottom:10px;left:10px;z-index:51;';
+    document.body.appendChild(langBtn);
+    langBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const next = (companionState && companionState.language === 'fr') ? 'en' : 'fr';
+      if (ws && ws.readyState === WebSocket.OPEN) ws.send(JSON.stringify({ action: 'set_language', language: next }));
     });
 
     connectCompanion();
