@@ -1,6 +1,7 @@
 """Audio helpers shared by the CLI and companion."""
 import collections
 import queue
+import threading
 import time
 
 import numpy as np
@@ -26,34 +27,37 @@ class RingBuffer:
     def __init__(self, seconds=10, sample_rate=SAMPLE_RATE):
         self.sample_rate = sample_rate
         self.capacity = max(1, int(seconds * sample_rate))
+        self._lock = threading.Lock()
         self.buf = np.zeros(self.capacity, dtype="float32")
         self.pos = 0
         self.filled = 0
 
     def append(self, samples):
-        samples = np.asarray(samples, dtype="float32").ravel()
-        n = len(samples)
-        if n >= self.capacity:
-            self.buf[:] = samples[-self.capacity:]
-            self.pos = 0
-            self.filled = self.capacity
-            return
-        end = self.pos + n
-        if end <= self.capacity:
-            self.buf[self.pos:end] = samples
-        else:
-            first = self.capacity - self.pos
-            self.buf[self.pos:] = samples[:first]
-            self.buf[:n - first] = samples[first:]
-        self.pos = (self.pos + n) % self.capacity
-        self.filled = min(self.capacity, self.filled + n)
+        with self._lock:
+            samples = np.asarray(samples, dtype="float32").ravel()
+            n = len(samples)
+            if n >= self.capacity:
+                self.buf[:] = samples[-self.capacity:]
+                self.pos = 0
+                self.filled = self.capacity
+                return
+            end = self.pos + n
+            if end <= self.capacity:
+                self.buf[self.pos:end] = samples
+            else:
+                first = self.capacity - self.pos
+                self.buf[self.pos:] = samples[:first]
+                self.buf[:n - first] = samples[first:]
+            self.pos = (self.pos + n) % self.capacity
+            self.filled = min(self.capacity, self.filled + n)
 
     def snapshot(self):
-        if self.filled == 0:
-            return np.zeros(0, dtype="float32")
-        if self.filled < self.capacity:
-            return self.buf[:self.filled].copy()
-        return np.concatenate((self.buf[self.pos:], self.buf[:self.pos])).copy()
+        with self._lock:
+            if self.filled == 0:
+                return np.zeros(0, dtype="float32")
+            if self.filled < self.capacity:
+                return self.buf[:self.filled].copy()
+            return np.concatenate((self.buf[self.pos:], self.buf[:self.pos])).copy()
 
 
 class MicCapture:
@@ -148,12 +152,5 @@ class MicCapture:
         if not speech:
             return None
         raw = np.concatenate(speech).astype("float32")
-        if self.rate == SAMPLE_RATE:
-            audio = raw
-        else:
-            audio = to_16k(raw, self.rate)
-        # convert to int16 at 16 kHz
-        if self.rate != SAMPLE_RATE:
-            return (audio * 32767).clip(-32768, 32767).astype("int16")
-        # already 16k raw float; resample not needed but convert
-        return (raw * 32767).clip(-32768, 32767).astype("int16")
+        audio = raw if self.rate == SAMPLE_RATE else to_16k(raw, self.rate)
+        return (audio * 32767).clip(-32768, 32767).astype("int16")

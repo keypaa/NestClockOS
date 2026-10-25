@@ -19,6 +19,7 @@ The browser (index.html) connects to ws://localhost:8765 and:
 """
 
 import asyncio
+import os
 import json
 import platform
 import shutil
@@ -633,9 +634,12 @@ async def main():
 
             async def _wake():
                 import asyncio
+                loop = asyncio.get_event_loop()
+
                 def _trigger():
-                    asyncio.ensure_future(handle_voice())
-                await asyncio.get_event_loop().run_in_executor(None, run_wake_loop, mc, _trigger)
+                    loop.call_soon_threadsafe(lambda: asyncio.ensure_future(handle_voice()))
+
+                await loop.run_in_executor(None, run_wake_loop, mc, _trigger)
             asyncio.ensure_future(_wake())
     except Exception as e:
         print(f"Mic stream failed, using per-call capture: {e}")

@@ -87,7 +87,11 @@ class OpenWakeWordDetector(WakeWordDetector):
         if self._model is None:
             return False
         import numpy as np
-        arr = np.asarray(frame, dtype="float32")
+        arr = np.asarray(frame)
+        if arr.dtype.kind == "f":
+            arr = (arr * 32767).clip(-32768, 32767).astype("int16")
+        else:
+            arr = arr.astype("int16")
         try:
             pred = self._model.predict(arr)
         except Exception:
@@ -112,8 +116,11 @@ def build_detector():
     """Pick a detector from env vars. Defaults to the placeholder."""
     path = os.environ.get("NESTCLOCK_WAKE_MODEL")
     if path:
-        d = OpenWakeWordDetector(path,
-                                 threshold=os.environ.get("NESTCLOCK_WAKE_THRESHOLD", "0.5"))
+        try:
+            thr = float(os.environ.get("NESTCLOCK_WAKE_THRESHOLD", "0.5"))
+        except ValueError:
+            thr = 0.5
+        d = OpenWakeWordDetector(path, threshold=thr)
         if d.available():
             return d
         print(f"WakeWord: falling back to EnergyTrigger ({d._error})")
