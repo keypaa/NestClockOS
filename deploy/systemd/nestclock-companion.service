@@ -1,0 +1,15 @@
+[Unit]
+Description=NestClockOS companion service
+After=network.target
+
+[Service]
+Type=simple
+User=nestclock
+WorkingDirectory=/opt/nestclock
+EnvironmentFile=/opt/nestclock/.env
+ExecStart=/opt/nestclock/.venv/bin/python companion.py
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

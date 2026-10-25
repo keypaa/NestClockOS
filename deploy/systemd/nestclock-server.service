@@ -1,0 +1,14 @@
+[Unit]
+Description=NestClockOS static file server
+After=network.target
+
+[Service]
+Type=simple
+User=nestclock
+WorkingDirectory=/opt/nestclock
+ExecStart=/opt/nestclock/.venv/bin/python -m http.server 8000
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
