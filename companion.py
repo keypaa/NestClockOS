@@ -556,6 +556,11 @@ async def handle_client(websocket):
 
             elif action == "dismiss":
                 ringer.dismiss()
+                try:
+                    import sounddevice as sd
+                    sd.stop()
+                except Exception:
+                    pass
 
             elif action == "voice_listen":
                 global voice_busy
