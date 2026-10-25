@@ -329,7 +329,9 @@ async def scheduler_loop():
         now_ts = time.time()
         remaining_timers = []
         expired_fired = False
-        for timer in store.timers:
+        for timer in list(store.timers):
+            if timer.get("ends_at") is None:
+                continue  # paused
             if now_ts >= timer["ends_at"]:
                 overdue = now_ts - timer["ends_at"]
                 if overdue > 120:
@@ -581,6 +583,36 @@ async def handle_client(websocket):
 
             elif action == "cancel_timer":
                 store.timers = [t for t in store.timers if t["id"] != msg["id"]]
+                store.save()
+                await broadcast(store.as_message())
+
+            elif action == "snooze":
+                mins = int(msg.get("minutes", 9))
+                store.alarms.append({
+                    "id": str(uuid.uuid4()),
+                    "hour": (time.localtime(time.time() + mins*60).tm_hour),
+                    "minute": (time.localtime(time.time() + mins*60).tm_min),
+                    "days": [],
+                    "label": msg.get("label", "snooze"),
+                    "enabled": True,
+                    "once": True,
+                    "date": time.strftime("%Y-%m-%d", time.localtime(time.time() + mins*60)),
+                })
+                store.save()
+                await broadcast(store.as_message())
+
+            elif action == "pause_timer":
+                for t in store.timers:
+                    if t["id"] == msg["id"] and "paused_remaining" not in t:
+                        t["paused_remaining"] = max(0, t["ends_at"] - time.time())
+                        t["ends_at"] = None
+                store.save()
+                await broadcast(store.as_message())
+
+            elif action == "resume_timer":
+                for t in store.timers:
+                    if t["id"] == msg["id"] and t.get("ends_at") is None and "paused_remaining" in t:
+                        t["ends_at"] = time.time() + t.pop("paused_remaining")
                 store.save()
                 await broadcast(store.as_message())
 
