@@ -27,8 +27,14 @@ CONDITIONS = {
 
 
 def fetch(lat=None, lon=None):
-    lat = float(os.environ.get("NESTCLOCK_CITY_LAT", lat if lat is not None else 48.8566))
-    lon = float(os.environ.get("NESTCLOCK_CITY_LON", lon if lon is not None else 2.3522))
+    def _f(env, default):
+        v = os.environ.get(env, "")
+        try:
+            return float(v) if v.strip() else default
+        except ValueError:
+            return default
+    lat = _f("NESTCLOCK_CITY_LAT", lat if lat is not None else 48.8566)
+    lon = _f("NESTCLOCK_CITY_LON", lon if lon is not None else 2.3522)
     url = (f"https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={lon}"
            f"&current=temperature_2m,weather_code,wind_speed_10m")
     with urllib.request.urlopen(url, timeout=8) as r:

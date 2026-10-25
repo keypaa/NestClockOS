@@ -347,14 +347,18 @@ async def scheduler_loop():
             await broadcast(store.as_message())
 
         # periodic weather broadcast (every 30 min from boot)
-        if weather_cache is None or (time.time() - weather_cache.get("_ts", 0)) > 1800:
+        next_try = 60 if weather_cache is None else (1800 - (time.time() - weather_cache.get("_ts", 0)))
+        ready = weather_cache is None or (time.time() - weather_cache.get("_ts", 0)) > 1800
+        if ready:
             try:
                 w = await asyncio.get_event_loop().run_in_executor(None, fetch_weather)
                 w["_ts"] = time.time()
                 weather_cache = w
-                await broadcast({"type": "weather", "data": w})
+                public = {k: v for k, v in w.items() if not k.startswith("_")}
+                await broadcast({"type": "weather", "data": public})
             except Exception as e:
                 print("weather poll error:", e)
+                weather_cache = {"_ts": time.time()}
 
         await asyncio.sleep(1)
 
@@ -483,7 +487,8 @@ async def handle_voice():
                 slots = parse_weather_query(best["text"])
                 try:
                     w = await asyncio.get_event_loop().run_in_executor(None, fetch_weather)
-                    await broadcast({"type": "weather", "data": w})
+                    public = {k: v for k, v in w.items() if not k.startswith("_")}
+                    await broadcast({"type": "weather", "data": public})
                     action_ok = True
                     action_msg = "weather: " + w["condition_" + ("fr" if store.language == "fr" else "en")] + f" {w['temp_c']}C"
                     slots = None
@@ -519,8 +524,8 @@ async def handle_client(websocket):
     clients.add(websocket)
     try:
         await websocket.send(json.dumps(store.as_message()))
-        if weather_cache is not None:
-            await websocket.send(json.dumps({"type": "weather", "data": weather_cache}))
+        if weather_cache is not None and "_ts" in weather_cache:
+            await websocket.send(json.dumps({"type": "weather", "data": {k: v for k, v in weather_cache.items() if not k.startswith("_")}}))
         await websocket.send(json.dumps({"type": "spotify_status", "connected": spotify.connected}))
         async for raw in websocket:
             try:
