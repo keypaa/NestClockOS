@@ -1,6 +1,19 @@
 # Phase 4a report — speech → transcript → router
 
-## 1. STT reality check (rec1, 37 utterances)
+## 1. STT reality check (per session)
+
+| session | condition | n | mean WER | exact | empty | non-Latin |
+|---|---|---|---|---|---|---|
+| rec1 | close mic, mixed | 37 | 16.3% | 18/37 | 0 | 1 (ja: "Lower the volume") |
+| recA | close mic, quiet | 38 | 26.1% | 12/38 | 0 | 2 |
+| recB | close mic, music | 39 | 29.8% | 9/39 | 0 | 1 |
+| recC | 1-2 m + music | 33 | 38.9% | 6/33 | 0 | 1 |
+
+rec1 detail: fr 19.2%, en 9.9%, mixed 21.5%, p50 257 ms.
+recA detail: fr 26.4%, en 22.8%, mixed 31.3%, p50 264 ms.
+recB detail: fr 32.5%, en 26.7%, mixed 28.0%, p50 271 ms.
+recC detail: fr 37.5%, en 36.5%, mixed 51.7%, p50 269 ms.
+
 
 | run | mean WER | exact | non-Latin |
 |---|---|---|---|
