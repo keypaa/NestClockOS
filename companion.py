@@ -366,7 +366,10 @@ async def handle_voice():
     audio, info = await asyncio.get_event_loop().run_in_executor(None, _capture)
     if audio is None:
         await broadcast({"type": "voice_result", "transcript": "", "category": "fallback",
-                         "confidence": 0.0, "overridden": False, "error": explain(info)})
+                         "confidence": 0.0, "overridden": False, "error": explain(info),
+                         "debug": {"floor": info.get("floor"), "threshold": info.get("threshold"),
+                                   "peak": info.get("peak"), "glitches": info.get("glitches")}})
+        print("voice: no speech captured:", info)
         return
     dur = len(audio) / SAMPLE_RATE
     # P2 transcription (blocking, in executor)
