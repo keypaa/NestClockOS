@@ -126,7 +126,7 @@ class Ringer:
             return
         self.active = True
         self._stop_event = asyncio.Event()
-        loop = asyncio.get_event_loop()
+        loop = asyncio.get_running_loop()
         self._task = loop.create_task(self._run(alarm))
         # attach done callback to reset state
         self._task.add_done_callback(self._done)
@@ -153,7 +153,7 @@ class Ringer:
                 except asyncio.TimeoutError:
                     pass
         finally:
-            self.backend.stop()
+            await asyncio.get_event_loop().run_in_executor(None, self.backend.stop)
 
     def _done(self, _):
         self.active = False
@@ -207,6 +207,7 @@ store = Store()
 router_service = RouterService()
 mic_capture = None
 pending_actions = {}
+voice_busy = False
 mistral_client = None
 try:
     mistral_client = make_client()
@@ -356,67 +357,102 @@ spotify = spotify_auth.SpotifyAuth(
 
 
 async def handle_voice():
-    """Push-to-talk capture: record, transcribe (P2), route, broadcast result."""
-    global mistral_client
-    if mistral_client is None:
-        try:
-            mistral_client = make_client()
-        except Exception as e:
-            await broadcast({"type": "voice_error", "message": str(e)})
+    try:
+        """Push-to-talk capture: record, transcribe (P2), route, broadcast result."""
+        global mistral_client
+        if mistral_client is None:
+            try:
+                mistral_client = make_client()
+            except Exception as e:
+                await broadcast({"type": "voice_error", "message": str(e)})
+                return
+        def _capture():
+            info = {}
+            audio = mic_capture.capture_one(info=info) if mic_capture is not None else None
+            if audio is None and mic_capture is None:
+                # fallback to per-call capture
+                audio = record_utterance(None, info=info)
+            return audio, info
+        await broadcast({"type": "voice_status", "status": "listening"})
+        audio, info = await asyncio.get_event_loop().run_in_executor(None, _capture)
+        if audio is None:
+            await broadcast({"type": "voice_result", "transcript": "", "category": "fallback",
+                             "confidence": 0.0, "overridden": False, "error": explain(info)})
             return
-    def _capture():
-        info = {}
-        audio = mic_capture.capture_one(info=info) if mic_capture is not None else None
-        if audio is None and mic_capture is None:
-            # fallback to per-call capture
-            audio = record_utterance(None, info=info)
-        return audio, info
-    await broadcast({"type": "voice_status", "status": "listening"})
-    audio, info = await asyncio.get_event_loop().run_in_executor(None, _capture)
-    if audio is None:
-        await broadcast({"type": "voice_result", "transcript": "", "category": "fallback",
-                         "confidence": 0.0, "overridden": False, "error": explain(info)})
-        return
-    dur = len(audio) / SAMPLE_RATE
-    # P2 transcription (blocking, in executor)
-    def _transcribe():
-        return transcribe_parallel(mistral_client, audio)
-    results = await asyncio.get_event_loop().run_in_executor(None, _transcribe)
-    en = results.get("en", {}).get("text", "")
-    fr = results.get("fr", {}).get("text", "")
-    # Latin guard
-    from voice.text import non_latin
-    en_ok = (not non_latin(en)) and bool(en.strip())
-    fr_ok = (not non_latin(fr)) and bool(fr.strip())
-    # route both surviving transcripts
-    best = None
-    for lang, text in (("en", en), ("fr", fr)):
-        if lang == "en" and not en_ok:
-            continue
-        if lang == "fr" and not fr_ok:
-            continue
-        r = await asyncio.get_event_loop().run_in_executor(None, router_service.route, text)
-        r["lang"] = lang
-        r["text"] = text
-        if best is None or r["category_confidence"] > best["category_confidence"]:
-            best = r
-    if best is None:
-        # fall back to whichever survived
+        dur = len(audio) / 16000
+        # P2 transcription (blocking, in executor)
+        def _transcribe():
+            return transcribe_parallel(mistral_client, audio)
+        results = await asyncio.get_event_loop().run_in_executor(None, _transcribe)
+        en = results.get("en", {}).get("text", "")
+        fr = results.get("fr", {}).get("text", "")
+        # Latin guard
+        from voice.text import non_latin
+        en_ok = (not non_latin(en)) and bool(en.strip())
+        fr_ok = (not non_latin(fr)) and bool(fr.strip())
+        # route both surviving transcripts
+        best = None
         for lang, text in (("en", en), ("fr", fr)):
-            if text.strip():
-                best = {"category": "fallback", "category_confidence": 0.0,
-                        "overridden": False, "text": text, "lang": lang, "ms": 0.0}
-                break
-    if best is None:
-        await broadcast({"type": "voice_result", "transcript": "", "category": "fallback",
-                         "confidence": 0.0, "overridden": False, "error": "no speech"})
-        return
-    action_ok, action_msg = False, None
-    # destructive actions require confirmation
-    if is_destructive(best["category"], best["text"]):
-        import uuid as _u
-        pid = str(_u.uuid4())
-        pending_actions[pid] = (best["category"], best["text"])
+            if lang == "en" and not en_ok:
+                continue
+            if lang == "fr" and not fr_ok:
+                continue
+            r = await asyncio.get_event_loop().run_in_executor(None, router_service.route, text)
+            r["lang"] = lang
+            r["text"] = text
+            if best is None or r["category_confidence"] > best["category_confidence"]:
+                best = r
+        if best is None:
+            # fall back to whichever survived
+            for lang, text in (("en", en), ("fr", fr)):
+                if text.strip():
+                    best = {"category": "fallback", "category_confidence": 0.0,
+                            "overridden": False, "text": text, "lang": lang, "ms": 0.0}
+                    break
+        if best is None:
+            await broadcast({"type": "voice_result", "transcript": "", "category": "fallback",
+                             "confidence": 0.0, "overridden": False, "error": "no speech"})
+            return
+        action_ok, action_msg = False, None
+        # destructive actions require confirmation
+        if is_destructive(best["category"], best["text"]):
+            import uuid as _u
+            pid = str(_u.uuid4())
+            pending_actions[pid] = (time.time(), best["category"], best["text"])
+            cutoff = time.time() - 120
+            for k in [k for k, v in pending_actions.items() if (isinstance(v, tuple) and len(v) == 3 and v[0] < cutoff)]:
+                pending_actions.pop(k, None)
+            await broadcast({"type": "voice_result",
+                            "transcript": best["text"],
+                            "language": best.get("lang", ""),
+                            "en_text": en, "fr_text": fr,
+                            "category": best["category"],
+                            "confidence": best["category_confidence"],
+                            "overridden": best["overridden"],
+                            "route_ms": best.get("ms", 0.0),
+                            "audio_s": round(dur, 2),
+                            "reply_language": detect_reply_language(best["text"]),
+                            "action_ok": False,
+                            "action_msg": "confirm?",
+                            "pending_id": pid,
+                            "pending_prompt": f"Confirm: {best['text']} ?"})
+            return
+        if best["category_confidence"] >= 0.5 or best["category"] == "fallback":
+            slots = None
+            if best["category"] == "alarm":
+                slots = parse_alarm_set(best["text"])
+            elif best["category"] == "timer":
+                secs = parse_timer_start(best["text"])
+                slots = {"seconds": secs} if secs else None
+            elif best["category"] == "music":
+                slots = {"subintent": parse_music_subintent(best["text"])}
+            elif best["category"] == "weather":
+                slots = parse_weather_query(best["text"])
+            elif best["category"] == "fallback":
+                slots = {}
+            action_ok, action_msg = try_execute(store, best["category"], best["text"], slots)
+            if action_ok:
+                await broadcast(store.as_message())
         await broadcast({"type": "voice_result",
                         "transcript": best["text"],
                         "language": best.get("lang", ""),
@@ -427,39 +463,12 @@ async def handle_voice():
                         "route_ms": best.get("ms", 0.0),
                         "audio_s": round(dur, 2),
                         "reply_language": detect_reply_language(best["text"]),
-                        "action_ok": False,
-                        "action_msg": "confirm?",
-                        "pending_id": pid,
-                        "pending_prompt": f"Confirm: {best['text']} ?"})
-        return
-    if best["category_confidence"] >= 0.5 or best["category"] == "fallback":
-        slots = None
-        if best["category"] == "alarm":
-            slots = parse_alarm_set(best["text"])
-        elif best["category"] == "timer":
-            secs = parse_timer_start(best["text"])
-            slots = {"seconds": secs} if secs else None
-        elif best["category"] == "music":
-            slots = {"subintent": parse_music_subintent(best["text"])}
-        elif best["category"] == "weather":
-            slots = parse_weather_query(best["text"])
-        elif best["category"] == "fallback":
-            slots = {}
-        action_ok, action_msg = try_execute(store, best["category"], best["text"], slots)
-        if action_ok:
-            await broadcast(store.as_message())
-    await broadcast({"type": "voice_result",
-                    "transcript": best["text"],
-                    "language": best.get("lang", ""),
-                    "en_text": en, "fr_text": fr,
-                    "category": best["category"],
-                    "confidence": best["category_confidence"],
-                    "overridden": best["overridden"],
-                    "route_ms": best.get("ms", 0.0),
-                    "audio_s": round(dur, 2),
-                    "reply_language": detect_reply_language(best["text"]),
-                    "action_ok": action_ok,
-                    "action_msg": action_msg})
+                        "action_ok": action_ok,
+                        "action_msg": action_msg})
+
+    except Exception as e:
+        await broadcast({"type": "voice_result", "transcript": "", "category": "fallback", "confidence": 0.0, "overridden": False, "error": str(e)})
+        print("voice error:", e)
 
 async def handle_client(websocket):
     clients.add(websocket)
@@ -467,8 +476,16 @@ async def handle_client(websocket):
         await websocket.send(json.dumps(store.as_message()))
         await websocket.send(json.dumps({"type": "spotify_status", "connected": spotify.connected}))
         async for raw in websocket:
-            msg = json.loads(raw)
+            try:
+                msg = json.loads(raw)
+                if not isinstance(msg, dict):
+                    continue
+            except (json.JSONDecodeError, ValueError):
+                await websocket.send(json.dumps({"type": "error", "message": "invalid JSON"}))
+                continue
             action = msg.get("action")
+            if not isinstance(action, str):
+                continue
 
             if action == "set_alarm":
                 days = msg.get("days", [0, 1, 2, 3, 4, 5, 6])
@@ -519,12 +536,25 @@ async def handle_client(websocket):
                 ringer.dismiss()
 
             elif action == "voice_listen":
-                asyncio.ensure_future(handle_voice())
+                global voice_busy
+                if voice_busy:
+                    await websocket.send(json.dumps({"type": "voice_status", "status": "busy"}))
+                    continue
+                voice_busy = True
+
+                async def _run_voice():
+                    global voice_busy
+                    try:
+                        await handle_voice()
+                    finally:
+                        voice_busy = False
+
+                asyncio.ensure_future(_run_voice())
 
             elif action == "confirm":
                 info = pending_actions.pop(msg.get("id"), None)
                 if info is not None:
-                    cat, text = info
+                    _, cat, text = info
                     ok, m = cancel(store, cat, text)
                     if ok:
                         await broadcast(store.as_message())
@@ -556,6 +586,18 @@ async def main():
     from wakepy import keep
     print(f"NestClockOS companion service on ws://localhost:{PORT}")
 
+    global mic_capture
+    print("Loading router (CPU)...")
+    await asyncio.get_event_loop().run_in_executor(None, router_service.load)
+    mc = MicCapture()
+    try:
+        await asyncio.get_event_loop().run_in_executor(None, mc.open)
+        mic_capture = mc
+        print("Mic stream open.")
+    except Exception as e:
+        print(f"Mic stream failed, using per-call capture: {e}")
+        mic_capture = None
+
     with keep.presenting(on_fail="pass") as mode:  # we print our own explanation below
         if mode.active:
             print("Wake lock: active via wakepy.")
@@ -568,6 +610,8 @@ async def main():
             async with websockets.serve(handle_client, "localhost", PORT):
                 await scheduler_loop()
         finally:
+            if mic_capture is not None:
+                mic_capture.close()
             stop_linux_fallback()
 
 

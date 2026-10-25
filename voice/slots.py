@@ -27,9 +27,7 @@ def parse_timer_start(text):
     m = re.search(r"(\d+)\s*:\s*(\d+)", t)
     if m:
         return int(m.group(1)) * 60 + int(m.group(2))
-    for word in ("hour", "heure", "hours", "heures"):
-        if word in t:
-            v = _first_number(t.split(word)[0].split()[-1:]) if False else None
+
     # seconds
     for pat in (r"(\d+)\s*(?:seconds?|secondes?|secs?)",):
         for m in re.finditer(pat, t, re.I):

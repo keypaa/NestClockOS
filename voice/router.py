@@ -55,7 +55,7 @@ class RouterService:
         self._loaded = False
 
     def load(self):
-        if not self.model_dir or not __import__("os").path.isdir(self.model_dir):
+        if not self.model_dir or not os.path.isdir(self.model_dir):
             print("Router: no model dir; routing disabled.")
             self._loaded = True
             return
