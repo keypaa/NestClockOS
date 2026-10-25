@@ -381,6 +381,7 @@ async def handle_voice():
         if audio is None:
             await broadcast({"type": "voice_result", "transcript": "", "category": "fallback",
                              "confidence": 0.0, "overridden": False, "error": explain(info)})
+            await broadcast({"type": "voice_state", "state": "idle"})
             return
         dur = len(audio) / 16000
         # P2 transcription (blocking, in executor)
@@ -489,8 +490,10 @@ async def handle_voice():
                         "reply_language": detect_reply_language(best["text"]),
                         "action_ok": action_ok,
                         "action_msg": action_msg})
+        await broadcast({"type": "voice_state", "state": "idle"})
 
     except Exception as e:
+        await broadcast({"type": "voice_state", "state": "error"})
         await broadcast({"type": "voice_result", "transcript": "", "category": "fallback", "confidence": 0.0, "overridden": False, "error": str(e)})
         print("voice error:", e)
 
