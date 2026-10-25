@@ -289,11 +289,15 @@ async def broadcast(message):
 # ---------------------------------------------------------------------------
 
 async def scheduler_loop():
-    fired_alarm_this_minute = set()
+    fired_this_minute = set()
+    current_minute = None
 
     while True:
         now = time.localtime()
         now_key = (now.tm_hour, now.tm_min)
+        if now_key != current_minute:
+            fired_this_minute.clear()
+            current_minute = now_key
 
         for alarm in list(store.alarms):
             if not alarm["enabled"]:
@@ -309,10 +313,9 @@ async def scheduler_loop():
                 if now.tm_wday not in (alarm.get("days") or []):
                     continue
             # once without date fires on the next matching time (any day)
-            key = (alarm["id"], now_key)
-            if key in fired_alarm_this_minute:
+            if alarm["id"] in fired_this_minute:
                 continue
-            fired_alarm_this_minute.add(key)
+            fired_this_minute.add(alarm["id"])
             await ringer.start(alarm=True)
             await broadcast({"type": "alarm_fired", "alarm": alarm})
             if once:
@@ -339,14 +342,6 @@ async def scheduler_loop():
             store.timers = remaining_timers
             store.save()
             await broadcast(store.as_message())
-        if len(remaining_timers) != len(store.timers):
-            store.timers = remaining_timers
-            store.save()
-            await broadcast(store.as_message())
-
-        # keep the fired-this-minute set from growing forever
-        if len(fired_alarm_this_minute) > 200:
-            fired_alarm_this_minute = {k for k in fired_alarm_this_minute if k[1] == now_key}
 
         await asyncio.sleep(1)
 
@@ -422,13 +417,14 @@ async def handle_voice():
                              "confidence": 0.0, "overridden": False, "error": "no speech"})
             return
         action_ok, action_msg = False, None
+        reply = None
         # destructive actions require confirmation
         # optional LLM fallback for fallback routing
         if best["category"] == "fallback" and os.environ.get("NESTCLOCK_USE_LLM") == "1":
             await broadcast({"type": "voice_state", "state": "thinking"})
             reply = await asyncio.get_event_loop().run_in_executor(None, ask_llm, mistral_client, best["text"], detect_reply_language(best["text"], store.language))
             await broadcast({"type": "voice_reply", "text": reply, "language": detect_reply_language(best["text"], store.language)})
-        if os.environ.get("NESTCLOCK_TTS") == "1" and best["category"] == "fallback":
+        if os.environ.get("NESTCLOCK_TTS") == "1" and reply:
             await broadcast({"type": "voice_state", "state": "speaking"})
             await asyncio.get_event_loop().run_in_executor(None, speak_tts, mistral_client, reply)
 

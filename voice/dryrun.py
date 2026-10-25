@@ -11,7 +11,9 @@ def run(path, model_dir=None):
     from mistralai import Mistral
     from .stt import transcribe_parallel
     from .router import RouterService
-    client = Mistral(api_key=os.environ["MISTRAL_API_KEY"])
+    import sys; sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+    from stt_session import make_client
+    client = make_client()
     res = transcribe_parallel(client, audio)
     rs = RouterService(model_dir or os.environ.get("NESTCLOCK_ROUTER_DIR"))
     rs.load()

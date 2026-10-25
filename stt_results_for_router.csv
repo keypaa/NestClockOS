@@ -1,0 +1,34 @@
+phrase,expected_category,language
+"Энест, нудься в волю, а пелот.",music,en
+Run a countdown of 30 seconds.,timer,en
+juste une alarme à 9h30.,alarm,fr
+and pause the timer.,timer,en
+push my alarm to 11.30pm.,alarm,en
+How could we get in Rome on Sunday?,weather,en
+Get me up at 6.15am please.,alarm,en
+On en est où là avec le meter s'il te plaît ?,timer,fr
+"Mon rythme de sommeil est complètement déréglé, s'il te plaît.",fallback,fr
+Stop le minuteur.,timer,fr
+How strong is the wind in Lisbon this evening?,weather,en
+Sa terre me trotte dans la tête hier.,fallback,fr
+"I am a beginner, 30 minutes countdown, thanks.",timer,en
+Dois-je prendre une veste pour Toulouse ?,weather,fr
+lampes pour 8 heures.,alarm,fr
+Lance les hits du moment.,music,fr
+"Менелан, 480 м2.",alarm,mixed
+Start playing my road trip playlist.,music,en
+Sauter à la suivante.,music,fr
+liste du matin.,music,fr
+Il pleut à Nantes en ce moment ?,weather,fr
+"Alors, il neige sur Marseille, s'il te plaît ?",weather,fr
+Какая же температура outside?,weather,mixed
+Il va pleuvoir demain ?,weather,mixed
+Dis-moi si mon alarme sonnera chaque matin.,alarm,fr
+C'est loin d'ici la rue principale ?,fallback,fr
+Quelle température il fait à Bordeaux ? Quelle température il fait à Bordeaux?,weather,fr
+Mon alarme pour 6h30.,alarm,fr
+Timer pour 10 minutes.,timer,mixed
+"Humming that melody yesterday again. Sorry, thanks.",fallback,en
+Will you find no surgery for me?,fallback,en
+C'est mon rire.,fallback,fr
+storming Rome this afternoon.,weather,en

@@ -73,16 +73,7 @@ def _norm_override_text(text: str) -> str:
 # See also phase1_design_notes.md (destructive-action confirmation rule) —
 # both are cases for downstream logic, not router training.
 # ---------------------------------------------------------------------------
-PARLE_FAMILY_RE = re.compile(
-    r"(\bparl(?:e[sz]?|ez|er)\b.{0,16}\bfort\b"  # parle/parles/parlez/parler + fort
-    r"|\bt[’']entends?\s+(pas|mal)\b"  # je (ne) t'entends pas/mal
-    r"|\bentends?\s+pas\b"
-    r"|\bcan[’']?t hear you\b|\bcannot hear you\b"  # I can't hear you
-    r"|\bspeak\s+(up|louder)\b)",  # speak up / speak louder
-    re.IGNORECASE,
-)
-
-
+from voice.router import PARLE_FAMILY_RE
 def classify(router, text: str, model: str = None, use_override: bool = True) -> dict:
     kwargs = {"model": model} if model else {}
     result = router.predict({"text": text}, ROUTING_QUESTIONS, **kwargs)

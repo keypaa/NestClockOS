@@ -9,7 +9,7 @@ def try_execute(store, category, text, slots):
             "id": str(uuid.uuid4()),
             "hour": slots["hour"],
             "minute": slots["minute"],
-            "days": [],
+            "days": [0, 1, 2, 3, 4, 5, 6] if not slots.get("once") else [],
             "label": text,
             "enabled": True,
             "once": bool(slots.get("once")),

@@ -1,0 +1,40 @@
+{
+  "n": 38,
+  "en": {
+    "correct": 12,
+    "total": 12,
+    "acc": 1.0
+  },
+  "fr": {
+    "correct": 17,
+    "total": 20,
+    "acc": 0.85
+  },
+  "mixed": {
+    "correct": 6,
+    "total": 6,
+    "acc": 1.0
+  },
+  "overall": {
+    "correct": 35,
+    "total": 38,
+    "acc": 0.9210526315789473
+  },
+  "cluster_a_fr_idioms": {
+    "correct": 0,
+    "total": 0,
+    "acc": NaN
+  },
+  "cluster_b_volume": {
+    "correct": 2,
+    "total": 2,
+    "acc": 1.0
+  },
+  "ece": 0.07630263157894737,
+  "safe_thresholds": {
+    "overall": null,
+    "en_slice": 0.3,
+    "fr_mixed_slice": null
+  },
+  "tier_mapping": "Tier 1 (unify)"
+}

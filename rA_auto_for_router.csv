@@ -1,0 +1,39 @@
+phrase,expected_category,language
+"Highness, notches volume up a lot.",music,en
+"Okay, we're in the countdown for off 30 seconds.",timer,en
+dit ajoute une alarme à 9h30.,alarm,fr
+Unpause the timer.,timer,en
+Push my alarm to 11.30pm.,alarm,en
+How cold will it get in Rome on Sunday?,weather,en
+"Get me up at 6.15 a.m., please.",alarm,en
+est plus fort d'un coup.,music,fr
+On est où là avec le minuteur s'il te plaît ?,timer,fr
+"Mon rythme de sommeil est complètement déréglé, s'il te plaît.",fallback,fr
+"Это плюс минута, что ли?",timer,fr
+Play de la musique relaxante.,music,mixed
+How strong is the wind in Lisbon this evening?,weather,en
+de trottinette hier.,fallback,fr
+Dois-je prendre une veste pour Toulouse ?,weather,fr
+Modifie mon alarme pour 8h ?,alarm,fr
+Lance les hits du moment.,music,fr
+Менелом for 8 a.m. Devant.,alarm,mixed
+Start playing my road trip playlist.,music,en
+saut à la suivante.,music,fr
+Je vais écouter ma playlist du matin.,music,fr
+Il pleut à Nantes en ce moment ?,weather,fr
+"Alors il neige sur Marseille, s'il te plaît ?",weather,fr
+Quelle est la température outside ?,weather,mixed
+"à rebours, on est où? Merci.",timer,fr
+Is it going to pleuvoir demain ?,weather,mixed
+Dis-moi si mon alarme sonnera chaque matin.,alarm,fr
+"Ben, on dit... C'est loin d'ici, la rue principale?",fallback,fr
+Quelle température il fait à Bordeaux ?,weather,fr
+Modifie mon alarme pour 16h30.,alarm,fr
+Start your timer for 10 minutes.,timer,mixed
+"Humming that melody yesterday again. Sorry, thanks.",fallback,en
+"Le compte à rebours est en EO, s'il te plaît.",timer,fr
+Set two alarms starting at 3 a.m.,alarm,en
+Define nostalgia for me.,fallback,en
+Fais-moi rire.,fallback,fr
+Will we get storm in Rome this afternoon?,weather,en
+Je ne sais pas quoi dire.,fallback,mixed
