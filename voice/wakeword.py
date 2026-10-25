@@ -74,8 +74,12 @@ class OpenWakeWordDetector(WakeWordDetector):
             return
         self._lib = openwakeword
         try:
-            self._model = openwakeword.Model(wakeword_models=[self.model_path],
-                                            inference_framework="onnx")
+            if self.model_path.lower().endswith(".onnx"):
+                self._model = openwakeword.Model(wakeword_model_paths=[self.model_path],
+                                                inference_framework="onnx")
+            else:
+                self._model = openwakeword.Model(wakeword_models=[self.model_path],
+                                                inference_framework="onnx")
         except Exception as e:
             self._error = f"failed to load model: {e}"
             self._model = None
