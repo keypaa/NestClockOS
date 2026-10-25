@@ -210,11 +210,33 @@ Commands: `devices`, `meter`, `talk`, `script`, `replay`, `compare`. See E1 for 
 3. Save folders: `--save-audio DIR` must refuse to reuse a folder that already has `manifest.csv` unless `--overwrite-audio` (which deletes only the old session's listed files and manifest); `_save_recording` upserts one manifest row per file; `replay` keeps one row per file (a stale duplicate row for `001.wav` in `rec1/` made the first phrase appear twice).
 
 ### B5.5 Router tooling (Phase 0 / 0.5; read `phase0/phase0_log.md` and `phase0_5/`)
-- `phase0_pipeline_test.py`: `batch <csv> [--model X] [--split S] [--quiet] [--no-override]` scores the router on text; `record` does mic → Voxtral → router. Contains `ROUTING_QUESTIONS` and `classify()` including the **deterministic override** (a regex that forces `fallback` at confidence 1.0 for the "parle plus fort / speak up / I can't hear you" family). The local version is the agent-extended one; trust the local file over any copy elsewhere.
+- `phase0_pipeline_test.py`: `batch <csv> [--model X] [--split S] [--quiet] [--no-override]` scores the router on text; `record` does mic → Voxtral → router. Contains `ROUTING_QUESTIONS` and `classify()` including the deterministic override. The local version is the agent-extended one; trust the local file over any copy elsewhere.
 - `test_override.py`: pins the override (10 must-fire + 15 must-not-fire phrases, including every bare-comparative volume command the model handles). Keep it green.
 - `phase0_5/`: the whole fine-tuning effort (spec with 4 addenda, data generators, verifier reports, `prep_items.py`, `train_single_t4.py`, `eval_finetuned.py`, `COLAB_RUNBOOK.md`, `CHECKPOINT_SHIP.md`, `post_training_results.md`, `french_syntax_residual.md`). See Appendix 1 for the story and numbers.
 - `phase1/phase1_design_notes.md`: the destructive-action confirmation rule (read it; summarized in G and E2.6).
 - `llm_speed_test.py`, `llm_timings.csv` (root): created after the design chat, **contents not known to the author of this handoff**. Probably a latency test of cloud LLMs for the 4c fallback. Read before extending; do not assume.
+
+### B5.6 Environment variables (read by `companion.py`)
+| variable | effect | default |
+|---|---|---|
+| `MISTRAL_API_KEY` | API key for STT/TTS/chat | required (in `.env` or export) |
+| `NESTCLOCK_ROUTER_DIR` | local Laya checkpoint folder | unset → routing disabled (all fallback) |
+| `NESTCLOCK_WAKE_WORD` | `1` enables the (experimental) always-open wake loop | unset (tap only) |
+| `NESTCLOCK_WAKE_MODEL` | model name (`hey_jarvis_v0.1`) or `.onnx` path | `hey_jarvis_v0.1` (bundled) |
+| `NESTCLOCK_WAKE_THRESHOLD` | detector score threshold | `0.5` |
+| `NESTCLOCK_USE_LLM` | `1` enables Mistral chat fallback | unset |
+| `NESTCLOCK_LLM_MODEL` | chat model id | `mistral-small-latest` |
+| `NESTCLOCK_TTS` | `1` enables Voxtral TTS playback | unset |
+| `NESTCLOCK_TTS_MODEL` | TTS model id | `voxtral-mini-tts-3-0` |
+| `NESTCLOCK_CITY_LAT` / `_LON` | weather location (default Paris) | 48.8566 / 2.3522 |
+| `NESTCLOCK_REPLY_LANG` | default reply language | `fr` |
+
+### B5.7 `voice/` package layout
+`audio.py` (`to_16k`, `RingBuffer`, `MicCapture`), `endpoint.py` (`Endpointer`), `text.py` (`normalize`, `wer`, `non_latin`), `stt.py` (P2 parallel transcription), `router.py` (`RouterService`, `classify`), `slots.py` (bilingual parsers), `actions.py` (execution + cancel), `pipeline.py` (text-only glue), `dryrun.py` (offline WAV runner), `reply.py`, `tts.py`, `weather.py`, `wakeword.py` (`WakeWordDetector` + `EnergyTrigger` + `OpenWakeWordDetector`).
+
+### B5.8 Wire protocol
+See [`docs/protocol.md`](docs/protocol.md) for every page↔companion action and event with field names.
+
 
 ---------------------------------------------------------------------------------------------------
 # C. DECISION LOG (what was chosen, why, and what it implies)
@@ -370,6 +392,7 @@ On the E1 real-voice set, with the real pipeline in dry-run mode (no side effect
 - Design: the always-open ring-buffer capture from E2.2 feeds the detector in ~80 ms frames. On trigger: pause or duck Spotify (Web API), take the pre-roll from the ring buffer, run the same endpointing + STT + pipeline, then restore music. Debounce and a cool-down after each trigger.
 - **Self-echo** is the known hard part: the speaker (music/TTS) is heard by the microphone. Mitigations in order of effort: duck/pause music on trigger and keep TTS short; place the mic away from the speaker; PipeWire has an echo-cancel module **[UNVERIFIED on this system]**; the most reliable fix is hardware with built-in echo cancellation (a USB speakerphone/conference puck) — decide when choosing hardware (F). Do not start a long AEC research project before the wake word works in a quiet room.
 - Measure, don't assume: false accepts per hour in a quiet room, with speech nearby, with music, with the TV; false rejects at 0.5 m / 2 m / 4 m; French and accented-English pronunciations. [PROPOSED bars]: ≤ 1 false accept/hour quiet, ≤ 3/hour with TV; ≥ 90% detection at 2 m.
+- Chosen phrase (E4, locked): `hey_pik_sel` (spoken "Hey pixel"), phonetic spelling for TTS; trained artifact `my_custom_model/hey_pik_sel.onnx` (+ `.tflite`), runtime path via `NESTCLOCK_WAKE_MODEL`. Colab T4 recipe and espeak-ng (no piper-phonemize) in `automatic_model_training_patched.ipynb`; `target_wake_phrase.txt` records the phrase. Runtime code: openWakeWord Apache-2.0; model-weights licence mixed per openWakeWord terms — record the specific trained-model licence before shipping. CPU cost ~80 ms / 80 ms frame single-session ONNX on the companion laptop. False-accept rows pending in `results/phase4a_report.md` (E4 section).
 
 ## E5. Phase 4e — on-screen voice states (from the Figma "Voice Assistant" screens)
 - Companion → page events [PROPOSED]: `voice_state {state: idle|listening|thinking|speaking|error, transcript?, reply_en?, reply_fr?, level?}`, `voice_result {category, action, ok}`, `confirm_request`. Page → companion: `voice_listen`, `confirm_response`, `dismiss` (also cancels speech).
