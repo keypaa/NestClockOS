@@ -34,8 +34,8 @@ from voice.router import RouterService
 from voice.audio import MicCapture
 from voice.stt import transcribe_parallel
 from voice.reply import detect_reply_language
-from voice.slots import parse_alarm_set, parse_timer_start
-from voice.actions import try_execute
+from voice.slots import parse_alarm_set, parse_timer_start, parse_music_subintent, parse_weather_query
+from voice.actions import try_execute, is_destructive, cancel
 from stt_session import record_utterance, explain, make_client, SAMPLE_RATE
 
 STATE_PATH = Path(__file__).parent / "companion_state.json"
@@ -206,6 +206,7 @@ class Store:
 store = Store()
 router_service = RouterService()
 mic_capture = None
+pending_actions = {}
 mistral_client = None
 try:
     mistral_client = make_client()
@@ -411,6 +412,26 @@ async def handle_voice():
                          "confidence": 0.0, "overridden": False, "error": "no speech"})
         return
     action_ok, action_msg = False, None
+    # destructive actions require confirmation
+    if is_destructive(best["category"], best["text"]):
+        import uuid as _u
+        pid = str(_u.uuid4())
+        pending_actions[pid] = (best["category"], best["text"])
+        await broadcast({"type": "voice_result",
+                        "transcript": best["text"],
+                        "language": best.get("lang", ""),
+                        "en_text": en, "fr_text": fr,
+                        "category": best["category"],
+                        "confidence": best["category_confidence"],
+                        "overridden": best["overridden"],
+                        "route_ms": best.get("ms", 0.0),
+                        "audio_s": round(dur, 2),
+                        "reply_language": detect_reply_language(best["text"]),
+                        "action_ok": False,
+                        "action_msg": "confirm?",
+                        "pending_id": pid,
+                        "pending_prompt": f"Confirm: {best['text']} ?"})
+        return
     if best["category_confidence"] >= 0.5 or best["category"] == "fallback":
         slots = None
         if best["category"] == "alarm":
@@ -418,6 +439,10 @@ async def handle_voice():
         elif best["category"] == "timer":
             secs = parse_timer_start(best["text"])
             slots = {"seconds": secs} if secs else None
+        elif best["category"] == "music":
+            slots = {"subintent": parse_music_subintent(best["text"])}
+        elif best["category"] == "weather":
+            slots = parse_weather_query(best["text"])
         elif best["category"] == "fallback":
             slots = {}
         action_ok, action_msg = try_execute(store, best["category"], best["text"], slots)
@@ -495,6 +520,18 @@ async def handle_client(websocket):
 
             elif action == "voice_listen":
                 asyncio.ensure_future(handle_voice())
+
+            elif action == "confirm":
+                info = pending_actions.pop(msg.get("id"), None)
+                if info is not None:
+                    cat, text = info
+                    ok, m = cancel(store, cat, text)
+                    if ok:
+                        await broadcast(store.as_message())
+                    await broadcast({"type": "voice_confirmed", "ok": ok, "message": m})
+
+            elif action == "deny":
+                pending_actions.pop(msg.get("id"), None)
 
             elif action == "spotify_login":
                 try:

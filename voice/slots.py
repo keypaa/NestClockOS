@@ -86,3 +86,37 @@ def parse_alarm_set(text):
     if once:
         target = today + timedelta(days=1)
     return {"hour": h, "minute": m, "once": once, "date": target.isoformat() if once else None}
+
+
+def parse_music_subintent(text):
+    t = text.lower()
+    if any(w in t for w in ("suivant", "next", "skip")):
+        return "next"
+    if any(w in t for w in ("précédent", "previous", "back")):
+        return "prev"
+    if any(w in t for w in ("pause", "stop", "coupe", "arrête")):
+        return "pause"
+    if any(w in t for w in ("play", "mets", "reprends", "resume", "lance")):
+        return "play"
+    if any(w in t for w in ("monte", "augmente", "up", "plus fort", "plus haut")):
+        return "vol_up"
+    if any(w in t for w in ("baisse", "diminue", "down", "moins fort", "moins haut")):
+        return "vol_down"
+    return "play"
+
+
+def parse_weather_query(text):
+    t = text.lower()
+    when = "today"
+    if "demain" in t or "tomorrow" in t:
+        when = "tomorrow"
+    if "week" in t or "weekend" in t or "week-end" in t:
+        when = "weekend"
+    kind = "general"
+    if any(w in t for w in ("pluie", "rain", "pleuvoir")):
+        kind = "rain"
+    if any(w in t for w in ("vent", "wind")):
+        kind = "wind"
+    if any(w in t for w in ("temp", "degré", "degree", "chaud", "froid")):
+        kind = "temp"
+    return {"when": when, "kind": kind}

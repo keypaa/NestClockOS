@@ -886,8 +886,17 @@
             else { el.textContent = (msg.category || '') + ' · ' + (msg.transcript || '') +
                     ' (' + Math.round((msg.confidence||0)*100) + '%)' +
                     (msg.action_msg ? ' → ' + msg.action_msg : ''); }
+          if (msg.pending_id) {
+            const ok = confirm(msg.pending_prompt || 'Confirm action?');
+            if (ws && ws.readyState === WebSocket.OPEN) {
+              ws.send(JSON.stringify({ action: ok ? 'confirm' : 'deny', id: msg.pending_id }));
+            }
+          }
           }
           if (micBtn) { micBtn.disabled = false; micBtn.textContent = 'MIC · MIC'; }
+        } else if (msg.type === 'voice_confirmed') {
+          const el = document.getElementById('voiceStatus');
+          if (el) el.textContent = (msg.ok ? 'OK: ' : 'DENIED/CANCELLED: ') + (msg.message || '');
         } else if (msg.type === 'spotify_status') {
           spotifyConnected = msg.connected;
           if (msg.connected) { musicError = ''; loadSpotifySDK(); }

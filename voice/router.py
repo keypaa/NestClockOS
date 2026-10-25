@@ -60,9 +60,8 @@ class RouterService:
             self._loaded = True
             return
         try:
-            from laya import Router
-            self.router = Router(self.model_dir, preload=True, device="cpu")
-            # warm-up
+            from laya import Agent
+            self.router = Agent(self.model_dir, device="cpu")
             try:
                 self.router.predict({"text": "test"}, ROUTING_QUESTIONS)
             except Exception:
