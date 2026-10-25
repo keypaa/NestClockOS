@@ -907,6 +907,12 @@
         } else if (msg.type === 'voice_state') {
           const el = document.getElementById('voiceStatus');
           if (el) el.textContent = (msg.state || '').toUpperCase() + (msg.transcript ? ' · ' + msg.transcript : '');
+        } else if (msg.type === 'mic_status') {
+          const el = document.getElementById('voiceStatus');
+          if (el) el.textContent = msg.muted ? 'MIC MUTED' : 'READY';
+        } else if (msg.type === 'mic_status') {
+          const el = document.getElementById('voiceStatus');
+          if (el) el.textContent = msg.muted ? 'MIC MUTED' : 'READY';
         } else if (msg.type === 'spotify_status') {
           spotifyConnected = msg.connected;
           if (msg.connected) { musicError = ''; loadSpotifySDK(); }
@@ -978,6 +984,18 @@
       e.stopPropagation();
       const next = (companionState && companionState.language === 'fr') ? 'en' : 'fr';
       if (ws && ws.readyState === WebSocket.OPEN) ws.send(JSON.stringify({ action: 'set_language', language: next }));
+    });
+
+    const muteBtn = document.createElement('button');
+    muteBtn.textContent = 'MUTE · MUTE';
+    muteBtn.style.cssText = 'position:fixed;bottom:40px;left:10px;z-index:51;';
+    document.body.appendChild(muteBtn);
+    let micMuted = false;
+    muteBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      micMuted = !micMuted;
+      if (ws && ws.readyState === WebSocket.OPEN) ws.send(JSON.stringify({ action: 'mic_mute', muted: micMuted }));
+      muteBtn.textContent = micMuted ? 'MUTED' : 'MUTE · MUTE';
     });
 
     connectCompanion();
