@@ -28,9 +28,6 @@ import uuid
 from pathlib import Path
 
 import numpy as np
-import sounddevice as sd
-import websockets
-from wakepy import keep
 
 import spotify_auth
 
@@ -59,7 +56,119 @@ BEEP = make_beep()
 def play_alarm_pattern():
     """Three beeps — distinct enough to notice, not so busy it's alarming."""
     pattern = np.concatenate([BEEP, np.zeros(int(SAMPLE_RATE * 0.15))] * 3)
+    import sounddevice as sd
     sd.play(pattern, SAMPLE_RATE)
+
+
+# ---------------------------------------------------------------------------
+# Ringing — loops until dismissed or MAX_RING_SECONDS; owned by an asyncio task
+# ---------------------------------------------------------------------------
+
+MAX_RING_SECONDS = 600
+RAMP_SECONDS = 30
+ALARM_VOLUME_START = 0.15
+ALARM_VOLUME_END = 0.60
+TIMER_VOLUME = 0.40
+
+
+class AudioBackend:
+    """Tiny interface so the ringer can be tested with a fake backend."""
+    def play(self, samples, sample_rate=SAMPLE_RATE):
+        raise NotImplementedError
+
+    def stop(self):
+        raise NotImplementedError
+
+
+class SoundDeviceBackend(AudioBackend):
+    def play(self, samples, sample_rate=SAMPLE_RATE):
+        import sounddevice as sd
+        sd.play(samples, sample_rate)
+
+    def stop(self):
+        import sounddevice as sd
+        sd.stop()
+
+
+def make_beep_volume(volume, freq=880.0, duration=0.35):
+    t = np.linspace(0, duration, int(SAMPLE_RATE * duration), False)
+    tone = np.sin(freq * 2 * np.pi * t)
+    fade = int(SAMPLE_RATE * 0.02)
+    tone[:fade] *= np.linspace(0, 1, fade)
+    tone[-fade:] *= np.linspace(1, 0, fade)
+    return (tone * volume).astype(np.float32)
+
+
+def make_burst(volume, pause=0.2):
+    beep = make_beep_volume(volume)
+    gap = np.zeros(int(SAMPLE_RATE * pause), dtype=np.float32)
+    return np.concatenate([beep, gap, beep, gap, beep, np.zeros(int(SAMPLE_RATE * 0.25))])
+
+
+class Ringer:
+    def __init__(self, backend=None, max_duration=MAX_RING_SECONDS):
+        self.backend = backend or SoundDeviceBackend()
+        self.max_duration = max_duration
+        self._task = None
+        self.active = False
+        self._stop_event = None
+
+    async def start(self, alarm=True):
+        if self.active:
+            # do not stack a second playback
+            return
+        self.active = True
+        self._stop_event = asyncio.Event()
+        loop = asyncio.get_event_loop()
+        self._task = loop.create_task(self._run(alarm))
+        # attach done callback to reset state
+        self._task.add_done_callback(self._done)
+
+    async def _run(self, alarm):
+        start = time.monotonic()
+        try:
+            while not self._stop_event.is_set():
+                elapsed = time.monotonic() - start
+                if elapsed >= self.max_duration:
+                    break
+                if alarm:
+                    frac = min(1.0, elapsed / RAMP_SECONDS)
+                    volume = ALARM_VOLUME_START + (ALARM_VOLUME_END - ALARM_VOLUME_START) * frac
+                else:
+                    volume = TIMER_VOLUME
+                samples = make_burst(volume)
+                # play without blocking the loop
+                await asyncio.get_event_loop().run_in_executor(None, self.backend.play, samples, SAMPLE_RATE)
+                burst_dur = len(samples) / SAMPLE_RATE
+                # wait either stop or burst duration
+                try:
+                    await asyncio.wait_for(self._stop_event.wait(), timeout=burst_dur)
+                except asyncio.TimeoutError:
+                    pass
+        finally:
+            self.backend.stop()
+
+    def _done(self, _):
+        self.active = False
+        self._task = None
+        self._stop_event = None
+
+    def dismiss(self):
+        if self._stop_event is not None:
+            self._stop_event.set()
+        if self._task is not None and not self._task.done():
+            self._task.cancel()
+        self.backend.stop()
+
+    async def wait(self):
+        if self._task is not None:
+            try:
+                await self._task
+            except asyncio.CancelledError:
+                pass
+
+
+ringer = Ringer()
 
 
 # ---------------------------------------------------------------------------
@@ -174,13 +283,13 @@ async def scheduler_loop():
                 if key in fired_alarm_this_minute:
                     continue
                 fired_alarm_this_minute.add(key)
-                play_alarm_pattern()
+                await ringer.start(alarm=True)
                 await broadcast({"type": "alarm_fired", "alarm": alarm})
 
         remaining_timers = []
         for timer in store.timers:
             if time.time() >= timer["ends_at"]:
-                play_alarm_pattern()
+                await ringer.start(alarm=False)
                 await broadcast({"type": "timer_fired", "timer": timer})
             else:
                 remaining_timers.append(timer)
@@ -258,7 +367,7 @@ async def handle_client(websocket):
                 await broadcast(store.as_message())
 
             elif action == "dismiss":
-                sd.stop()
+                ringer.dismiss()
 
             elif action == "spotify_login":
                 try:
@@ -279,6 +388,7 @@ async def handle_client(websocket):
 
 
 async def main():
+    import websockets
     print(f"NestClockOS companion service on ws://localhost:{PORT}")
 
     with keep.presenting(on_fail="pass") as mode:  # we print our own explanation below
