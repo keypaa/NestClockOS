@@ -1,0 +1,120 @@
+phrase,expected_category,language
+what's la météo aujourd'hui,weather,mixed
+dis-moi si mon alarme sonnera chaque matin,alarm,fr
+cancel le timer please,timer,mixed
+"um, i need a timer for 45 seconds",timer,en
+on en est ou la avec le minuteur stp,timer,fr
+i want to hear something relaxing,music,en
+lance les hits du moment,music,fr
+saute à la suivante,music,fr
+stoppe le minuteur quoi,timer,fr
+"euh, lance mon mix sport lundi merci",music,fr
+mets plus fort d'un coup,music,fr
+"dis, mon rythme de sommeil est complètement déréglé hmm",fallback,fr
+"hey nest, à quelle heure ferment les magasins encore",fallback,fr
+"euh, modifie mon alarme pour 5h s'il te plaît",alarm,fr
+"hey nest, notch the volume up a lot",music,en
+"alors, le chrono en est ou la",timer,fr
+"hey, blast it louder like",music,en
+"um, push my alarm to 6:45 am thanks",alarm,en
+umm je ne sais pas quoi dire,fallback,mixed
+modifie mon alarme pour 8h,alarm,fr
+"ben, encore moins fort",music,fr
+un peu plus fort merci,music,fr
+"okay, tell me if my alarm is set please",alarm,en
+start playing my road-trip playlist,music,en
+is the sun out in paris,weather,en
+"okay, call off the timer",timer,en
+"uh, how strong is the wind in lisbon this evening",weather,en
+enlève l'alarme de 6h30,alarm,fr
+"hey nest, zappe cette chanson",music,fr
+"euh, il pleut à toulouse en ce moment s'il te plaît",weather,fr
+cet air me trotte dans la tête hier,fallback,fr
+pause la musique please,music,mixed
+lance ma playlist road-trip,music,fr
+"humming that melody yesterday again, sorry thanks",fallback,en
+which artist painted girl with a pearl earring,fallback,en
+le compte à rebours en est où merci,timer,fr
+turn up le son,music,mixed
+"okay, begin a 40 minutes countdown",timer,en
+"alors, mets en route un compte a rebours de 30 minutes",timer,fr
+"hey nest, c'est loin d'ici sur l'autoroute merci",fallback,fr
+"dis, mon rythme de sommeil est complètement déréglé s'il te plaît",fallback,fr
+i want to hear some jazz,music,en
+"okay, jump to the next track",music,en
+tell george I said hi please,fallback,en
+"dis, il pleut à nantes en ce moment",weather,fr
+"ben, ajoute une alarme a 7h",alarm,fr
+can you lancer un minuteur de 5 min,timer,mixed
+quelle est the temperature outside,weather,mixed
+"alors, quel temps a lyon vendredi",weather,fr
+"hey nest, lengthen my timer by 10 minutes",timer,en
+"okay, define serendipity for me",fallback,en
+"euh, diminue le son beaucoup",music,fr
+um push my alarm to 11:30 pm,alarm,en
+fais reprendre le minuteur,timer,fr
+"okay, hmm, let me think for a second",fallback,en
+"euh, quelle température il fait à bordeaux",weather,fr
+"alors, c'est quoi la meteo a nantes lundi",weather,fr
+mets une alarme for 8am demain,alarm,mixed
+what's ton nom,fallback,mixed
+can you wake me up à 7h,alarm,mixed
+is it going to pleuvoir demain,weather,mixed
+"dis, ajoute une alarme a 9h30",alarm,fr
+"euh, quel temps a lille vendredi",weather,fr
+"hey nest, set two alarms starting at 9:30 am",alarm,en
+"uh, lengthen my timer by 5 minutes uh thanks",timer,en
+"euh, dis, où en est ce minuteur",timer,fr
+play de la musique relaxante,music,mixed
+quel temps a paris cet apres-midi,weather,fr
+"dis, le chrono en est où au juste",timer,fr
+modifie mon alarme pour 6h30,alarm,fr
+"dis, je veux écouter ma playlist du matin",music,fr
+"um, my lamp stopped working again please",fallback,en
+"euh, les prévisions de nantes ce soir s'il te plaît",weather,fr
+"hey, what's the low in rome tonight please",weather,en
+lance du piano classique cette nuit,music,fr
+get me up at midnight please,alarm,en
+cancel mon alarme de 7h,alarm,mixed
+"uh, notch the volume down two notches",music,en
+put the timer on hold,timer,en
+"ben, quelle température il fait à lyon",weather,fr
+"hey nest, je veux une alarme pour 7h10",alarm,fr
+le compte à rebours en est où hmm s'il te plaît,timer,fr
+how cold will it get in rome on sunday,weather,en
+"um, get me up at 6:15 am please",alarm,en
+"uh, define nostalgia for me",fallback,en
+"euh, quel artiste a peint la jeune fille à la perle",fallback,fr
+unpause the timer,timer,en
+"euh, fais-moi rire",fallback,fr
+"hey, begin a 30 minutes countdown thanks",timer,en
+alors il neige sur marseille s'il te plaît,weather,fr
+"um, jump to the next track",music,en
+cet air me trotte dans la tete lundi,fallback,fr
+set an alarm pour lundi matin,alarm,mixed
+"euh, il en est ou, mon chrono",timer,fr
+"ben dis, c'est loin d'ici rue principale",fallback,fr
+mets le chrono en pause,timer,fr
+recommence le minuteur,timer,fr
+"dis, dois-je prendre une veste pour toulouse",weather,fr
+tell me une histoire,fallback,mixed
+définis mnémotechnique,fallback,fr
+will we get storm in rome this afternoon,weather,en
+"um, i need an alarm at 8:30 am on Tuesday thanks",alarm,en
+je veux une alarme pour 6h30,alarm,fr
+"okay, who is this artist",fallback,en
+"uh, set two alarms starting at 5 am",alarm,en
+start a timer pour 10 minutes,timer,mixed
+enleve l'alarme de 6h45 stp,alarm,fr
+"hey nest, how cold will it get in berlin right now",weather,en
+"hey, should i grab an umbrella for madrid",weather,en
+saute à la suivante s'il te plaît,music,fr
+"okay, run a countdown of 30 seconds",timer,en
+"euh, les prévisions de lille cet après-midi s'il te plaît",weather,fr
+"uh, how cold will it get in tokyo right now",weather,en
+"dis, mets-moi une alarme a 6h et quart en semaine",alarm,fr
+baisse the volume,music,mixed
+mon enceinte ne marche plus lundi,fallback,fr
+reveille-moi demain matin a 23h merci,alarm,fr
+c'est ensoleillé à nice s'il te plaît,fallback,fr
+"okay, how is your day going this morning thanks",fallback,en
