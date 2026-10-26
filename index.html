@@ -158,6 +158,40 @@
     z-index: 5;
   }
 
+  /* ---------- weather screen ---------- */
+  .wx-body { flex: 1; display: flex; flex-direction: column; margin-top: clamp(1rem, 2vw, 1.6rem); gap: clamp(1.2rem, 2.4vw, 1.8rem); }
+  .wx-subtitle { font-family: inherit; font-size: clamp(0.7rem, 1.2vw, 0.85rem); color: var(--amber); letter-spacing: 0.12em; text-transform: uppercase; margin-top: 0.3rem; }
+  .wx-hero { display: flex; justify-content: space-between; gap: clamp(1rem, 3vw, 2.5rem); align-items: flex-start; flex: 1 1 auto; }
+  .wx-hero-left { flex: 1 1 auto; min-width: 0; }
+  .wx-condition { display: flex; align-items: center; gap: 1rem; }
+  .wx-icon { width: clamp(48px, 6vw, 66px); height: clamp(48px, 6vw, 66px); flex-shrink: 0; color: var(--amber); }
+  .wx-icon svg { display: block; width: 100%; height: 100%; }
+  .wx-cond-text { flex: 1 1 auto; min-width: 0; }
+  .wx-cond-row { display: flex; align-items: baseline; flex-wrap: wrap; gap: 0.4rem; font-size: clamp(1.5rem, 3.4vw, 2.6rem); font-weight: 600; letter-spacing: -0.01em; }
+  .wx-cond-row .wx-cond-en { color: var(--hero); }
+  .wx-cond-row .wx-cond-fr { color: var(--muted); font-size: 0.65em; font-weight: 400; margin-left: 0.3rem; }
+  .wx-cond-row .wx-dot { color: var(--muted); opacity: 0.5; }
+  .wx-temp-row { margin-top: 0.6rem; display: flex; gap: 0.5rem; align-items: flex-start; }
+  .wx-temp-value { font-size: clamp(4.2rem, 18vw, 9rem); font-weight: 700; line-height: 0.9; letter-spacing: -0.03em; color: var(--hero); }
+  .wx-temp-unit { font-size: 0.35em; color: var(--amber); margin-top: 1.6rem; margin-left: 0.3rem; letter-spacing: 0.1em; font-weight: 600; }
+  .wx-meta { margin-top: 1rem; font-size: clamp(0.75rem, 1.2vw, 0.9rem); color: var(--muted); display: flex; gap: 1.5rem; text-transform: uppercase; letter-spacing: 0.08em; flex-wrap: wrap; }
+  .wx-meta > span { white-space: nowrap; }
+  .wx-meta strong { color: var(--amber-dim); font-weight: 500; }
+  .wx-advisory { width: clamp(260px, 32vw, 380px); flex-shrink: 0; background: var(--card); border: 1px solid var(--amber-dim); border-radius: 12px; padding: 1rem 1.2rem; opacity: 0.97; align-self: flex-start; margin-top: 0.6rem; }
+  .wx-advisory-title { font-size: 0.75rem; font-weight: 700; color: var(--amber); text-transform: uppercase; letter-spacing: 0.08em; }
+  .wx-advisory-body { margin-top: 0.5rem; font-size: clamp(0.8rem, 1.2vw, 0.95rem); color: var(--hero); line-height: 1.4; }
+  .wx-forecast { display: grid; grid-template-columns: repeat(5, 1fr); gap: clamp(0.4rem, 1.4vw, 0.8rem); margin-top: clamp(1rem, 2vw, 1.6rem); }
+  .wx-day { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 0.8rem 0.5rem 0.7rem; text-align: center; min-width: 0; }
+  .wx-day.active { border-color: var(--amber-dim); }
+  .wx-day-name { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+  .wx-day.active .wx-day-name { color: var(--amber); }
+  .wx-day-icon { width: 30px; height: 30px; margin: 0.6rem auto; color: var(--hero); }
+  .wx-day-icon svg { width: 100%; height: 100%; }
+  .wx-day-temps { margin-top: 0.75rem; font-size: 0.78rem; font-weight: 600; color: var(--hero); }
+  .wx-day-temps .lo { color: var(--muted); margin-left: 0.3rem; }
+  .wx-day-cond { font-size: 0.62rem; color: var(--muted); margin-top: 0.35rem; text-transform: uppercase; letter-spacing: 0.05em; word-wrap: break-word; }
+  .wx-footnote { font-size: 0.62rem; color: var(--muted); margin-top: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; }
+
   /* ---------- corner status chrome (voice HUD, mic, language, settings) ---------- */
 
   .corner-cluster {
@@ -872,9 +906,44 @@
   <div class="screen" id="weatherScreen">
     <div class="screen-header">
       <button class="back-btn" data-target="clockScreen">&larr; CLOCK &middot; HORLOGE</button>
-      <div>WEATHER &middot; MÉTÉO</div>
+      <div class="weather-title-wrap">
+        <div class="header-title-en">WEATHER · MÉTÉO</div>
+        <div class="weather-subtitle" id="wxSubtitle">loading…</div>
+      </div>
     </div>
-    <div id="weatherDetail" style="font-family:monospace;font-size:14px;padding:12px;">AWAITING DATA &middot; DONNÉES EN ATTENTE</div>
+
+    <div class="wx-body">
+      <section class="wx-hero">
+        <div class="wx-hero-left">
+          <div class="wx-condition" id="wxCondition">
+            <div class="wx-icon" id="wxIcon"></div>
+            <div class="wx-cond-text">
+              <div class="wx-cond-row">
+                <span id="wxCondEn">—</span>
+                <span class="wx-dot"> / </span>
+                <span id="wxCondFr">—</span>
+              </div>
+              <div class="wx-temp-row">
+                <span class="wx-temp-value" id="wxTemp">--</span>
+                <span class="wx-temp-unit">°C</span>
+              </div>
+              <div class="wx-meta" id="wxMeta"></div>
+            </div>
+          </div>
+        </div>
+        <div class="wx-advisory" id="wxAdvisory" style="display:none;">
+          <div class="wx-advisory-title" id="wxAdvTitle"></div>
+          <div class="wx-advisory-body" id="wxAdvBody"></div>
+        </div>
+      </section>
+
+      <section class="wx-forecast" id="wxForecast">
+        <!-- cards via JS -->
+      </section>
+      <div class="wx-footnote">
+        DATA & middot; DONNÉES · OPEN-METEO • <span id="wxStatus">AWAITING DATA &middot; DONNÉES EN ATTENTE</span>
+      </div>
+    </div>
   </div>
 
   <div class="screen" id="timerScreen">
@@ -1006,6 +1075,84 @@
     let companionState = { alarms: [], timers: [] };
     let ws = null;
 
+    // ---------------- weather rendering ----------------
+    function weatherIcon(code) {
+      const c = (code === undefined || code === null) ? -1 : code;
+      const stroke = 'stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"';
+      if (c === 0) return '<svg viewBox="0 0 64 64" '+stroke+'><circle cx="32" cy="32" r="12" fill="currentColor" stroke="none" opacity="0.9"/><g stroke="currentColor" stroke-width="2.4"><path d="M32 4v8M32 52v8M4 32h8M52 32h8M12 12l6 6M46 12l-6 6M12 52l6-6M46 52l-6-6"/></g></svg>';
+      if (c === 1 || c === 2) return '<svg viewBox="0 0 64 64" '+stroke+'><circle cx="22" cy="26" r="10" fill="currentColor" stroke="none" opacity="0.9"/><path d="M30 38h22a10 10 0 0 0 0-20 14 14 0 0 0-24-4" fill="none"/></svg>';
+      if (c === 3) return '<svg viewBox="0 0 64 64" '+stroke+'><path d="M12 30a10 10 0 0 1 1-19.9A14 14 0 0 1 46 22a10 10 0 0 1 2 19.8"/><path d="M12 30h38"/></svg>';
+      if (c === 45 || c === 48) return '<svg viewBox="0 0 64 64" '+stroke+'><path d="M12 26a10 10 0 0 1 1-19.9A14 14 0 0 1 46 18a10 10 0 0 1 2 17.8"/><path d="M12 26h38"/><g stroke="currentColor" stroke-width="3"><path d="M18 40h0.01M26 40h0.01M34 40h0.01M42 40h0.01"/></g></svg>';
+      if ((c >= 51 && c <= 67) || (c >= 80 && c <= 82)) return '<svg viewBox="0 0 64 64" '+stroke+'><path d="M14 24a10 10 0 0 1 1-19.9A14 14 0 0 1 48 16a10 10 0 0 1 2 19.8"/><path d="M14 24h38"/><g stroke-width="2.4"><path d="M20 32l-4 12M32 32l-4 12M44 32l-4 12"/></g></svg>';
+      if ((c >= 71 && c <= 77) || (c >= 85 && c <= 86)) return '<svg viewBox="0 0 64 64" '+stroke+'><path d="M14 24a10 10 0 0 1 1-19.9A14 14 0 0 1 48 16a10 10 0 0 1 2 19.8"/><path d="M14 24h38"/><g stroke-width="3"><path d="M20 34h.01M30 40h.01M40 34h.01M26 46h.01"/></g></svg>';
+      if (c >= 95) return '<svg viewBox="0 0 64 64" '+stroke+'><path d="M14 24a10 10 0 0 1 1-19.9A14 14 0 0 1 48 16a10 10 0 0 1 2 19.8"/><path d="M14 24h38"/><path d="M30 30l-8 14h8l-4 14l14-18h-8l6-10"/></svg>';
+      return '<svg viewBox="0 0 64 64" '+stroke+'><path d="M12 30a10 10 0 0 1 1-19.9A14 14 0 0 1 46 22a10 10 0 0 1 2 19.8"/><path d="M12 30h38"/></svg>';
+    }
+
+    function forecastIcon(code) {
+      const c = code == null ? -1 : code;
+      const color = "currentColor";
+      if (c === 0) return '<svg viewBox="0 0 48 48" fill="none" stroke="'+color+'" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="8" fill="currentColor" stroke="none"/><path d="M24 4v4M24 40v4M4 24h4M40 24h4M10 10l3 3M35 10l-3 3M10 38l3-3M35 38l-3-3"/></svg>';
+      if (c === 1 || c === 2) return '<svg viewBox="0 0 48 48" fill="none" stroke="'+color+'" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="16" r="7" fill="currentColor" opacity="0.85" stroke="none"/><path d="M22 26a8 8 0 0 1 .5-16A11 11 0 0 1 42 17a7 7 0 0 1 1 14Z"/></svg>';
+      if (c === 3) return '<svg viewBox="0 0 48 48" fill="none" stroke="'+color+'" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 24a8 8 0 0 1 .5-16A11 11 0 0 1 35 12a8 8 0 0 1 1 16Z"/><path d="M12 24h26"/></svg>';
+      if (c === 45 || c === 48) return '<svg viewBox="0 0 48 48" fill="none" stroke="'+color+'" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 24a7 7 0 0 1 .4-14A10 10 0 0 1 32 13a7 7 0 0 1 .8 14Z"/><g stroke-width="3"><path d="M14 34h0.01M20 38h0.01M26 34h0.01M32 38h0.01"/></g></svg>';
+      if ((c >= 71 && c <= 77) || (c >= 85 && c <= 86)) return '<svg viewBox="0 0 48 48" fill="none" stroke="'+color+'" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 24a7 7 0 0 1 .4-14A10 10 0 0 1 32 13a7 7 0 0 1 .8 14Z"/><path d="M12 24h22"/><g stroke-width="3"><path d="M14 34h.01M20 38h.01M26 34h.01M32 38h.01"/></g></svg>';
+      if ((c >= 51 && c <= 67) || (c >= 80 && c <= 82)) return '<svg viewBox="0 0 48 48" fill="none" stroke="'+color+'" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 24a7 7 0 0 1 .4-14A10 10 0 0 1 32 13a7 7 0 0 1 .8 14Z"/><path d="M12 24h22"/><path d="M14 30l-2 8M20 30l-2 8M26 30l-2 8M32 30l-2 8"/></svg>';
+      if (c >= 95) return '<svg viewBox="0 0 48 48" fill="none" stroke="'+color+'" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 24a7 7 0 0 1 .4-14A10 10 0 0 1 32 13a7 7 0 0 1 .8 14Z"/><path d="M12 24h22"/><path d="M22 28l-4 8h4l-2 8l8-10h-4l3-6"/></svg>';
+      return '<svg viewBox="0 0 48 48" fill="none" stroke="'+color+'" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 24a7 7 0 0 1 .4-14A10 10 0 0 1 32 13a7 7 0 0 1 .8 14Z"/><path d="M12 24h22"/></svg>';
+    }
+
+    function renderWeather(d) {
+      // home strip
+      const strip = document.getElementById('weatherStrip');
+      if (strip) {
+        const cond = d.condition_en || d.condition_fr || 'unknown';
+        strip.textContent = (cond.toUpperCase() + ' \u00b7 ' + (d.temp_c!=null?d.temp_c+'C':'') + ' \u00b7 ' + (d.wind_kmh!=null?d.wind_kmh+' km/h':'')).trim();
+      }
+      const titleWrap = document.querySelector('.weather-title-wrap .weather-subtitle');
+      const revRow = document.getElementById('wxSubtitle');
+      if (revRow) revRow.textContent = (d.condition_fr || d.condition_en || '').toUpperCase();
+      const icon = document.getElementById('wxIcon');
+      if (icon) icon.innerHTML = weatherIcon(d.code);
+      const en = document.getElementById('wxCondEn'); if (en) en.textContent = d.condition_en || '—';
+      const fr = document.getElementById('wxCondFr'); if (fr) fr.textContent = d.condition_fr || '—';
+      const t = document.getElementById('wxTemp'); if (t) t.textContent = (d.temp_c!=null?d.temp_c:'--');
+      const meta = document.getElementById('wxMeta');
+      if (meta) {
+        meta.innerHTML = '';
+        if (d.humidity != null) { const s = document.createElement('span'); s.innerHTML = 'Humidit\\u00e9\\u00b7 HUMIDITY <strong>' + d.humidity + '%</strong>'; meta.appendChild(s); }
+        if (d.wind_kmh != null) { const s = document.createElement('span'); s.innerHTML = 'Vent\\u00b7 WIND <strong>' + d.wind_kmh + ' km/h</strong>'; meta.appendChild(s); }
+      }
+      // advisory (only if real)
+      const adv = document.getElementById('wxAdvisory');
+      if (adv) {
+        if (d.advisory_en || d.advisory_fr) {
+          adv.style.display = '';
+          const at = document.getElementById('wxAdvTitle'); if (at) at.textContent = (d.advisory_fr || '') + (d.advisory_fr && d.advisory_en ? ' / ' : '') + (d.advisory_en || '');
+          const ab = document.getElementById('wxAdvBody'); if (ab) ab.textContent = d.advisory_body_fr || d.advisory_body_en || '';
+        } else {
+          adv.style.display = 'none';
+        }
+      }
+      // forecast grid
+      const fc = document.getElementById('wxForecast');
+      if (fc && Array.isArray(d.forecast)) {
+        fc.innerHTML = '';
+        const today = new Date().toISOString().slice(0, 10);
+        d.forecast.slice(0, 5).forEach((f, i) => {
+          const card = document.createElement('div');
+          card.className = 'wx-day' + (i === 0 ? ' active' : '');
+          card.innerHTML = '<div class="wx-day-name">' + f.dayname_fr + ' / ' + f.dayname_en + '</div>' +
+            '<div class="wx-day-icon">' + forecastIcon(f.code) + '</div>' +
+            '<div class="wx-day-temps"><span class="hi">' + (f.hi!=null?f.hi+'°':'--') + '</span><span class="lo">' + (f.lo!=null?f.lo+'°':'--') + '</span></div>' +
+            '<div class="wx-day-cond">' + ((f.condition_fr||f.condition_en)||'').toUpperCase() + '</div>';
+          fc.appendChild(card);
+        });
+      }
+      const statusEl = document.getElementById('wxStatus');
+      if (statusEl) statusEl.textContent = 'LIVE \u00b7 DONNÉES REÇUES';
+    }
+
     // ---------------- screen switching ----------------
 
     function showScreen(id) {
@@ -1110,11 +1257,7 @@
           }
         } else if (msg.type === 'weather') {
           const d = msg.data || {};
-          const cond = d.condition_en || d.condition_fr || 'unknown';
-          const strip = document.getElementById('weatherStrip');
-          if (strip) strip.textContent = (cond.toUpperCase() + ' · ' + (d.temp_c!=null?d.temp_c+'C':'') + ' · ' + (d.wind_kmh!=null?d.wind_kmh+' km/h':'')).trim();
-          const det = document.getElementById('weatherDetail');
-          if (det) det.textContent = (d.condition_en||'') + ' / ' + (d.condition_fr||'') + '\n' + (d.temp_c!=null?'TEMP ' + d.temp_c + 'C':'') + '  ' + (d.wind_kmh!=null?'WIND ' + d.wind_kmh + ' km/h':'');
+          renderWeather(d);
         } else if (msg.type === 'spotify_status') {
           spotifyConnected = msg.connected;
           if (msg.connected) { musicError = ''; loadSpotifySDK(); }

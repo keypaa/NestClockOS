@@ -5,10 +5,18 @@ import tempfile
 from pathlib import Path
 
 
-def speak(client, text, voice_id="gb_jane_neutral"):
+DEFAULT_VOICES = {
+    "en": os.environ.get("NESTCLOCK_TTS_VOICE_EN", "82c99ee6-f932-423f-a4a3-d403c8914b8d"),
+    "fr": os.environ.get("NESTCLOCK_TTS_VOICE_FR", "5a271406-039d-46fe-835b-fbbb00eaf08d"),
+}
+
+
+def speak(client, text, language="en", voice_id=None):
     if not text:
         return
     try:
+        if voice_id is None:
+            voice_id = DEFAULT_VOICES.get(language if language in DEFAULT_VOICES else "en")
         response = client.audio.speech.complete(
             model=os.environ.get("NESTCLOCK_TTS_MODEL", "voxtral-mini-tts-3-0"),
             input=text,

@@ -515,7 +515,7 @@ async def handle_voice():
             await broadcast({"type": "voice_reply", "text": reply, "language": detect_reply_language(best["text"], store.language)})
         if os.environ.get("NESTCLOCK_TTS") == "1" and reply:
             await broadcast({"type": "voice_state", "state": "speaking"})
-            await asyncio.get_event_loop().run_in_executor(None, speak_tts, mistral_client, reply)
+            await asyncio.get_event_loop().run_in_executor(None, speak_tts, mistral_client, reply, detect_reply_language(best["text"]))
 
         if is_destructive(best["category"], best["text"]):
             import uuid as _u
