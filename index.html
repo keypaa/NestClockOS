@@ -6,7 +6,7 @@
 <title>NestClockOS</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #0a0a0a;
@@ -158,40 +158,42 @@
     z-index: 5;
   }
 
-  /* ---------- weather screen ---------- */
-  .wx-body { flex: 1; display: flex; flex-direction: column; margin-top: clamp(1rem, 2vw, 1.6rem); gap: clamp(1.2rem, 2.4vw, 1.8rem); }
-  .wx-subtitle { font-family: inherit; font-size: clamp(0.7rem, 1.2vw, 0.85rem); color: var(--amber); letter-spacing: 0.12em; text-transform: uppercase; margin-top: 0.3rem; }
-  .wx-hero { display: flex; justify-content: space-between; gap: clamp(1rem, 3vw, 2.5rem); align-items: flex-start; flex: 1 1 auto; }
-  .wx-hero-left { flex: 1 1 auto; min-width: 0; }
-  .wx-condition { display: flex; align-items: center; gap: 1rem; }
-  .wx-icon { width: clamp(48px, 6vw, 66px); height: clamp(48px, 6vw, 66px); flex-shrink: 0; color: var(--amber); }
-  .wx-icon svg { display: block; width: 100%; height: 100%; }
-  .wx-cond-text { flex: 1 1 auto; min-width: 0; }
-  .wx-cond-row { display: flex; align-items: baseline; flex-wrap: wrap; gap: 0.4rem; font-size: clamp(1.5rem, 3.4vw, 2.6rem); font-weight: 600; letter-spacing: -0.01em; }
-  .wx-cond-row .wx-cond-en { color: var(--hero); }
-  .wx-cond-row .wx-cond-fr { color: var(--muted); font-size: 0.65em; font-weight: 400; margin-left: 0.3rem; }
-  .wx-cond-row .wx-dot { color: var(--muted); opacity: 0.5; }
-  .wx-temp-row { margin-top: 0.6rem; display: flex; gap: 0.5rem; align-items: flex-start; }
-  .wx-temp-value { font-size: clamp(4.2rem, 18vw, 9rem); font-weight: 700; line-height: 0.9; letter-spacing: -0.03em; color: var(--hero); }
-  .wx-temp-unit { font-size: 0.35em; color: var(--amber); margin-top: 1.6rem; margin-left: 0.3rem; letter-spacing: 0.1em; font-weight: 600; }
-  .wx-meta { margin-top: 1rem; font-size: clamp(0.75rem, 1.2vw, 0.9rem); color: var(--muted); display: flex; gap: 1.5rem; text-transform: uppercase; letter-spacing: 0.08em; flex-wrap: wrap; }
-  .wx-meta > span { white-space: nowrap; }
-  .wx-meta strong { color: var(--amber-dim); font-weight: 500; }
-  .wx-advisory { width: clamp(260px, 32vw, 380px); flex-shrink: 0; background: var(--card); border: 1px solid var(--amber-dim); border-radius: 12px; padding: 1rem 1.2rem; opacity: 0.97; align-self: flex-start; margin-top: 0.6rem; }
-  .wx-advisory-title { font-size: 0.75rem; font-weight: 700; color: var(--amber); text-transform: uppercase; letter-spacing: 0.08em; }
-  .wx-advisory-body { margin-top: 0.5rem; font-size: clamp(0.8rem, 1.2vw, 0.95rem); color: var(--hero); line-height: 1.4; }
-  .wx-forecast { display: grid; grid-template-columns: repeat(5, 1fr); gap: clamp(0.4rem, 1.4vw, 0.8rem); margin-top: clamp(1rem, 2vw, 1.6rem); }
-  .wx-day { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 0.8rem 0.5rem 0.7rem; text-align: center; min-width: 0; }
-  .wx-day.active { border-color: var(--amber-dim); }
-  .wx-day-name { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
-  .wx-day.active .wx-day-name { color: var(--amber); }
-  .wx-day-icon { width: 30px; height: 30px; margin: 0.6rem auto; color: var(--hero); }
-  .wx-day-icon svg { width: 100%; height: 100%; }
-  .wx-day-temps { margin-top: 0.75rem; font-size: 0.78rem; font-weight: 600; color: var(--hero); }
-  .wx-day-temps .lo { color: var(--muted); margin-left: 0.3rem; }
-  .wx-day-cond { font-size: 0.62rem; color: var(--muted); margin-top: 0.35rem; text-transform: uppercase; letter-spacing: 0.05em; word-wrap: break-word; }
-  .wx-footnote { font-size: 0.62rem; color: var(--muted); margin-top: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; }
-
+  /* ---------- weather screen (matches the approved reference design) ---------- */
+  #weatherScreen {
+    background: #0a0b0d;
+    font-family: 'JetBrains Mono', monospace;
+    padding: clamp(1.8rem, 5vh, 3.4rem) clamp(1.6rem, 3.1vw, 3.2rem) clamp(4.2rem, 9vh, 5.4rem);
+    overflow: hidden;
+  }
+  .wx-top { display: flex; justify-content: space-between; align-items: flex-start; flex-shrink: 0; }
+  .wx-back { display: block; padding: 0; margin-bottom: clamp(0.6rem, 1.6vh, 1rem); }
+  .wx-title { font-family: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif; font-size: clamp(1.6rem, 2.6vw, 2.2rem); font-weight: 600; color: var(--hero); letter-spacing: -0.01em; }
+  .wx-subtitle { margin-top: 0.35rem; font-size: clamp(0.7rem, 1vw, 0.82rem); color: var(--amber); letter-spacing: 0.06em; text-transform: uppercase; }
+  .wx-clock { display: flex; align-items: center; gap: 0.9rem; font-size: clamp(0.9rem, 1.2vw, 1.05rem); color: var(--muted); font-variant-numeric: tabular-nums; cursor: pointer; padding-top: 0.3rem; }
+  .wx-clock .header-clock { font-size: inherit; color: inherit; }
+  .wx-clock .wx-div { width: 1px; height: 20px; background: #2a2c31; }
+  .wx-clock svg { width: 20px; height: 20px; }
+  .wx-main { flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: space-between; }
+  .wx-hero { display: flex; justify-content: space-between; align-items: flex-start; gap: clamp(1rem, 3vw, 2.5rem); margin-top: clamp(2.5rem, 14vh, 9rem); }
+  .wx-hero-left { min-width: 0; }
+  .wx-cond { display: flex; align-items: center; gap: clamp(0.8rem, 1.2vw, 1.2rem); }
+  .wx-cond-icon { width: clamp(52px, 4vw, 70px); height: clamp(52px, 4vw, 70px); flex-shrink: 0; color: var(--amber); }
+  .wx-cond-icon svg, .wx-day-icon svg { display: block; width: 100%; height: 100%; overflow: visible; }
+  .wx-cond-text { font-family: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif; font-size: clamp(1.8rem, 2.9vw, 3rem); font-weight: 600; color: var(--hero); letter-spacing: -0.01em; }
+  .wx-temp { display: flex; align-items: flex-start; margin-top: clamp(0.4rem, 2vh, 1.2rem); }
+  .wx-temp-num { font-family: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif; font-size: clamp(6rem, 17vh, 12rem); font-weight: 700; line-height: 0.9; letter-spacing: -0.03em; color: var(--hero); }
+  .wx-temp-unit { align-self: flex-end; margin: 0 0 clamp(1rem, 4vh, 2.4rem) 0.5rem; font-size: clamp(1.4rem, 2.1vw, 2rem); color: var(--amber); }
+  .wx-meta { margin-top: clamp(1rem, 2.6vh, 1.8rem); font-size: clamp(0.8rem, 1.1vw, 1rem); color: var(--muted); display: flex; flex-wrap: wrap; gap: clamp(1.4rem, 2.6vw, 2.6rem); letter-spacing: 0.06em; text-transform: uppercase; }
+  .wx-advisory { width: clamp(300px, 33vw, 560px); flex-shrink: 0; background: var(--card); border: 1px solid #5a3d1d; border-radius: 14px; padding: clamp(1.1rem, 1.9vw, 1.7rem) clamp(1.2rem, 2vw, 1.9rem); margin-top: clamp(1.5rem, 10vh, 6rem); }
+  .wx-adv-title { font-size: clamp(0.7rem, 1vw, 0.85rem); color: var(--amber); letter-spacing: 0.06em; text-transform: uppercase; }
+  .wx-adv-body { margin-top: 0.9rem; font-family: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif; font-size: clamp(1rem, 1.5vw, 1.25rem); line-height: 1.45; color: var(--hero); }
+  .wx-forecast { flex-shrink: 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: clamp(0.8rem, 1.1vw, 1.1rem); }
+  .wx-day { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: clamp(1rem, 2.4vh, 1.7rem) 0.6rem clamp(1rem, 2.2vh, 1.5rem); text-align: center; min-width: 0; }
+  .wx-day.active { background: #3f2d1a; border-color: #7a5424; }
+  .wx-day-name { font-size: clamp(0.72rem, 1vw, 0.9rem); color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .wx-day.active .wx-day-name, .wx-day.active .wx-day-icon { color: var(--amber); }
+  .wx-day-icon { width: clamp(28px, 2.2vw, 38px); height: clamp(28px, 2.2vw, 38px); margin: clamp(0.8rem, 2.4vh, 1.5rem) auto; color: var(--hero); }
+  .wx-day-temps { font-size: clamp(0.85rem, 1.2vw, 1.1rem); color: var(--hero); letter-spacing: 0.04em; white-space: nowrap; }
   /* ---------- corner status chrome (voice HUD, mic, language, settings) ---------- */
 
   .corner-cluster {
@@ -804,27 +806,112 @@
    .clock-block { animation: pixel-shift 360s infinite ease-in-out; }
    .dim-overlay { position: fixed; inset: 0; pointer-events: none; background: #000; opacity:0; transition: opacity 600ms ease; z-index: 998; }
    .dim-overlay.active { opacity: 0.88; }
+  /* ---------- v2: display language, bottom chrome rows, clock layout, new screens ---------- */
+  .header-title-fr { display: none; }
+  html[data-lang="fr"] .header-title-en { display: none; }
+  html[data-lang="fr"] .header-title-fr { display: block; font-size: clamp(1.3rem, 3vw, 1.8rem); font-weight: 700; color: var(--hero); }
+  .header-sub { font-size: 0.75rem; color: var(--amber); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 0.3rem; }
+  html[data-lang="en"] .day-chip .fr { display: none; }
+  html[data-lang="fr"] .day-chip > span:first-child { display: none; }
+  html[data-lang="fr"] .day-chip .fr { font-size: inherit; opacity: 1; }
+
+  .corner-cluster.left, .corner-cluster.right { flex-direction: row; align-items: center; gap: 8px; bottom: 14px; }
+  .screen { padding-bottom: clamp(4.4rem, 8vh, 5.2rem); }
+
+  #clockScreen.active { align-items: stretch; justify-content: flex-start; padding: clamp(1.2rem, 3vw, 2rem) clamp(1.5rem, 4vw, 3rem) clamp(4.6rem, 9vh, 5.8rem); }
+  .clock-top { display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; }
+  .clock-top .status-line { margin: 0; }
+  .clock-top-right { display: flex; align-items: center; gap: 0.9rem; font-size: 0.75rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; }
+  .clock-top-right svg { width: 18px; height: 18px; }
+  .clock-main { flex: 1; min-height: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .clock-bottom { display: flex; justify-content: space-between; align-items: center; gap: 1rem; border-top: 1px solid var(--border); padding-top: clamp(0.9rem, 2vh, 1.2rem); flex-shrink: 0; }
+  .clock-bottom .status-line { margin: 0; min-width: 0; font-size: clamp(0.68rem, 1.1vw, 0.8rem); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .clock-bottom #alarmStatus, .clock-bottom #musicStatus { flex: 1 1 0; }
+  .clock-bottom #musicStatus { text-align: right; }
+  .clock-bottom #weatherStrip { flex: 0 1 auto; color: var(--muted); text-align: center; }
+
+  .timer-active-body { flex: 1; min-height: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: clamp(1.6rem, 4vh, 2.4rem); }
+  .timer-ring { position: relative; width: min(56vh, 72vw); aspect-ratio: 1; }
+  .timer-ring svg { width: 100%; height: 100%; transform: rotate(-90deg); overflow: visible; }
+  .timer-ring .track { fill: none; stroke: #1c1d21; stroke-width: 6; }
+  .timer-ring .arc { fill: none; stroke: var(--amber); stroke-width: 6; stroke-linecap: round; transition: stroke-dashoffset 0.9s linear; }
+  .timer-readout { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .timer-big { font-size: clamp(3.2rem, 9vw, 5.8rem); font-weight: 700; color: var(--hero); font-variant-numeric: tabular-nums; line-height: 1; }
+  .timer-of { margin-top: 0.7rem; font-size: 0.8rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; }
+  .timer-buttons { display: flex; gap: 1rem; }
+  .timer-btn { display: flex; align-items: center; gap: 0.6rem; background: var(--card); border: 1px solid var(--border); color: var(--muted); border-radius: 14px; padding: 0.8rem 1.4rem; font-family: inherit; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer; }
+  .timer-btn svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .timer-btn.pause { background: #3f2d1a; border-color: #3f2d1a; color: var(--amber); }
+  .timer-hint { text-align: center; font-size: 0.72rem; color: var(--amber-dim); letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.7; }
+
+  .va-center { flex: 1; min-height: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 1.4rem; padding: 0 clamp(1.5rem, 4vw, 3rem); }
+  .va-orb { position: relative; width: min(42vh, 260px); aspect-ratio: 1; display: flex; align-items: center; justify-content: center; }
+  .va-ring { position: absolute; inset: 0; border-radius: 50%; border: 1px solid rgba(238, 162, 62, 0.22); animation: va-pulse 2.4s ease-out infinite; }
+  .va-ring.r2 { inset: 14%; border-color: rgba(238, 162, 62, 0.45); animation-delay: 0.6s; }
+  .va-core { position: relative; width: 46%; aspect-ratio: 1; border-radius: 50%; background: #3f2d1a; border: 3px solid var(--amber); display: flex; align-items: center; justify-content: center; box-shadow: 0 0 40px rgba(238, 162, 62, 0.35); }
+  .va-core svg { width: 42%; height: 42%; fill: none; stroke: var(--amber); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  @keyframes va-pulse { 0% { transform: scale(0.94); opacity: 0.9; } 100% { transform: scale(1.06); opacity: 0.15; } }
+  .va-title { font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 700; color: var(--hero); }
+  .va-sub { font-size: 0.8rem; color: var(--amber); letter-spacing: 0.08em; text-transform: uppercase; }
+  .va-footer { flex-shrink: 0; text-align: center; font-size: 0.7rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; }
+  .va-speak { align-items: flex-start; text-align: left; padding: 0 clamp(1.5rem, 8vw, 8rem); }
+  .va-speak-label { display: flex; align-items: center; gap: 0.8rem; color: var(--amber); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; }
+  .va-bars { display: inline-flex; align-items: center; gap: 4px; height: 22px; }
+  .va-bars i { display: block; width: 4px; height: 100%; background: var(--amber); border-radius: 2px; animation: va-bar 1s ease-in-out infinite; }
+  .va-bars i:nth-child(2) { animation-delay: 0.15s; }
+  .va-bars i:nth-child(3) { animation-delay: 0.3s; }
+  .va-bars i:nth-child(4) { animation-delay: 0.45s; }
+  @keyframes va-bar { 0%, 100% { transform: scaleY(0.35); } 50% { transform: scaleY(1); } }
+  .va-reply-main { font-size: clamp(1.3rem, 3vw, 2.3rem); font-weight: 600; color: var(--hero); line-height: 1.35; max-width: 52rem; }
+  .va-reply-alt { font-size: clamp(0.95rem, 1.9vw, 1.35rem); color: var(--muted); font-style: italic; line-height: 1.4; max-width: 52rem; }
+  .va-userbar { flex-shrink: 0; margin: 0 clamp(1.5rem, 8vw, 8rem); align-items: center; gap: 0.8rem; background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 0.9rem 1.2rem; color: var(--muted); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; }
+
+  .settings-grid { flex: 1; min-height: 0; display: grid; grid-template-columns: 1fr 1fr; gap: clamp(0.8rem, 2vw, 1.2rem); padding: 0 clamp(1.5rem, 4vw, 3rem); align-content: center; }
+  .set-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: clamp(1rem, 2vw, 1.4rem); display: flex; flex-direction: column; gap: 0.9rem; min-width: 0; }
+  .set-card-title { font-size: 0.7rem; color: var(--amber); letter-spacing: 0.1em; text-transform: uppercase; }
+  .set-row { display: flex; justify-content: space-between; align-items: center; gap: 0.8rem; color: var(--hero); font-size: 0.95rem; min-width: 0; }
+  .set-sub { font-size: 0.7rem; color: var(--muted); margin-top: 0.25rem; letter-spacing: 0.04em; }
+  .set-val { font-size: 0.8rem; color: var(--amber); white-space: nowrap; }
+  .set-val.plain { color: var(--muted); overflow: hidden; text-overflow: ellipsis; max-width: 60%; }
+  .set-range { width: 100%; accent-color: var(--amber); }
+  .lang-row { display: flex; gap: 0.8rem; }
+  .lang-btn { flex: 1; background: none; border: 1px solid var(--amber-dim); color: var(--amber); border-radius: 12px; padding: 0.9rem 0.6rem; font-family: inherit; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer; }
+  .lang-btn.is-active { background: var(--amber); border-color: var(--amber); color: #1a1305; }
+  .badge { font-size: 0.68rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--amber); background: #3f2d1a; border-radius: 8px; padding: 0.35rem 0.6rem; white-space: nowrap; }
+  .badge.off { color: var(--muted); background: none; border: 1px solid var(--border); }
+  .settings-footer { flex-shrink: 0; display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: clamp(1rem, 2vh, 1.6rem) clamp(1.5rem, 4vw, 3rem) 0; font-size: 0.68rem; color: var(--muted); letter-spacing: 0.05em; text-transform: uppercase; }
+  .reboot-btn { background: none; border: 1px solid var(--border); color: var(--muted); border-radius: 10px; padding: 0.55rem 0.9rem; font-family: inherit; font-size: 0.68rem; letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer; }
 </style>
 </head>
 <body>
 
   <!-- ===================== CLOCK SCREEN ===================== -->
   <div class="screen active" id="clockScreen">
-    <div class="status-line" id="alarmStatus">CONNECTING &middot; CONNEXION</div>
-    <div class="status-line" id="timerStatus">SET TIMER &middot; MINUTEUR</div>
-    <div class="time clock-block" id="time" aria-live="polite"></div>
-    <div class="dates">
-      <div class="date-en" id="dateEn"></div>
-      <div class="date-fr" id="dateFr"></div>
+    <div class="clock-top">
+      <div class="status-line" id="timerStatus"><span data-en="SET TIMER" data-fr="MINUTEUR"></span></div>
+      <div class="clock-top-right">
+        <span id="dimTag"></span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M2 8.5a15 15 0 0 1 20 0"/><path d="M5 12a10 10 0 0 1 14 0"/><path d="M8.5 15.5a5 5 0 0 1 7 0"/><circle cx="12" cy="19" r="1" fill="currentColor"/></svg>
+      </div>
     </div>
-    <div class="status-line below" id="musicStatus">MUSIC &middot; MUSIQUE</div>
-    <div class="status-line below" id="weatherStrip" style="cursor:pointer;">WEATHER &middot; MÉTÉO</div>
+    <div class="clock-main">
+      <div class="time clock-block" id="time" aria-live="polite"></div>
+      <div class="dates">
+        <div class="date-en" id="dateEn"></div>
+        <div class="date-fr" id="dateFr"></div>
+      </div>
+    </div>
+    <div class="clock-bottom">
+      <div class="status-line" id="alarmStatus"><span data-en="CONNECTING" data-fr="CONNEXION"></span></div>
+      <div class="status-line" id="weatherStrip"><span data-en="WEATHER" data-fr="MÉTÉO"></span></div>
+      <div class="status-line" id="musicStatus"><span data-en="MUSIC" data-fr="MUSIQUE"></span></div>
+    </div>
   </div>
 
   <!-- ===================== ALARMS LIST SCREEN ===================== -->
   <div class="screen" id="alarmsScreen">
     <div class="screen-header">
-      <button class="back-btn" data-target="clockScreen">&larr; CLOCK &middot; HORLOGE</button>
+      <button class="back-btn" data-target="clockScreen"><span data-en="&larr; CLOCK" data-fr="&larr; HORLOGE"></span></button>
       <div>
         <div class="header-title-en">Alarms</div>
         <div class="header-title-fr">Alarmes</div>
@@ -834,14 +921,14 @@
     <div class="alarms-list" id="alarmsList"></div>
     <div class="alarms-footer">
       <div class="alarms-count" id="alarmsCount"></div>
-      <button class="btn-amber" id="newAlarmBtn">+ NEW ALARM &middot; NOUVELLE</button>
+      <button class="btn-amber" id="newAlarmBtn"><span data-en="+ NEW ALARM" data-fr="+ NOUVELLE ALARME"></span></button>
     </div>
   </div>
 
   <!-- ===================== SET ALARM SCREEN ===================== -->
   <div class="screen" id="setAlarmScreen">
     <div class="screen-header">
-      <button class="back-btn" data-target="alarmsScreen">&larr; ALARMS &middot; ALARMES</button>
+      <button class="back-btn" data-target="alarmsScreen"><span data-en="&larr; ALARMS" data-fr="&larr; ALARMES"></span></button>
       <div>
         <div class="header-title-en">Set Alarm</div>
         <div class="header-title-fr">Configuration de l'alarme</div>
@@ -869,7 +956,7 @@
       </div>
 
       <div>
-        <div class="section-label">REPEAT &middot; R&Eacute;P&Eacute;TITION</div>
+        <div class="section-label"><span data-en="REPEAT" data-fr="R&Eacute;P&Eacute;TITION"></span></div>
         <div class="days-picker" id="daysPicker">
           <button class="day-chip" data-day="0"><span>M</span><span class="fr">L</span></button>
           <button class="day-chip" data-day="1"><span>T</span><span class="fr">M</span></button>
@@ -882,78 +969,72 @@
       </div>
 
       <div>
-        <div class="section-label">ALARM LABEL &middot; NOM</div>
-        <input type="text" id="alarmLabelInput" class="label-input" placeholder="Morning / Matin">
+        <div class="section-label"><span data-en="ALARM LABEL" data-fr="NOM DE L'ALARME"></span></div>
+        <input type="text" id="alarmLabelInput" class="label-input" placeholder="Morning" data-ph-en="Morning" data-ph-fr="Matin">
       </div>
 
       <div>
-        <div class="section-label">SOUND &middot; SON</div>
+        <div class="section-label"><span data-en="SOUND" data-fr="SON"></span></div>
         <select id="alarmSoundSelect" style="width:100%;padding:6px;font-family:inherit;">
-          <option value="default">Default beep / Sonnerie par défaut</option>
-          <option value="soft">Soft chime / Carillon doux</option>
-          <option value="ping">Bright ping / Sonnerie vive</option>
+          <option value="default" data-en="Default beep" data-fr="Sonnerie par défaut">Default beep</option>
+          <option value="soft" data-en="Soft chime" data-fr="Carillon doux">Soft chime</option>
+          <option value="ping" data-en="Bright ping" data-fr="Sonnerie vive">Bright ping</option>
         </select>
       </div>
     </div>
 
     <div class="set-alarm-footer">
-      <button class="btn-outline" id="cancelAlarmBtn">CANCEL &middot; ANNULER</button>
-      <button class="btn-amber" id="saveAlarmBtn">SAVE &middot; ENREGISTRER</button>
+      <button class="btn-outline" id="cancelAlarmBtn"><span data-en="CANCEL" data-fr="ANNULER"></span></button>
+      <button class="btn-amber" id="saveAlarmBtn"><span data-en="SAVE" data-fr="ENREGISTRER"></span></button>
     </div>
   </div>
 
-  <!-- ===================== TIMER SCREEN ===================== -->
+  <!-- ===================== WEATHER SCREEN ===================== -->
   <div class="screen" id="weatherScreen">
-    <div class="screen-header">
-      <button class="back-btn" data-target="clockScreen">&larr; CLOCK &middot; HORLOGE</button>
-      <div class="weather-title-wrap">
-        <div class="header-title-en">WEATHER · MÉTÉO</div>
-        <div class="weather-subtitle" id="wxSubtitle">loading…</div>
+    <div class="wx-top">
+      <div>
+        <button class="back-btn wx-back" data-target="clockScreen" data-en="&larr; CLOCK" data-fr="&larr; HORLOGE"></button>
+        <div class="wx-title" data-en="Weather Forecast" data-fr="Prévisions météo"></div>
+        <div class="wx-subtitle" id="wxSub">MÉTÉO DÉTAILLÉE • PARIS</div>
+      </div>
+      <div class="wx-clock" id="wxClock" title="">
+        <span class="header-clock"></span>
+        <span class="wx-div"></span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M2 8.5a15 15 0 0 1 20 0"/><path d="M5 12a10 10 0 0 1 14 0"/><path d="M8.5 15.5a5 5 0 0 1 7 0"/><circle cx="12" cy="19" r="1" fill="currentColor"/></svg>
       </div>
     </div>
-
-    <div class="wx-body">
-      <section class="wx-hero">
+    <div class="wx-main">
+      <div class="wx-hero">
         <div class="wx-hero-left">
-          <div class="wx-condition" id="wxCondition">
-            <div class="wx-icon" id="wxIcon"></div>
-            <div class="wx-cond-text">
-              <div class="wx-cond-row">
-                <span id="wxCondEn">—</span>
-                <span class="wx-dot"> / </span>
-                <span id="wxCondFr">—</span>
-              </div>
-              <div class="wx-temp-row">
-                <span class="wx-temp-value" id="wxTemp">--</span>
-                <span class="wx-temp-unit">°C</span>
-              </div>
-              <div class="wx-meta" id="wxMeta"></div>
-            </div>
-          </div>
+          <div class="wx-cond"><div class="wx-cond-icon" id="wxIcon"></div><div class="wx-cond-text" id="wxCond"></div></div>
+          <div class="wx-temp"><span class="wx-temp-num" id="wxTemp">--°</span><span class="wx-temp-unit">C</span></div>
+          <div class="wx-meta"><span id="wxHum"></span><span id="wxWind"></span></div>
         </div>
-        <div class="wx-advisory" id="wxAdvisory" style="display:none;">
-          <div class="wx-advisory-title" id="wxAdvTitle"></div>
-          <div class="wx-advisory-body" id="wxAdvBody"></div>
+        <div class="wx-advisory" id="wxAdvisory">
+          <div class="wx-adv-title" id="wxAdvTitle"></div>
+          <div class="wx-adv-body" id="wxAdvBody"></div>
         </div>
-      </section>
-
-      <section class="wx-forecast" id="wxForecast">
-        <!-- cards via JS -->
-      </section>
-      <div class="wx-footnote">
-        DATA & middot; DONNÉES · OPEN-METEO • <span id="wxStatus">AWAITING DATA &middot; DONNÉES EN ATTENTE</span>
       </div>
+      <div class="wx-forecast" id="wxForecast"></div>
     </div>
   </div>
 
+    <!-- ===================== TIMER SCREEN ===================== -->
   <div class="screen" id="timerScreen">
-    <div class="screen-header">
-      <button class="back-btn" data-target="clockScreen">&larr; CLOCK &middot; HORLOGE</button>
+    <div class="screen-header" id="timerHeaderSetup">
+      <button class="back-btn" data-target="clockScreen"><span data-en="&larr; CLOCK" data-fr="&larr; HORLOGE"></span></button>
       <div>
         <div class="header-title-en">Timer</div>
         <div class="header-title-fr">Minuteur</div>
       </div>
-      <div class="header-clock" id="headerClock3"></div>
+      <div class="header-clock"></div>
+    </div>
+    <div class="screen-header" id="timerHeaderActive" style="display:none;">
+      <div>
+        <div class="header-title-en">Timer Active</div>
+        <div class="header-title-fr">Minuteur en cours</div>
+      </div>
+      <div class="header-clock"></div>
     </div>
 
     <div class="set-alarm-body" id="timerSetupBody">
@@ -971,30 +1052,149 @@
         </div>
       </div>
       <div>
-        <div class="section-label">TIMER LABEL &middot; NOM</div>
-        <input type="text" id="timerLabelInput" class="label-input" placeholder="Pasta / P&acirc;tes">
+        <div class="section-label"><span data-en="TIMER LABEL" data-fr="NOM DU MINUTEUR"></span></div>
+        <input type="text" id="timerLabelInput" class="label-input" placeholder="Pasta" data-ph-en="Pasta" data-ph-fr="P&acirc;tes">
       </div>
     </div>
 
-    <div class="set-alarm-body" id="timerActiveBody" style="display:none;">
-      <div class="time" id="timerCountdown"></div>
-      <div class="date-fr" id="timerOfTotal"></div>
+    <div class="timer-active-body" id="timerActiveBody" style="display:none;">
+      <div class="timer-ring">
+        <svg viewBox="0 0 260 260">
+          <circle class="track" cx="130" cy="130" r="120"></circle>
+          <circle class="arc" id="timerRing" cx="130" cy="130" r="120" stroke-dasharray="753.98" stroke-dashoffset="0"></circle>
+        </svg>
+        <div class="timer-readout">
+          <div class="timer-big" id="timerCountdown">00:00</div>
+          <div class="timer-of" id="timerOfTotal"></div>
+        </div>
+      </div>
+      <div class="timer-buttons">
+        <button class="timer-btn pause" id="pauseTimerBtn"><svg viewBox="0 0 24 24"><path d="M9 5v14M15 5v14"/></svg><span class="lbl">PAUSE</span></button>
+        <button class="timer-btn" id="resetTimerBtn"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span data-en="RESET" data-fr="ANNULER"></span></button>
+      </div>
+      <div class="timer-hint" data-en="Swipe left to return home" data-fr="Balayez vers la gauche pour revenir"></div>
     </div>
 
     <div class="set-alarm-footer" id="timerSetupFooter">
-      <button class="btn-outline" id="cancelTimerSetupBtn">CANCEL &middot; ANNULER</button>
-      <button class="btn-amber" id="startTimerBtn">START &middot; D&Eacute;MARRER</button>
+      <button class="btn-outline" id="cancelTimerSetupBtn"><span data-en="CANCEL" data-fr="ANNULER"></span></button>
+      <button class="btn-amber" id="startTimerBtn"><span data-en="START" data-fr="D&Eacute;MARRER"></span></button>
     </div>
+  </div>
 
-    <div class="set-alarm-footer" id="timerActiveFooter" style="display:none;">
-      <button class="btn-outline" id="cancelTimerBtn">CANCEL TIMER &middot; ANNULER LE MINUTEUR</button>
+<!-- ===================== LISTENING SCREEN ===================== -->
+  <div class="screen" id="listeningScreen">
+    <div class="screen-header">
+      <div>
+        <div class="header-title-en">Voice Assistant</div>
+        <div class="header-title-fr">Assistant vocal</div>
+        <div class="header-sub" data-en="Voice assistant online" data-fr="Assistant vocal en ligne"></div>
+      </div>
+      <div class="header-clock"></div>
+    </div>
+    <div class="va-center">
+      <div class="va-orb">
+        <span class="va-ring"></span>
+        <span class="va-ring r2"></span>
+        <div class="va-core"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></div>
+      </div>
+      <div class="va-title" data-en="Listening..." data-fr="À l'écoute..."></div>
+      <div class="va-sub" data-en="Listening in English and French" data-fr="Écoute en anglais et en français"></div>
+    </div>
+    <div class="va-footer" id="listenFooter"></div>
+  </div>
+
+  <!-- ===================== SPEAKING SCREEN ===================== -->
+  <div class="screen" id="speakingScreen">
+    <div class="screen-header">
+      <div>
+        <div class="header-title-en">Voice Assistant</div>
+        <div class="header-title-fr">Assistant vocal</div>
+        <div class="header-sub" data-en="Voice assistant · response" data-fr="Assistant vocal • réponse"></div>
+      </div>
+      <div class="header-clock"></div>
+    </div>
+    <div class="va-center va-speak">
+      <div class="va-speak-label">
+        <span class="va-bars"><i></i><i></i><i></i><i></i></span>
+        <span data-en="Speaking" data-fr="Lecture en cours"></span>
+      </div>
+      <div class="va-reply-main" id="replyMain"></div>
+      <div class="va-reply-alt" id="replyAlt"></div>
+    </div>
+    <div class="va-userbar" id="userQuery"></div>
+  </div>
+
+  <!-- ===================== SETTINGS SCREEN ===================== -->
+  <div class="screen" id="settingsScreen">
+    <div class="screen-header">
+      <button class="back-btn" data-target="clockScreen"><span data-en="&larr; CLOCK" data-fr="&larr; HORLOGE"></span></button>
+      <div>
+        <div class="header-title-en">NestClock Settings</div>
+        <div class="header-title-fr">Réglages NestClock</div>
+        <div class="header-sub" data-en="System &amp; preferences" data-fr="Système &amp; préférences"></div>
+      </div>
+      <div class="header-clock"></div>
+    </div>
+    <div class="settings-grid">
+      <div class="set-card">
+        <div class="set-card-title" data-en="Display" data-fr="Affichage"></div>
+        <div class="set-row">
+          <span data-en="Brightness" data-fr="Luminosité"></span>
+          <span class="set-val" id="brightVal">--</span>
+        </div>
+        <input type="range" class="set-range" id="brightSlider" min="5" max="100" value="100">
+        <div class="set-row">
+          <div>
+            <div data-en="Auto-Dim at Night" data-fr="Atténuation auto la nuit"></div>
+            <div class="set-sub" data-en="Dimmed automatically at night" data-fr="Diminution auto la nuit"></div>
+          </div>
+          <label class="toggle"><input type="checkbox" id="autoDimToggle"><span class="toggle-track"></span></label>
+        </div>
+      </div>
+      <div class="set-card">
+        <div class="set-card-title" data-en="Voice assistant" data-fr="Assistant vocal"></div>
+        <div class="set-row">
+          <div>
+            <div data-en="Wake Word Activation" data-fr="Activation par mot-clé"></div>
+            <div class="set-sub">"Hey NestClock"</div>
+          </div>
+          <label class="toggle"><input type="checkbox" id="wakeToggle"><span class="toggle-track"></span></label>
+        </div>
+        <div class="set-row">
+          <span data-en="Assistant Volume" data-fr="Volume de l'assistant"></span>
+          <span class="set-val" id="assistVolVal">--</span>
+        </div>
+        <input type="range" class="set-range" id="assistVolSlider" min="0" max="100" value="65">
+      </div>
+      <div class="set-card">
+        <div class="set-card-title" data-en="System language" data-fr="Langue du système"></div>
+        <div class="lang-row">
+          <button class="lang-btn" data-lang="en">English (US/UK)</button>
+          <button class="lang-btn" data-lang="fr">Français (FR)</button>
+        </div>
+      </div>
+      <div class="set-card">
+        <div class="set-card-title" data-en="Connections" data-fr="Connexions"></div>
+        <div class="set-row">
+          <span data-en="Wi-Fi Network" data-fr="Réseau Wi-Fi"></span>
+          <span class="set-val plain" id="wifiName">--</span>
+        </div>
+        <div class="set-row">
+          <span data-en="Spotify Account" data-fr="Compte Spotify"></span>
+          <span class="badge off" id="spotifyBadge">--</span>
+        </div>
+      </div>
+    </div>
+    <div class="settings-footer">
+      <span id="fwInfo"></span>
+      <button class="reboot-btn" id="rebootBtn" data-en="System reboot" data-fr="Redémarrer"></button>
     </div>
   </div>
 
   <!-- ===================== NOW PLAYING SCREEN ===================== -->
   <div class="screen" id="musicScreen">
     <div class="screen-header">
-      <button class="back-btn" data-target="clockScreen">&larr; CLOCK &middot; HORLOGE</button>
+      <button class="back-btn" data-target="clockScreen"><span data-en="&larr; CLOCK" data-fr="&larr; HORLOGE"></span></button>
       <div>
         <div class="header-title-en">Now Playing</div>
         <div class="header-title-fr">En lecture</div>
@@ -1004,7 +1204,7 @@
 
     <div class="music-body" id="musicEmpty">
       <div class="music-msg" id="musicMsg"></div>
-      <button class="btn-amber" id="spotifyLoginBtn">CONNECT SPOTIFY &middot; CONNECTER SPOTIFY</button>
+      <button class="btn-amber" id="spotifyLoginBtn"><span data-en="CONNECT SPOTIFY" data-fr="CONNECTER SPOTIFY"></span></button>
     </div>
 
     <div class="music-body" id="musicPlayer" style="display:none;">
@@ -1027,12 +1227,12 @@
     </div>
   </div>
 
-  <div class="hint" id="hint">tap anywhere for fullscreen / plein &eacute;cran</div>
-  <button class="format-toggle" id="formatToggle">24H</button>
+  <div class="hint" id="hint" data-en="Tap anywhere for fullscreen" data-fr="Toucher pour le plein écran"></div>
+  <button class="corner-btn" id="formatToggle">24H</button>
 
   <div class="fired-overlay" id="firedOverlay">
     <div class="fired-label" id="firedLabel"></div>
-    <div class="fired-dismiss">TAP TO DISMISS &middot; APPUYEZ POUR ARR&Ecirc;TER</div>
+    <div class="fired-dismiss"><span data-en="TAP TO DISMISS" data-fr="APPUYEZ POUR ARR&Ecirc;TER"></span></div>
   </div>
 
   <script>
@@ -1079,14 +1279,14 @@
     function weatherIcon(code) {
       const c = (code === undefined || code === null) ? -1 : code;
       const stroke = 'stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"';
-      if (c === 0) return '<svg viewBox="0 0 64 64" '+stroke+'><circle cx="32" cy="32" r="12" fill="currentColor" stroke="none" opacity="0.9"/><g stroke="currentColor" stroke-width="2.4"><path d="M32 4v8M32 52v8M4 32h8M52 32h8M12 12l6 6M46 12l-6 6M12 52l6-6M46 52l-6-6"/></g></svg>';
-      if (c === 1 || c === 2) return '<svg viewBox="0 0 64 64" '+stroke+'><circle cx="22" cy="26" r="10" fill="currentColor" stroke="none" opacity="0.9"/><path d="M30 38h22a10 10 0 0 0 0-20 14 14 0 0 0-24-4" fill="none"/></svg>';
-      if (c === 3) return '<svg viewBox="0 0 64 64" '+stroke+'><path d="M12 30a10 10 0 0 1 1-19.9A14 14 0 0 1 46 22a10 10 0 0 1 2 19.8"/><path d="M12 30h38"/></svg>';
-      if (c === 45 || c === 48) return '<svg viewBox="0 0 64 64" '+stroke+'><path d="M12 26a10 10 0 0 1 1-19.9A14 14 0 0 1 46 18a10 10 0 0 1 2 17.8"/><path d="M12 26h38"/><g stroke="currentColor" stroke-width="3"><path d="M18 40h0.01M26 40h0.01M34 40h0.01M42 40h0.01"/></g></svg>';
-      if ((c >= 51 && c <= 67) || (c >= 80 && c <= 82)) return '<svg viewBox="0 0 64 64" '+stroke+'><path d="M14 24a10 10 0 0 1 1-19.9A14 14 0 0 1 48 16a10 10 0 0 1 2 19.8"/><path d="M14 24h38"/><g stroke-width="2.4"><path d="M20 32l-4 12M32 32l-4 12M44 32l-4 12"/></g></svg>';
-      if ((c >= 71 && c <= 77) || (c >= 85 && c <= 86)) return '<svg viewBox="0 0 64 64" '+stroke+'><path d="M14 24a10 10 0 0 1 1-19.9A14 14 0 0 1 48 16a10 10 0 0 1 2 19.8"/><path d="M14 24h38"/><g stroke-width="3"><path d="M20 34h.01M30 40h.01M40 34h.01M26 46h.01"/></g></svg>';
-      if (c >= 95) return '<svg viewBox="0 0 64 64" '+stroke+'><path d="M14 24a10 10 0 0 1 1-19.9A14 14 0 0 1 48 16a10 10 0 0 1 2 19.8"/><path d="M14 24h38"/><path d="M30 30l-8 14h8l-4 14l14-18h-8l6-10"/></svg>';
-      return '<svg viewBox="0 0 64 64" '+stroke+'><path d="M12 30a10 10 0 0 1 1-19.9A14 14 0 0 1 46 22a10 10 0 0 1 2 19.8"/><path d="M12 30h38"/></svg>';
+      if (c === 0) return '<svg viewBox="-8 -8 80 80" '+stroke+'><circle cx="32" cy="32" r="12" fill="currentColor" stroke="none" opacity="0.9"/><g stroke="currentColor" stroke-width="2.4"><path d="M32 4v8M32 52v8M4 32h8M52 32h8M12 12l6 6M46 12l-6 6M12 52l6-6M46 52l-6-6"/></g></svg>';
+      if (c === 1 || c === 2) return '<svg viewBox="-8 -8 80 80" '+stroke+'><circle cx="22" cy="26" r="10" fill="currentColor" stroke="none" opacity="0.9"/><path d="M30 38h22a10 10 0 0 0 0-20 14 14 0 0 0-24-4" fill="none"/></svg>';
+      if (c === 3) return '<svg viewBox="-8 -8 80 80" '+stroke+'><path d="M12 30a10 10 0 0 1 1-19.9A14 14 0 0 1 46 22a10 10 0 0 1 2 19.8"/><path d="M12 30h38"/></svg>';
+      if (c === 45 || c === 48) return '<svg viewBox="-8 -8 80 80" '+stroke+'><path d="M12 26a10 10 0 0 1 1-19.9A14 14 0 0 1 46 18a10 10 0 0 1 2 17.8"/><path d="M12 26h38"/><g stroke="currentColor" stroke-width="3"><path d="M18 40h0.01M26 40h0.01M34 40h0.01M42 40h0.01"/></g></svg>';
+      if ((c >= 51 && c <= 67) || (c >= 80 && c <= 82)) return '<svg viewBox="-8 -8 80 80" '+stroke+'><path d="M14 24a10 10 0 0 1 1-19.9A14 14 0 0 1 48 16a10 10 0 0 1 2 19.8"/><path d="M14 24h38"/><g stroke-width="2.4"><path d="M20 32l-4 12M32 32l-4 12M44 32l-4 12"/></g></svg>';
+      if ((c >= 71 && c <= 77) || (c >= 85 && c <= 86)) return '<svg viewBox="-8 -8 80 80" '+stroke+'><path d="M14 24a10 10 0 0 1 1-19.9A14 14 0 0 1 48 16a10 10 0 0 1 2 19.8"/><path d="M14 24h38"/><g stroke-width="3"><path d="M20 34h.01M30 40h.01M40 34h.01M26 46h.01"/></g></svg>';
+      if (c >= 95) return '<svg viewBox="-8 -8 80 80" '+stroke+'><path d="M14 24a10 10 0 0 1 1-19.9A14 14 0 0 1 48 16a10 10 0 0 1 2 19.8"/><path d="M14 24h38"/><path d="M30 30l-8 14h8l-4 14l14-18h-8l6-10"/></svg>';
+      return '<svg viewBox="-8 -8 80 80" '+stroke+'><path d="M12 30a10 10 0 0 1 1-19.9A14 14 0 0 1 46 22a10 10 0 0 1 2 19.8"/><path d="M12 30h38"/></svg>';
     }
 
     function forecastIcon(code) {
@@ -1102,55 +1302,77 @@
       return '<svg viewBox="0 0 48 48" fill="none" stroke="'+color+'" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 24a7 7 0 0 1 .4-14A10 10 0 0 1 32 13a7 7 0 0 1 .8 14Z"/><path d="M12 24h22"/></svg>';
     }
 
+    let lastWeather = {};
+
+    const normDay = (f) => {
+      if (!f || typeof f !== 'object') return {};
+      const pick = (...keys) => { for (const k of keys) if (f[k] != null) return f[k]; return null; };
+      return {
+        max: pick('max', 'tmax', 'temp_max', 'high', 'maximum'),
+        min: pick('min', 'tmin', 'temp_min', 'low', 'minimum'),
+        code: pick('code', 'weather_code', 'condition_code', 'wmo'),
+      };
+    };
+
+    const forecastDays = (w) => {
+      if (Array.isArray(w.forecast)) return w.forecast.map(normDay);
+      if (Array.isArray(w.daily)) return w.daily.map(normDay);
+      if (Array.isArray(w.days)) return w.days.map(normDay);
+      const cols = (w.daily && !Array.isArray(w.daily)) ? w.daily : (w.forecast && !Array.isArray(w.forecast) ? w.forecast : null);
+      if (cols && Array.isArray(cols.temperature_2m_max)) {
+        return cols.temperature_2m_max.map((mx, i) => ({
+          max: mx, min: cols.temperature_2m_min ? cols.temperature_2m_min[i] : null,
+          code: cols.weather_code ? cols.weather_code[i] : null,
+        }));
+      }
+      return [];
+    };
+
     function renderWeather(d) {
-      // home strip
-      const strip = document.getElementById('weatherStrip');
-      if (strip) {
-        const cond = d.condition_en || d.condition_fr || 'unknown';
-        strip.textContent = (cond.toUpperCase() + ' \u00b7 ' + (d.temp_c!=null?d.temp_c+'C':'') + ' \u00b7 ' + (d.wind_kmh!=null?d.wind_kmh+' km/h':'')).trim();
+      lastWeather = d || {};
+      const w = lastWeather;
+      const fr = uiLang === 'fr';
+      const city = w.city || 'Paris';
+      const cond = (fr ? (w.condition_fr || w.condition_en) : (w.condition_en || w.condition_fr)) || L('Weather', 'Météo');
+      const temp = w.temp_c != null ? `${Math.round(w.temp_c)}°` : '--°';
+      const adv = fr ? (w.advisory_fr || w.advisory_en) : (w.advisory_en || w.advisory_fr);
+      const advTitle = fr ? (w.advisory_title_fr || w.advisory_title) : (w.advisory_title_en || w.advisory_title);
+
+      document.getElementById('wxSub').textContent = L(
+        `DETAILED FORECAST • ${city.toUpperCase()}`,
+        `MÉTÉO DÉTAILLÉE • ${city.toUpperCase()}`);
+      document.getElementById('wxIcon').innerHTML = weatherIcon(w.code);
+      document.getElementById('wxCond').textContent = cond;
+      document.getElementById('wxTemp').textContent = temp;
+      document.getElementById('wxHum').textContent = `${L('HUMIDITY', 'HUMIDITÉ')}: ${w.humidity != null ? w.humidity + '%' : '--'}`;
+      document.getElementById('wxWind').textContent = `${L('WIND', 'VENT')}: ${w.wind_kmh != null ? Math.round(w.wind_kmh) + ' KM/H' : '--'}`;
+      document.getElementById('wxAdvisory').style.display = adv ? '' : 'none';
+      document.getElementById('wxAdvTitle').textContent = advTitle || L('ADVISORY', 'AVIS');
+      document.getElementById('wxAdvBody').textContent = adv || '';
+
+      // five days from today, named in the display language (LUN or MON, never both)
+      const days = forecastDays(w);
+      const wrap = document.getElementById('wxForecast');
+      wrap.innerHTML = '';
+      for (let i = 0; i < 5; i++) {
+        const f = days[i] || {};
+        const date = new Date();
+        date.setDate(date.getDate() + i);
+        const name = date.toLocaleDateString(fr ? 'fr-FR' : 'en-US', { weekday: 'short' }).replace('.', '').toUpperCase();
+        const hi = f.max != null ? `${Math.round(f.max)}°` : '--°';
+        const lo = f.min != null ? `${Math.round(f.min)}°` : '--°';
+        const tile = document.createElement('div');
+        tile.className = 'wx-day' + (i === 0 ? ' active' : '');
+        tile.innerHTML = `<div class="wx-day-name">${name}</div>` +
+          `<div class="wx-day-icon">${forecastIcon(f.code)}</div>` +
+          `<div class="wx-day-temps">${hi} / ${lo}</div>`;
+        wrap.appendChild(tile);
       }
-      const titleWrap = document.querySelector('.weather-title-wrap .weather-subtitle');
-      const revRow = document.getElementById('wxSubtitle');
-      if (revRow) revRow.textContent = (d.condition_fr || d.condition_en || '').toUpperCase();
-      const icon = document.getElementById('wxIcon');
-      if (icon) icon.innerHTML = weatherIcon(d.code);
-      const en = document.getElementById('wxCondEn'); if (en) en.textContent = d.condition_en || '—';
-      const fr = document.getElementById('wxCondFr'); if (fr) fr.textContent = d.condition_fr || '—';
-      const t = document.getElementById('wxTemp'); if (t) t.textContent = (d.temp_c!=null?d.temp_c:'--');
-      const meta = document.getElementById('wxMeta');
-      if (meta) {
-        meta.innerHTML = '';
-        if (d.humidity != null) { const s = document.createElement('span'); s.innerHTML = 'Humidit\\u00e9\\u00b7 HUMIDITY <strong>' + d.humidity + '%</strong>'; meta.appendChild(s); }
-        if (d.wind_kmh != null) { const s = document.createElement('span'); s.innerHTML = 'Vent\\u00b7 WIND <strong>' + d.wind_kmh + ' km/h</strong>'; meta.appendChild(s); }
-      }
-      // advisory (only if real)
-      const adv = document.getElementById('wxAdvisory');
-      if (adv) {
-        if (d.advisory_en || d.advisory_fr) {
-          adv.style.display = '';
-          const at = document.getElementById('wxAdvTitle'); if (at) at.textContent = (d.advisory_fr || '') + (d.advisory_fr && d.advisory_en ? ' / ' : '') + (d.advisory_en || '');
-          const ab = document.getElementById('wxAdvBody'); if (ab) ab.textContent = d.advisory_body_fr || d.advisory_body_en || '';
-        } else {
-          adv.style.display = 'none';
-        }
-      }
-      // forecast grid
-      const fc = document.getElementById('wxForecast');
-      if (fc && Array.isArray(d.forecast)) {
-        fc.innerHTML = '';
-        const today = new Date().toISOString().slice(0, 10);
-        d.forecast.slice(0, 5).forEach((f, i) => {
-          const card = document.createElement('div');
-          card.className = 'wx-day' + (i === 0 ? ' active' : '');
-          card.innerHTML = '<div class="wx-day-name">' + f.dayname_fr + ' / ' + f.dayname_en + '</div>' +
-            '<div class="wx-day-icon">' + forecastIcon(f.code) + '</div>' +
-            '<div class="wx-day-temps"><span class="hi">' + (f.hi!=null?f.hi+'°':'--') + '</span><span class="lo">' + (f.lo!=null?f.lo+'°':'--') + '</span></div>' +
-            '<div class="wx-day-cond">' + ((f.condition_fr||f.condition_en)||'').toUpperCase() + '</div>';
-          fc.appendChild(card);
-        });
-      }
-      const statusEl = document.getElementById('wxStatus');
-      if (statusEl) statusEl.textContent = 'LIVE \u00b7 DONNÉES REÇUES';
+
+            const strip = document.getElementById('weatherStrip');
+      strip.textContent = w.temp_c != null
+        ? `${temp} ${city.toUpperCase()} • ${cond.toUpperCase()}`
+        : L('WEATHER', 'MÉTÉO');
     }
 
     // ---------------- screen switching ----------------
@@ -1161,6 +1383,12 @@
       const fullscreenActive = !!(document.fullscreenElement || document.webkitFullscreenElement);
       hintEl.classList.toggle('hidden', id !== 'clockScreen' || fullscreenActive);
       formatToggleEl.style.display = id === 'clockScreen' ? '' : 'none';
+      if (id === 'weatherScreen') renderWeather(lastWeather);
+      if (id === 'timerScreen') renderTimerScreen();
+      if (id === 'settingsScreen') renderSettingsUI();
+      if (id === 'listeningScreen') renderListening();
+      if (id === 'speakingScreen') renderSpeaking();
+      refreshChrome();
     }
 
     alarmStatusEl.addEventListener('click', (e) => {
@@ -1188,7 +1416,7 @@
         }
       };
       ws.onclose = () => {
-        alarmStatusEl.textContent = 'COMPANION OFFLINE \u00b7 SERVICE HORS LIGNE';
+        alarmStatusEl.textContent = L('COMPANION OFFLINE', 'HORS LIGNE');
         setTimeout(connectCompanion, 3000);
       };
       ws.onerror = () => ws.close();
@@ -1200,7 +1428,7 @@
           renderAlarmStatus();
           renderAlarmsList();
           renderTimerStatus();
-          if (langBtn) langBtn.textContent = (msg.language || 'fr').toUpperCase();
+          if (document.getElementById('settingsScreen').classList.contains('active')) renderSettingsUI();
           if (document.getElementById('timerScreen').classList.contains('active')) {
             renderTimerScreen();
           }
@@ -1228,7 +1456,7 @@
             }
           }
           }
-          if (micBtn) { micBtn.disabled = false; micBtn.textContent = 'MIC · MIC'; }
+          if (micBtn) { micBtn.disabled = false; refreshChrome(); }
         } else if (msg.type === 'voice_confirmed') {
           const el = document.getElementById('voiceStatus');
           if (el) {
@@ -1238,13 +1466,17 @@
         } else if (msg.type === 'voice_reply') {
           const el = document.getElementById('voiceStatus');
           if (el) el.textContent = 'AI: ' + (msg.text || '');
+          voiceReply = { en: msg.text_en || msg.text || '', fr: msg.text_fr || msg.text || '' };
+          showScreen('speakingScreen');
         } else if (msg.type === 'voice_state') {
           const el = document.getElementById('voiceStatus');
           if (el) {
             el.textContent = (msg.state || '').toUpperCase() + (msg.transcript ? ' · ' + msg.transcript : '');
-            // bright amber while the assistant is active (mic capturing / speaking)
             el.classList.toggle('is-active', msg.state === 'listening' || msg.state === 'speaking');
           }
+          if (msg.transcript) voiceTranscript = msg.transcript;
+          if (msg.noise_db != null) ambientDb = msg.noise_db;
+          handleVoiceState(msg.state);
         } else if (msg.type === 'mic_status') {
           const el = document.getElementById('voiceStatus');
           if (el) {
@@ -1252,12 +1484,11 @@
             el.classList.toggle('is-active', !!msg.muted);
           }
           if (typeof muteBtn !== 'undefined' && muteBtn) {
-            muteBtn.textContent = msg.muted ? 'MUTED' : 'MUTE · MUTE';
+            micMuted = !!msg.muted; refreshChrome();
             muteBtn.classList.toggle('is-active', !!msg.muted);
           }
         } else if (msg.type === 'weather') {
-          const d = msg.data || {};
-          renderWeather(d);
+          renderWeather(msg.data || {});
         } else if (msg.type === 'spotify_status') {
           spotifyConnected = msg.connected;
           if (msg.connected) { musicError = ''; loadSpotifySDK(); }
@@ -1274,23 +1505,54 @@
       };
     }
 
-    function renderAlarmStatus() {
-      const enabled = companionState.alarms.filter(a => a.enabled);
-      if (enabled.length === 0) {
-        alarmStatusEl.textContent = 'NO ALARM SET \u00b7 AUCUNE ALARME';
-        return;
+    // next time an alarm actually rings (respects its weekdays; one-off alarms use their date)
+    function nextFireTime(a, now) {
+      if (a.once) {
+        if (!a.date) return null;
+        const t = new Date(`${a.date}T${String(a.hour).padStart(2, '0')}:${String(a.minute).padStart(2, '0')}:00`);
+        return (!isNaN(t) && t > now) ? t : null;
       }
-      const next = enabled.slice().sort((a, b) => (a.hour * 60 + a.minute) - (b.hour * 60 + b.minute))[0];
-      const t = formatAlarmTime(next.hour, next.minute);
-      const timeStr = t.period ? `${t.h}:${t.m} ${t.period}` : `${t.h}:${t.m}`;
-      alarmStatusEl.textContent = `NEXT ALARM ${timeStr} \u00b7 PROCHAINE ALARME`;
+      const days = a.days || [];
+      for (let off = 0; off <= 7; off++) {
+        const d = new Date(now);
+        d.setDate(now.getDate() + off);
+        d.setHours(a.hour, a.minute, 0, 0);
+        if (d <= now) continue;
+        if (days.includes((d.getDay() + 6) % 7)) return d;  // Monday-first index, as in DAY_LABELS
+      }
+      return null;
     }
 
-    function showFired(msg) {
+    // bottom-left: times of the alarms that ring today or tomorrow, soonest first (no weekdays)
+    function renderAlarmStatus() {
+      const now = new Date();
+      const tomorrow = new Date(now);
+      tomorrow.setDate(now.getDate() + 1);
+      const enabled = companionState.alarms.filter(a => a.enabled);
+      if (enabled.length === 0) {
+        alarmStatusEl.textContent = L('NO ALARM SET', 'AUCUNE ALARME');
+        return;
+      }
+      const sameDay = (a, b) => a.toDateString() === b.toDateString();
+      const items = enabled
+        .map(a => ({ a, t: nextFireTime(a, now) }))
+        .filter(x => x.t && (sameDay(x.t, now) || sameDay(x.t, tomorrow)))
+        .sort((x, y) => x.t - y.t);
+      if (items.length === 0) {
+        alarmStatusEl.textContent = L('NO ALARM TODAY OR TOMORROW', "AUCUNE ALARME AUJOURD'HUI NI DEMAIN");
+        return;
+      }
+      alarmStatusEl.textContent = items.map(({ a }) => {
+        const t = formatAlarmTime(a.hour, a.minute);
+        return t.period ? `${t.h}:${t.m} ${t.period}` : `${t.h}:${t.m}`;
+      }).join('   ·   ');
+    }
+
+        function showFired(msg) {
       const item = msg.alarm || msg.timer;
       firedLabel.textContent = item.label
         ? item.label.toUpperCase()
-        : (msg.type === 'alarm_fired' ? 'ALARM \u00b7 ALARME' : 'TIMER DONE \u00b7 MINUTEUR TERMIN\u00c9');
+        : (msg.type === 'alarm_fired' ? L('ALARM', 'ALARME') : L('TIMER DONE', 'MINUTEUR TERMINÉ'));
       firedOverlay.classList.add('active');
     }
 
@@ -1302,16 +1564,58 @@
       }
     });
 
-    // corner chrome: voice HUD, mic, language, settings — all themed like .format-toggle
-
+    // corner chrome: 24H + MUTE on the left, status + SET + MIC on the right
     function setVoiceStatus(text, bright) {
       voiceStatus.textContent = text;
       voiceStatus.classList.toggle('is-active', !!bright);
     }
 
+    // ---------------- display language ----------------
+
+    let uiLang = localStorage.getItem('uiLang') === 'fr' ? 'fr' : 'en';
+    const L = (en, fr) => (uiLang === 'fr' ? fr : en);
+
+    function applyLang() {
+      document.documentElement.lang = uiLang;
+      document.documentElement.dataset.lang = uiLang;
+      document.querySelectorAll('[data-en]').forEach(el => {
+        el.textContent = uiLang === 'fr' ? el.dataset.fr : el.dataset.en;
+      });
+      document.querySelectorAll('[data-ph-en]').forEach(el => {
+        el.placeholder = uiLang === 'fr' ? el.dataset.phFr : el.dataset.phEn;
+      });
+      document.querySelectorAll('.lang-btn').forEach(b => {
+        b.classList.toggle('is-active', b.dataset.lang === uiLang);
+      });
+    }
+
+    function setUiLang(lang) {
+      uiLang = lang === 'fr' ? 'fr' : 'en';
+      localStorage.setItem('uiLang', uiLang);
+      applyLang();
+      refreshUI();
+    }
+
+    function refreshUI() {
+      render();
+      renderAlarmStatus();
+      renderAlarmsList();
+      renderTimerStatus();
+      renderMusic();
+      renderWeather(lastWeather);
+      renderSettingsUI();
+      refreshChrome();
+      const on = (id) => document.getElementById(id).classList.contains('active');
+      if (on('timerScreen')) renderTimerScreen();
+      if (on('setAlarmScreen')) syncSetAlarmUI();
+      if (on('listeningScreen')) renderListening();
+      if (on('speakingScreen')) renderSpeaking();
+    }
+
+    // ---------------- corner chrome ----------------
+
     const cornerLeft = document.createElement('div');
     cornerLeft.className = 'corner-cluster left';
-
     const cornerRight = document.createElement('div');
     cornerRight.className = 'corner-cluster right';
 
@@ -1320,32 +1624,30 @@
     voiceStatus.className = 'corner-status';
     voiceStatus.textContent = 'READY';
 
-    const micBtn = document.createElement('button');
-    micBtn.textContent = 'MIC · MIC';
-    micBtn.className = 'corner-btn';
-
-    const langBtn = document.createElement('button');
-    langBtn.textContent = 'FR';
-    langBtn.className = 'corner-btn';
-
     const muteBtn = document.createElement('button');
-    muteBtn.textContent = 'MUTE · MUTE';
     muteBtn.className = 'corner-btn';
+    const settingsBtn = document.createElement('button');
+    settingsBtn.className = 'corner-btn';
+    const micBtn = document.createElement('button');
+    micBtn.className = 'corner-btn';
 
     let micMuted = false;
 
-    // left cluster: mute above the language tag
+    cornerLeft.appendChild(formatToggleEl);
     cornerLeft.appendChild(muteBtn);
-    cornerLeft.appendChild(langBtn);
-    document.body.appendChild(cornerLeft);
-
-    // right cluster: status chip above [settings, mic]
-    const rightControls = document.createElement('div');
-    rightControls.className = 'corner-row';
     cornerRight.appendChild(voiceStatus);
-    cornerRight.appendChild(rightControls);
-    rightControls.appendChild(micBtn);
+    cornerRight.appendChild(settingsBtn);
+    cornerRight.appendChild(micBtn);
+    document.body.appendChild(cornerLeft);
     document.body.appendChild(cornerRight);
+
+    function refreshChrome() {
+      muteBtn.textContent = micMuted ? L('MUTED', 'MUET ACTIF') : L('MUTE', 'MUET');
+      muteBtn.classList.toggle('is-active', micMuted);
+      micBtn.textContent = 'MIC';
+      settingsBtn.textContent = L('SET', 'RÉG');
+      settingsBtn.classList.toggle('is-active', document.getElementById('settingsScreen').classList.contains('active'));
+    }
 
     micBtn.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -1355,89 +1657,123 @@
       }
     });
 
-    langBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const next = (companionState && companionState.language === 'fr') ? 'en' : 'fr';
-      if (ws && ws.readyState === WebSocket.OPEN) ws.send(JSON.stringify({ action: 'set_language', language: next }));
-    });
-
     muteBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       micMuted = !micMuted;
       if (ws && ws.readyState === WebSocket.OPEN) ws.send(JSON.stringify({ action: 'mic_mute', muted: micMuted }));
-      muteBtn.textContent = micMuted ? 'MUTED' : 'MUTE · MUTE';
-      muteBtn.classList.toggle('is-active', micMuted);
+      refreshChrome();
     });
 
-    const weatherStrip = document.getElementById('weatherStrip');
-    if (weatherStrip) weatherStrip.addEventListener('click', (e) => { e.stopPropagation(); showScreen('weatherScreen'); });
+    settingsBtn.addEventListener('click', (e) => { e.stopPropagation(); showScreen('settingsScreen'); });
 
-    // burn-in dim overlay
+    document.getElementById('weatherStrip').addEventListener('click', (e) => { e.stopPropagation(); showScreen('weatherScreen'); });
+    document.getElementById('wxClock').addEventListener('click', (e) => { e.stopPropagation(); showScreen('clockScreen'); });
+    document.addEventListener('keydown', (e) => {
+      if (e.key !== 'Escape') return;
+      const a = document.querySelector('.screen.active');
+      if (a && a.id !== 'clockScreen') showScreen('clockScreen');
+    });
+
+    // swipe left on any sub-screen returns to the clock
+    let swipeX = null, swipeY = null;
+    document.addEventListener('touchstart', (e) => {
+      if (e.target.closest && e.target.closest('input[type=range]')) { swipeX = null; return; }
+      swipeX = e.touches[0].clientX; swipeY = e.touches[0].clientY;
+    }, { passive: true });
+    document.addEventListener('touchend', (e) => {
+      if (swipeX === null) return;
+      const dx = e.changedTouches[0].clientX - swipeX;
+      const dy = e.changedTouches[0].clientY - swipeY;
+      swipeX = null;
+      const active = document.querySelector('.screen.active');
+      if (active && active.id !== 'clockScreen' && dx < -80 && Math.abs(dx) > Math.abs(dy) * 1.5) showScreen('clockScreen');
+    }, { passive: true });
+
+    applyLang();
+    refreshChrome();
+
+        // burn-in dim overlay
     const dimOverlay = document.createElement('div');
     dimOverlay.className = 'dim-overlay';
     document.body.appendChild(dimOverlay);
 
-    // settings panel (real settings only)
-    const settingsBtn = document.createElement('button');
-    settingsBtn.textContent = 'SET · RÉG';
-    settingsBtn.className = 'corner-btn';
-    rightControls.insertBefore(settingsBtn, micBtn);
+    // settings screen (replaces the old corner panel)
 
-    const settingsPanel = document.createElement('div');
-    settingsPanel.className = 'corner-settings';
-    settingsPanel.innerHTML = '<div class="panel-title">SETTINGS · R&Eacute;GLAGES</div>' +
-      '<label>Brightness · Luminosit&eacute;<input type=range min=10 max=100 id=setBright value=100></label>' +
-      '<label>Dim start · D&eacute;but<input type=time id=setDimStart value="22:00"></label>' +
-      '<label>Dim end · Fin<input type=time id=setDimEnd value="07:00"></label>' +
-      '<label>Wake word &middot; &Eacute;veil<input type=checkbox id=setWake></label>' +
-      '<label>Clock 24h &middot; Heures 24h<input type=checkbox id=set24></label>' +
-      '<button id=setSave class="btn-amber">SAVE · ENREGISTRER</button>';
-    document.body.appendChild(settingsPanel);
+    const setSlider = document.getElementById('brightSlider');
+    const setAutoDim = document.getElementById('autoDimToggle');
+    const setWake = document.getElementById('wakeToggle');
+    const setVolSlider = document.getElementById('assistVolSlider');
+    const currentSettings = () => (companionState && companionState.settings) || {};
 
-    settingsBtn.addEventListener('click', (e) => { e.stopPropagation(); settingsPanel.style.display = settingsPanel.style.display === 'none' ? 'block' : 'none'; });
-
-    // sync whenever state arrives
-    const syncSettings = () => {
-      const st = (companionState && companionState.settings) || {};
-      const b = document.getElementById('setBright'); if (b) b.value = st.brightness || 100;
-      const ds = document.getElementById('setDimStart'); if (ds) ds.value = st.dim_start || '22:00';
-      const de = document.getElementById('setDimEnd'); if (de) de.value = st.dim_end || '07:00';
-      const w = document.getElementById('setWake'); if (w) w.checked = !!st.wake_word;
-      const t = document.getElementById('set24'); if (t) t.checked = st.ui_24h !== false;
-    };
-    const origRender = renderAlarmStatus;
-    renderAlarmStatus = function(){ origRender(); syncSettings(); };
-
-    document.getElementById('setSave').addEventListener('click', (e) => {
-      e.stopPropagation();
-      const st = (companionState && companionState.settings) || {};
-      const next = Object.assign({}, st, {
-        brightness: parseInt(document.getElementById('setBright').value, 10),
-        dim_start: document.getElementById('setDimStart').value,
-        dim_end: document.getElementById('setDimEnd').value,
-        wake_word: document.getElementById('setWake').checked,
-        ui_24h: document.getElementById('set24').checked,
-      });
+    function saveSettings(patch) {
+      const next = Object.assign({}, currentSettings(), patch);
+      companionState.settings = next;
       if (ws && ws.readyState === WebSocket.OPEN) ws.send(JSON.stringify({ action: 'set_settings', settings: next }));
-      settingsPanel.style.display = 'none';
+      renderSettingsUI();
+      renderDimTag();
+      applyDimming();
+    }
+
+    function renderDimTag() {
+      const st = currentSettings();
+      const level = st.brightness ?? 100;
+      const tag = document.getElementById('dimTag');
+      if (tag) tag.textContent = st.auto_dim !== false
+        ? `AUTO-DIM ${level}%`
+        : `${L('BRIGHTNESS', 'LUMINOSITÉ')} ${level}%`;
+    }
+
+    function renderSettingsUI() {
+      const st = currentSettings();
+      const level = st.brightness ?? 100;
+      const autoDim = st.auto_dim !== false;
+      const vol = st.assistant_volume ?? 65;
+      if (document.activeElement !== setSlider) setSlider.value = level;
+      document.getElementById('brightVal').textContent = `${level}%` + (autoDim ? ' AUTO' : '');
+      setAutoDim.checked = autoDim;
+      setWake.checked = st.wake_word !== false;
+      if (document.activeElement !== setVolSlider) setVolSlider.value = vol;
+      document.getElementById('assistVolVal').textContent = `${vol}%`;
+      document.getElementById('wifiName').textContent = companionState.wifi_ssid || st.wifi_ssid || '--';
+      const badge = document.getElementById('spotifyBadge');
+      badge.textContent = spotifyConnected ? L('LINKED', 'CONNECTÉ') : L('NOT LINKED', 'NON LIÉ');
+      badge.classList.toggle('off', !spotifyConnected);
+      document.getElementById('fwInfo').textContent =
+        `FIRMWARE ${companionState.firmware || '--'} • MAC ${companionState.mac || '--'}`;
+    }
+
+    setSlider.addEventListener('input', () => {
+      document.getElementById('brightVal').textContent = `${setSlider.value}%` + (setAutoDim.checked ? ' AUTO' : '');
+    });
+    setSlider.addEventListener('change', () => saveSettings({ brightness: parseInt(setSlider.value, 10) }));
+    setAutoDim.addEventListener('change', () => saveSettings({ auto_dim: setAutoDim.checked }));
+    setWake.addEventListener('change', () => saveSettings({ wake_word: setWake.checked }));
+    setVolSlider.addEventListener('input', () => { document.getElementById('assistVolVal').textContent = `${setVolSlider.value}%`; });
+    setVolSlider.addEventListener('change', () => saveSettings({ assistant_volume: parseInt(setVolSlider.value, 10) }));
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => { e.stopPropagation(); setUiLang(btn.dataset.lang); });
     });
 
-    // auto-dim scheduler
-    const hhmm = () => { const d = new Date(); return (d.getHours()<10?'0':'')+d.getHours()+':'+(d.getMinutes()<10?'0':'')+d.getMinutes(); };
-    const inRange = (now, start, end) => {
-      if (start <= end) return now >= start && now < end;
-      return now >= start || now < end;
-    };
-    setInterval(() => {
-      const st = (companionState && companionState.settings) || {};
-      const start = st.dim_start || '22:00';
-      const end = st.dim_end || '07:00';
-      const dimmed = inRange(hhmm(), start, end);
-      const pct = dimmed ? (st.brightness || 100) / 100 * 0.4 : 0;  // rough CSS fallback
-      dimOverlay.style.opacity = dimmed ? (1 - pct).toFixed(2) : 0;
-    }, 30000);
+    document.getElementById('rebootBtn').addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (!confirm(L('Reboot NestClock now?', 'Redémarrer NestClock maintenant ?'))) return;
+      if (ws && ws.readyState === WebSocket.OPEN) ws.send(JSON.stringify({ action: 'reboot' }));
+    });
 
-    connectCompanion();
+    // auto-dim: same overlay as before, now driven by the Auto-Dim toggle
+    const hhmm = () => { const d = new Date(); return (d.getHours() < 10 ? '0' : '') + d.getHours() + ':' + (d.getMinutes() < 10 ? '0' : '') + d.getMinutes(); };
+    const inRange = (now, start, end) => (start <= end ? (now >= start && now < end) : (now >= start || now < end));
+    function applyDimming() {
+      const st = currentSettings();
+      const dimmed = st.auto_dim !== false && inRange(hhmm(), st.dim_start || '22:00', st.dim_end || '07:00');
+      const pct = dimmed ? ((st.brightness ?? 100) / 100) * 0.4 : 0;
+      dimOverlay.style.opacity = dimmed ? (1 - pct).toFixed(2) : 0;
+    }
+    setInterval(applyDimming, 30000);
+    applyDimming();
+
+        connectCompanion();
 
     // ---------------- alarms list ----------------
 
@@ -1454,7 +1790,7 @@
       const sorted = [...days].sort((a, b) => a - b);
       const en = sorted.map(d => DAY_LABELS_EN[d]).join(' ');
       const fr = sorted.map(d => DAY_LABELS_FR[d]).join(' ');
-      return `${en} | ${fr}`;
+      return uiLang === 'fr' ? fr : en;
     }
 
     function renderAlarmsList() {
@@ -1463,7 +1799,7 @@
       listEl.innerHTML = '';
 
       if (companionState.alarms.length === 0) {
-        listEl.innerHTML = '<div class="alarms-empty">NO ALARMS SET &middot; AUCUNE ALARME</div>';
+        listEl.innerHTML = '<div class="alarms-empty">' + L('NO ALARMS SET', 'AUCUNE ALARME') + '</div>';
       } else {
         companionState.alarms.forEach(a => {
           const t = formatAlarmTime(a.hour, a.minute);
@@ -1472,8 +1808,8 @@
           row.innerHTML = `
             <div class="alarm-time">${t.h}:${t.m}<span class="alarm-period">${t.period}</span></div>
             <div class="alarm-meta">
-              <div class="alarm-label">${a.label || 'Alarm / Alarme'}</div>
-              <div class="alarm-days">${a.once ? ('ONCE · UNE FOIS' + (a.date ? ' · ' + a.date : '')) : daysSummary(a.days)}</div>
+              <div class="alarm-label">${a.label || L('Alarm', 'Alarme')}</div>
+              <div class="alarm-days">${a.once ? (L('ONCE', 'UNE FOIS') + (a.date ? ' · ' + a.date : '')) : daysSummary(a.days)}</div>
             </div>
             <label class="toggle">
               <input type="checkbox" ${a.enabled ? 'checked' : ''} data-id="${a.id}">
@@ -1501,7 +1837,7 @@
 
       const n = companionState.alarms.length;
       countEl.textContent =
-        `${n} ALARM${n === 1 ? '' : 'S'} CONFIGURED \u00b7 ${n} ALARME${n === 1 ? '' : 'S'} CONFIGUR\u00c9E${n === 1 ? '' : 'S'}`;
+        L(`${n} ALARM${n === 1 ? '' : 'S'} CONFIGURED`, `${n} ALARME${n === 1 ? '' : 'S'} CONFIGURÉE${n === 1 ? '' : 'S'}`);
     }
 
     document.getElementById('newAlarmBtn').addEventListener('click', (e) => {
@@ -1601,46 +1937,46 @@
       showScreen('alarmsScreen');
     });
 
-    // ---------------- timer screen ----------------
+    // timer screen: setup, live ring, pause/reset
 
     let timerDraft = { minutes: 5, seconds: 0, label: '' };
     const timerStatusEl = document.getElementById('timerStatus');
+    const timerRingEl = document.getElementById('timerRing');
+    const timerPauseBtn = document.getElementById('pauseTimerBtn');
+    const RING_CIRC = 2 * Math.PI * 120;  // matches the r="120" circle in the markup
 
     function activeTimer() {
       return companionState.timers.length > 0 ? companionState.timers[0] : null;
     }
 
+    // frozen while paused, otherwise counted down from the companion's end time
+    function timerRemaining(t) {
+      if (t.paused) return Math.max(0, Math.round(t.remaining || 0));
+      return Math.max(0, Math.round(t.ends_at - Date.now() / 1000));
+    }
+
+    function mmss(total) {
+      return `${String(Math.floor(total / 60)).padStart(2, '0')}:${String(total % 60).padStart(2, '0')}`;
+    }
+
     function renderTimerStatus() {
       const active = activeTimer();
-      if (!active) {
-        timerStatusEl.textContent = 'SET TIMER \u00b7 MINUTEUR';
-        return;
-      }
-      const remaining = Math.max(0, Math.round(active.ends_at - Date.now() / 1000));
-      const m = Math.floor(remaining / 60);
-      const s = remaining % 60;
-      timerStatusEl.textContent =
-        `TIMER ${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')} \u00b7 MINUTEUR`;
+      timerStatusEl.textContent = active
+        ? `${L('TIMER', 'MINUTEUR')} ${mmss(timerRemaining(active))}`
+        : L('SET TIMER', 'RÉGLER LE MINUTEUR');
     }
 
     function renderTimerScreen() {
       const active = activeTimer();
-      const setupBody = document.getElementById('timerSetupBody');
-      const activeBody = document.getElementById('timerActiveBody');
-      const setupFooter = document.getElementById('timerSetupFooter');
-      const activeFooter = document.getElementById('timerActiveFooter');
-
+      const show = (id, on, display = 'flex') => { document.getElementById(id).style.display = on ? display : 'none'; };
+      show('timerHeaderSetup', !active);
+      show('timerSetupBody', !active);
+      show('timerSetupFooter', !active);
+      show('timerHeaderActive', !!active);
+      show('timerActiveBody', !!active);
       if (active) {
-        setupBody.style.display = 'none';
-        setupFooter.style.display = 'none';
-        activeBody.style.display = 'flex';
-        activeFooter.style.display = 'flex';
         updateTimerCountdown();
       } else {
-        setupBody.style.display = 'flex';
-        setupFooter.style.display = 'flex';
-        activeBody.style.display = 'none';
-        activeFooter.style.display = 'none';
         document.getElementById('timerMinutes').textContent = String(timerDraft.minutes).padStart(2, '0');
         document.getElementById('timerSeconds').textContent = String(timerDraft.seconds).padStart(2, '0');
         document.getElementById('timerLabelInput').value = timerDraft.label;
@@ -1650,34 +1986,22 @@
     function updateTimerCountdown() {
       const active = activeTimer();
       if (!active) return;
-      const remaining = Math.max(0, Math.round(active.ends_at - Date.now() / 1000));
-      const m = Math.floor(remaining / 60);
-      const s = remaining % 60;
-      document.getElementById('timerCountdown').textContent =
-        `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
-
-      const totalM = Math.floor(active.duration / 60);
-      const totalS = active.duration % 60;
-      const totalStr = `${String(totalM).padStart(2, '0')}:${String(totalS).padStart(2, '0')}`;
-      document.getElementById('timerOfTotal').textContent = `OF ${totalStr} \u00b7 DE ${totalStr}`;
+      const total = Math.max(1, active.duration || 1);
+      const remaining = timerRemaining(active);
+      document.getElementById('timerCountdown').textContent = mmss(remaining);
+      document.getElementById('timerOfTotal').textContent = `${L('OF', 'DE')} ${mmss(total)}`;
+      timerRingEl.style.strokeDashoffset = RING_CIRC * (1 - Math.min(1, remaining / total));
+      timerPauseBtn.querySelector('.lbl').textContent = active.paused ? L('RESUME', 'REPRENDRE') : L('PAUSE', 'PAUSE');
     }
 
-    timerStatusEl.addEventListener('click', (e) => {
-      e.stopPropagation();
-      renderTimerScreen();
-      showScreen('timerScreen');
-    });
+    timerStatusEl.addEventListener('click', (e) => { e.stopPropagation(); showScreen('timerScreen'); });
 
     document.querySelectorAll('#timerSetupBody .step-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.stopPropagation();
-        const field = btn.dataset.tfield;
         const dir = parseInt(btn.dataset.dir, 10);
-        if (field === 'minutes') {
-          timerDraft.minutes = (timerDraft.minutes + dir + 100) % 100;
-        } else {
-          timerDraft.seconds = (timerDraft.seconds + dir + 60) % 60;
-        }
+        if (btn.dataset.tfield === 'minutes') timerDraft.minutes = (timerDraft.minutes + dir + 100) % 100;
+        else timerDraft.seconds = (timerDraft.seconds + dir + 60) % 60;
         renderTimerScreen();
       });
     });
@@ -1695,27 +2019,70 @@
       e.stopPropagation();
       const totalSeconds = timerDraft.minutes * 60 + timerDraft.seconds;
       if (totalSeconds <= 0) {
-        alert('Set a duration above zero / R\u00e9glez une dur\u00e9e sup\u00e9rieure \u00e0 z\u00e9ro');
+        alert(L('Set a duration above zero', 'Réglez une durée supérieure à zéro'));
         return;
       }
-      ws.send(JSON.stringify({
-        action: 'start_timer',
-        seconds: totalSeconds,
-        label: timerDraft.label,
-      }));
+      if (ws && ws.readyState === WebSocket.OPEN) {
+        ws.send(JSON.stringify({ action: 'start_timer', seconds: totalSeconds, label: timerDraft.label }));
+      }
       timerDraft = { minutes: 5, seconds: 0, label: '' };
     });
 
-    document.getElementById('cancelTimerBtn').addEventListener('click', (e) => {
+    timerPauseBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       const active = activeTimer();
-      if (active) {
+      if (active && ws && ws.readyState === WebSocket.OPEN) {
+        ws.send(JSON.stringify({ action: active.paused ? 'resume_timer' : 'pause_timer', id: active.id }));
+      }
+    });
+
+    document.getElementById('resetTimerBtn').addEventListener('click', (e) => {
+      e.stopPropagation();
+      const active = activeTimer();
+      if (active && ws && ws.readyState === WebSocket.OPEN) {
         ws.send(JSON.stringify({ action: 'cancel_timer', id: active.id }));
       }
       showScreen('clockScreen');
     });
 
-    // ---------------- spotify player ----------------
+    // ---------------- voice assistant screens ----------------
+
+    let voiceTranscript = '';
+    let voiceReply = { en: '', fr: '' };
+    let ambientDb = null;
+    let voiceIdleTimer = null;
+
+    function renderListening() {
+      document.getElementById('listenFooter').textContent = ambientDb != null
+        ? `${L('AMBIENT NOISE', 'BRUIT AMBIANT')}: ${ambientDb}DB • ${L('READY', 'PRÊT')}`
+        : '';
+    }
+
+    function renderSpeaking() {
+      const primary = uiLang === 'fr' ? (voiceReply.fr || voiceReply.en) : (voiceReply.en || voiceReply.fr);
+      const other = uiLang === 'fr' ? voiceReply.en : voiceReply.fr;
+      document.getElementById('replyMain').textContent = primary ? `"${primary}"` : '';
+      document.getElementById('replyAlt').textContent = other && other !== primary ? `"${other}"` : '';
+      const q = voiceTranscript ? `${L('User', 'Utilisateur')}: "${voiceTranscript.toUpperCase()}"` : '';
+      const bar = document.getElementById('userQuery');
+      bar.textContent = q;
+      bar.style.display = q ? 'flex' : 'none';
+    }
+
+    // listening -> speaking -> back to the clock once the assistant goes idle
+    function handleVoiceState(state) {
+      clearTimeout(voiceIdleTimer);
+      if (state === 'listening') showScreen('listeningScreen');
+      else if (state === 'speaking') showScreen('speakingScreen');
+      else if (['idle', 'ready', 'done', 'error'].includes(state)) {
+        voiceIdleTimer = setTimeout(() => {
+          const active = document.querySelector('.screen.active');
+          if (active && (active.id === 'listeningScreen' || active.id === 'speakingScreen')) showScreen('clockScreen');
+        }, 8000);
+      }
+    }
+
+        // ---------------- spotify player ----------------
 
     let spotifyConnected = false;
     let spotifyPlayer = null;
@@ -1822,21 +2189,17 @@
         empty.style.display = 'flex';
         player.style.display = 'none';
         loginBtn.style.display = spotifyConnected ? 'none' : '';
-        if (musicError) {
-          msg.textContent = musicError;
-        } else if (!spotifyConnected) {
-          msg.textContent = 'Spotify not connected\nSpotify non connect\u00e9';
-        } else if (!spotifyDeviceId) {
-          msg.textContent = 'Starting player...\nD\u00e9marrage du lecteur...';
-        } else {
-          msg.textContent = 'Open Spotify on your phone and pick "NestClockOS" in the device list.\n' +
-                            'Ouvrez Spotify sur votre t\u00e9l\u00e9phone et choisissez \u00ab NestClockOS \u00bb.';
-        }
+        if (musicError) msg.textContent = musicError;
+        else if (!spotifyConnected) msg.textContent = L('Spotify not connected', 'Spotify non connecté');
+        else if (!spotifyDeviceId) msg.textContent = L('Starting player...', 'Démarrage du lecteur...');
+        else msg.textContent = L(
+          'Open Spotify on your phone and pick "NestClockOS" in the device list.',
+          'Ouvrez Spotify sur votre téléphone et choisissez « NestClockOS ».');
       }
 
       musicStatusEl.textContent = track
-        ? `${playerState.paused ? '\u2016' : '\u266a'} ${track.artists.map(a => a.name).join(', ')} \u2014 ${track.name}`.toUpperCase()
-        : 'MUSIC \u00b7 MUSIQUE';
+        ? `${playerState.paused ? '‖' : '♪'} ${track.artists.map(a => a.name).join(', ')} — ${track.name}`.toUpperCase()
+        : L('MUSIC', 'MUSIQUE');
     }
 
     musicStatusEl.addEventListener('click', (e) => {
@@ -1851,7 +2214,7 @@
       if (ws && ws.readyState === WebSocket.OPEN) {
         ws.send(JSON.stringify({ action: 'spotify_login' }));
       } else {
-        musicError = 'Companion offline \u00b7 Service hors ligne';
+        musicError = L('Companion offline', 'Service hors ligne');
         renderMusic();
       }
     });
@@ -1926,18 +2289,19 @@
         minute +
         (period ? '<span class="period">' + period + '</span>' : '');
 
-      dateEnEl.textContent = new Intl.DateTimeFormat('en-US', {
+      const fmtDate = (loc) => new Intl.DateTimeFormat(loc, {
         weekday: 'long', month: 'long', day: 'numeric', year: 'numeric'
-      }).format(now);
-
-      dateFrEl.textContent = new Intl.DateTimeFormat('fr-FR', {
-        weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'
       }).format(now).replace(/^\w/, c => c.toUpperCase());
+      // one date line, in the display language
+      dateEnEl.textContent = fmtDate(uiLang === 'fr' ? 'fr-FR' : 'en-US');
+      dateFrEl.textContent = '';
+      renderDimTag();
 
       const headerTime = period ? `${hour}:${minute} ${period}` : `${hour}:${minute}`;
       document.querySelectorAll('.header-clock').forEach(el => { el.textContent = headerTime; });
 
       renderTimerStatus();
+      renderAlarmStatus();
       updateProgress();
       if (document.getElementById('timerScreen').classList.contains('active')) {
         updateTimerCountdown();
