@@ -88,32 +88,35 @@ def parse_alarm_set(text):
 
 def parse_music_subintent(text):
     t = text.lower()
-    # next track — include common French EN variants and singular/plural forms
+    # next track -- include common French (singular/plural) and English variants
     if any(w in t for w in (
             "suivant", "suivante", "suivants", "suivantes", "next",
-            "skip", "skipp", "passe", "passer", "passons",
-            "chanson suivante", "la suivante", "met la suivante",
-            "et la suite", "plus loin", "avance")):
+            "skip", "skipp", "passe", "passer", "passons", "change",
+            "changement", "change de musique", "chanson suivante", "la suivante",
+            "met la suivante", "met la prochaine", "prochaine", "une autre",
+            "un autre", "autre", "autres", "another", "plus", "more", "et la suite",
+            "plus loin", "avance", "passer au suivant", "piste suivante",
+            "met au suivant", "rien de mieux", "la suivante")):
         return "next"
     # previous track
     if any(w in t for w in (
             "précédent", "précédente", "précédents", "precedent",
             "previous", "back", "recule", "en arrière", "precedente",
-            "la précédente", "la chanson précédente",
+            "la précédente", "la chanson précédente", "précédant",
             "depuis le début", "au début", "from scratch", "rewind",
-            "arrière", "retour")):
+            "arrière", "retour", "dernière", "dernier")):
         return "prev"
-    # pause
-    if any(w in t for w in ("pause", "stop", "coupe", "arrête", "arrete", "mets en pause", "mute")):
+    if any(w in t for w in ("pause", "stop", "coupe", "arrête", "arrete",
+                           "mets en pause", "mute", "cut", "moteur")):
         return "pause"
-    if any(w in t for w in ("play", "mets", "met", "reprend", "resume", "lance", "joue", "allume")):
+    if any(w in t for w in ("play", "mets", "met", "resume", "lance", "joue", "allume", "mettre la suite")):
         return "play"
-    # volume
-    if any(w in t for w in ("monte", "augmente", "up", "plus fort", "plus haut", "plus fort")):
+    if any(w in t for w in ("monte", "augmente", "up", "plus fort", "plus haut", "louder", "volume")):
         return "vol_up"
-    if any(w in t for w in ("baisse", "diminue", "down", "moins fort", "moins haut", "moins fort")):
+    if any(w in t for w in ("baisse", "diminue", "down", "moins fort", "moins haut")):
         return "vol_down"
     return "play"
+
 
 
 def parse_weather_query(text):
