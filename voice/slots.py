@@ -88,17 +88,30 @@ def parse_alarm_set(text):
 
 def parse_music_subintent(text):
     t = text.lower()
-    if any(w in t for w in ("suivant", "next", "skip")):
+    # next track — include common French EN variants and singular/plural forms
+    if any(w in t for w in (
+            "suivant", "suivante", "suivants", "suivantes", "next",
+            "skip", "skipp", "passe", "passer", "passons",
+            "chanson suivante", "la suivante", "met la suivante",
+            "et la suite", "plus loin", "avance")):
         return "next"
-    if any(w in t for w in ("précédent", "previous", "back")):
+    # previous track
+    if any(w in t for w in (
+            "précédent", "précédente", "précédents", "precedent",
+            "previous", "back", "recule", "en arrière", "precedente",
+            "la précédente", "la chanson précédente",
+            "depuis le début", "au début", "from scratch", "rewind",
+            "arrière", "retour")):
         return "prev"
-    if any(w in t for w in ("pause", "stop", "coupe", "arrête")):
+    # pause
+    if any(w in t for w in ("pause", "stop", "coupe", "arrête", "arrete", "mets en pause", "mute")):
         return "pause"
-    if any(w in t for w in ("play", "mets", "reprends", "resume", "lance")):
+    if any(w in t for w in ("play", "mets", "met", "reprend", "resume", "lance", "joue", "allume")):
         return "play"
-    if any(w in t for w in ("monte", "augmente", "up", "plus fort", "plus haut")):
+    # volume
+    if any(w in t for w in ("monte", "augmente", "up", "plus fort", "plus haut", "plus fort")):
         return "vol_up"
-    if any(w in t for w in ("baisse", "diminue", "down", "moins fort", "moins haut")):
+    if any(w in t for w in ("baisse", "diminue", "down", "moins fort", "moins haut", "moins fort")):
         return "vol_down"
     return "play"
 

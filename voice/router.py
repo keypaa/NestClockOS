@@ -41,6 +41,16 @@ MUSIC_FAMILY_RE = re.compile(
     re.IGNORECASE,
 )
 
+# Bare control phrases (English or French): route as music even without "musique",
+# unless the user is clearly talking about an alarm/timer.
+MUSIC_CONTROL_RE = re.compile(
+    r"\b(next|suivant|suivante|skip|skipp)\b"
+    r"|\b(previous|pr[eé]c[eé]dent(?:e)?|pr[eé]c[eé]dente|back|rewind|recule|retour)\b"
+    r"|\b(pause|stop|play|joue|lance|r[eé]sume|resume)\b"
+    r"|\bvol(?:ume)?\s*(up|down|monte|baisse)\b",
+    re.IGNORECASE,
+)
+
 
 def classify(router, text):
     kwargs = {}
@@ -98,6 +108,9 @@ class RouterService:
         if MUSIC_FAMILY_RE.search(norm):
             return {"category": "music", "category_confidence": 1.0,
                     "overridden": True, "ms": 0.0, "model": "homophone-override"}
+        if MUSIC_CONTROL_RE.search(norm) and not any(w in norm for w in ("alarm", "timer", "minuteur", "alarme", "rappel", "timmer")):
+            return {"category": "music", "category_confidence": 1.0,
+                    "overridden": True, "ms": 0.0, "model": "control-override"}
         if PARLE_FAMILY_RE.search(norm):
             return {"category": "fallback", "category_confidence": 1.0,
                     "overridden": True, "ms": 0.0, "model": "homophone-override"}
