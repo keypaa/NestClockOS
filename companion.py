@@ -507,6 +507,7 @@ async def handle_voice():
         duck_token = None
         duck_device = None
         requested_music_subintent = None
+        reply = None
         # destructive actions require confirmation
         # optional LLM fallback for fallback routing
         if best["category"] == "fallback" and os.environ.get("NESTCLOCK_USE_LLM") == "1":
