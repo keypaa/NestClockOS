@@ -6,4 +6,6 @@ wakepy==1.0.0
 mistralai==2.10.1
 onnxruntime==1.31.0
 openwakeword==0.4.0
+# laya/transformers require huggingface-hub >=1.5,<2.0; do not bump to 2.x
+huggingface_hub==1.33.0
 torch==2.14.0+cpu

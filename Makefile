@@ -3,7 +3,7 @@ test:
 	.venv/bin/python run_tests.py
 
 run:
-	.venv/bin/python companion.py
+	set -a; [ -f .env ] && . ./.env; set +a; .venv/bin/python companion.py
 
 doctor:
 	.venv/bin/python doctor.py
