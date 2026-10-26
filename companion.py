@@ -435,6 +435,26 @@ async def handle_voice():
         voice_busy = True
         await broadcast({"type": "voice_status", "status": "listening"})
         await broadcast({"type": "voice_state", "state": "listening"})
+        # Duck background music before capturing speech (reduces mic self-echo).
+        # Pause returns 200/204 only if something was playing; we resume after unless
+        # the command itself asked for pause.
+        duck_token = None
+        duck_device = None
+        music_ducked = False
+        if os.environ.get("NESTCLOCK_DUCK_MUSIC", "1") == "1":
+            try:
+                _tok = await spotify.get_access_token()
+                if _tok:
+                    _dev = spotify_device_id or await asyncio.get_event_loop().run_in_executor(None, vspotify.get_device_id, _tok)
+                    if _dev:
+                        _code, _ = await asyncio.get_event_loop().run_in_executor(None, vspotify.play_pause, _tok, False, _dev)
+                        if _code in (200, 204):
+                            duck_token = _tok
+                            duck_device = _dev
+                            music_ducked = True
+                            print("voice: ducked (paused) music before capture")
+            except Exception as _e:
+                print("voice: duck music failed:", _e)
         audio, info = await asyncio.get_event_loop().run_in_executor(None, _capture)
         if audio is None:
             print(f"voice: no command captured (peak={info.get('peak', 0):.3f}, "
@@ -479,7 +499,12 @@ async def handle_voice():
                              "confidence": 0.0, "overridden": False, "error": "no speech"})
             return
         action_ok, action_msg = False, None
-        reply = None
+        # Duck/pause music before capture (reduces mic self-echo). Restore unless the
+        # command itself asked for pause.
+        music_ducked = False
+        duck_token = None
+        duck_device = None
+        requested_music_subintent = None
         # destructive actions require confirmation
         # optional LLM fallback for fallback routing
         if best["category"] == "fallback" and os.environ.get("NESTCLOCK_USE_LLM") == "1":
@@ -520,7 +545,26 @@ async def handle_voice():
                 secs = parse_timer_start(best["text"])
                 slots = {"seconds": secs} if secs else None
             elif best["category"] == "music":
-                slots = {"subintent": parse_music_subintent(best["text"])}
+                sub = parse_music_subintent(best["text"])
+                slots = {"subintent": sub}
+                requested_music_subintent = sub
+                if sub == "pause":
+                    # Do not auto-resume captured-ducked music when pausing was the point
+                    music_ducked = False
+                # Duck background music before recording speech so the microphone
+                # doesn't capture the music itself (self-echo).
+                if os.environ.get("NESTCLOCK_DUCK_MUSIC", "1") == "1" and sub != "pause":
+                    try:
+                        _tok = await spotify.get_access_token()
+                        _dev = spotify_device_id or await asyncio.get_event_loop().run_in_executor(None, vspotify.get_device_id, _tok)
+                        if _tok and _dev:
+                            _code, _ = await asyncio.get_event_loop().run_in_executor(None, vspotify.play_pause, _tok, False, _dev)
+                            if _code in (200, 204):
+                                music_ducked = True
+                                duck_token, duck_device = _tok, _dev
+                                print("voice: ducked music for capture")
+                    except Exception as _e:
+                        print("voice: duck music failed:", _e)
                 try:
                     token = await spotify.get_access_token()
                     if not token:
@@ -528,6 +572,7 @@ async def handle_voice():
                     else:
                         device = spotify_device_id or await asyncio.get_event_loop().run_in_executor(None, vspotify.get_device_id, token)
                         sub = slots["subintent"]
+                        print(f"music: token ok, device={device!r} sub={sub} sdk_device_id={spotify_device_id!r}")
                         if sub in ("vol_up", "vol_down"):
                             target = min(100, last_volume + 10) if sub == "vol_up" else max(0, last_volume - 10)
                             code, body = await asyncio.get_event_loop().run_in_executor(
@@ -566,7 +611,7 @@ async def handle_voice():
             if action_ok:
                 await broadcast(store.as_message())
         print(f"voice result: cat={best['category']} conf={best['category_confidence']:.2f} "
-              f"audio={dur:.1f}s ok={action_ok} text={best['text']!r}")
+              f"audio={dur:.1f}s ok={action_ok} msg={action_msg!r} text={best['text']!r}")
         await broadcast({"type": "voice_result",
                         "transcript": best["text"],
                         "language": best.get("lang", ""),
@@ -587,6 +632,12 @@ async def handle_voice():
         await broadcast({"type": "voice_result", "transcript": "", "category": "fallback", "confidence": 0.0, "overridden": False, "error": str(e)})
         print("voice error:", e)
     finally:
+        if music_ducked and duck_token and duck_device:
+            try:
+                await asyncio.get_event_loop().run_in_executor(None, vspotify.play_pause, duck_token, True, duck_device)
+                print("voice: resumed music after capture")
+            except Exception as _e:
+                print("voice: resume music failed:", _e)
         voice_busy = False
 
 async def handle_client(websocket):
