@@ -50,9 +50,13 @@ def set_volume(token, percent, device_id=None):
         p += f"&device_id={device_id}"
     return _req(token, "PUT", p)
 
-async def get_device_id(token):
+def get_device_id(token):
     code, body = _req(token, "GET", "/me/player/devices")
     devs = body.get("devices", []) if isinstance(body, dict) else []
+    # Prefer our own Web Playback SDK device even if not currently active
+    for d in devs:
+        if "nestclock" in (d.get("name") or "").lower():
+            return d.get("id")
     active = [d for d in devs if d.get("is_active")]
     pick = (active or devs or [{}])[0]
     return pick.get("id")

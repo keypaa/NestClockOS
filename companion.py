@@ -581,14 +581,23 @@ async def handle_voice():
                                 last_volume = target
                         else:
                             fns = {
-                                "play": lambda: vspotify.play_pause(token, True, device),
-                                "pause": lambda: vspotify.play_pause(token, False, device),
-                                "next": lambda: vspotify.next_track(token, device),
-                                "prev": lambda: vspotify.previous_track(token, device),
+                                "play": lambda dev: vspotify.play_pause(token, True, dev),
+                                "pause": lambda dev: vspotify.play_pause(token, False, dev),
+                                "next": lambda dev: vspotify.next_track(token, dev),
+                                "prev": lambda dev: vspotify.previous_track(token, dev),
                             }
-                            code, body = await asyncio.get_event_loop().run_in_executor(None, fns[sub])
-                        action_ok = code in (200, 201, 204)
-                        action_msg = f"music {sub}" if action_ok else spotify_error_msg(code, body)
+                            code, body = await asyncio.get_event_loop().run_in_executor(None, (lambda: fns[sub](device)))
+                            _stale_retry = (code == 404) and isinstance(body, dict) and "not found" in str(body.get("error", "")).lower()
+                            if _stale_retry:
+                                fresh = await asyncio.get_event_loop().run_in_executor(None, vspotify.get_device_id, token)
+                                print(f"music: device stale ({device!r}); retrying via fresh GET: {fresh!r}")
+                                if fresh and fresh != device:
+                                    device = fresh
+                                    code, body = await asyncio.get_event_loop().run_in_executor(None, (lambda: fns[sub](device)))
+                                    if code in (200, 201, 204):
+                                        print("music: retry succeeded on", fresh)
+                            action_ok = code in (200, 201, 204)
+                            action_msg = f"music {sub}" if action_ok else spotify_error_msg(code, body)
                 except Exception as e:
                     action_ok, action_msg = False, f"spotify error: {e}"
                 slots = None
