@@ -30,6 +30,17 @@ PARLE_FAMILY_RE = re.compile(
     re.IGNORECASE,
 )
 
+# "met de la musique" and "mais de la musique" are homophones in spoken French;
+# Voxtral defaults to the more common word, so route the music intent explicitly
+# rather than trusting the STT's spelling. EN variants included.
+MUSIC_FAMILY_RE = re.compile(
+    r"\b(mais|mets|met|mettez|mettons)\s+de\s+la\s+(musique|music)\b"
+    r"|\bput\s+on\s+(some\s+)?(music|musique)\b"
+    r"|\bplay\s+(some\s+)?(music|musique)\b"
+    r"|\bpasse\s+de\s+la\s+(musique|music)\b",
+    re.IGNORECASE,
+)
+
 
 def classify(router, text):
     kwargs = {}
@@ -43,6 +54,10 @@ def classify(router, text):
     }
     if PARLE_FAMILY_RE.search(text.replace("’", "'").lower()):
         out["category"] = "fallback"
+        out["category_confidence"] = 1.0
+        out["overridden"] = True
+    if MUSIC_FAMILY_RE.search(text.replace("’", "'").lower()):
+        out["category"] = "music"
         out["category_confidence"] = 1.0
         out["overridden"] = True
     return out
@@ -73,7 +88,20 @@ class RouterService:
         self._loaded = True
 
     def route(self, text):
-        if not text or self.router is None:
+        if not text:
+            return {"category": "fallback", "category_confidence": 0.0,
+                    "overridden": False, "ms": 0.0, "model": None}
+        # STT homophone overrides — run before the model so they work even
+        # when the router is absent (e.g. "mais de la musique" vs "met de la
+        # musique" are identical in speech; Voxtral defaults to the common word)
+        norm = text.replace("’", "'").lower()
+        if MUSIC_FAMILY_RE.search(norm):
+            return {"category": "music", "category_confidence": 1.0,
+                    "overridden": True, "ms": 0.0, "model": "homophone-override"}
+        if PARLE_FAMILY_RE.search(norm):
+            return {"category": "fallback", "category_confidence": 1.0,
+                    "overridden": True, "ms": 0.0, "model": "homophone-override"}
+        if self.router is None:
             return {"category": "fallback", "category_confidence": 0.0,
                     "overridden": False, "ms": 0.0, "model": None}
         t0 = time.time()

@@ -222,7 +222,9 @@ router_service = RouterService()
 mic_capture = None
 pending_actions = {}
 voice_busy = False
+spotify_device_id = None
 mic_muted = False
+last_volume = 60
 weather_cache = None
 mistral_client = None
 try:
@@ -391,6 +393,22 @@ spotify = spotify_auth.SpotifyAuth(
 )
 
 
+def spotify_error_msg(code, body):
+    """Map a Spotify playback HTTP result into a short human message."""
+    msg = ""
+    if isinstance(body, dict):
+        err = body.get("error")
+        msg = err.get("message", "") if isinstance(err, dict) else str(err or "")
+    low = (msg or str(body or "")).lower()
+    if code == 404 or "no active device" in low or "not found" in low:
+        return "no spotify device active — open the music screen to connect"
+    if code == 403 or "premium" in low:
+        return "spotify premium required for playback control"
+    if code == 401:
+        return "spotify auth failed — reconnect on the music screen"
+    return f"spotify error {code}: {str(msg)[:80]}"
+
+
 async def handle_voice():
     try:
         """Push-to-talk capture: record, transcribe (P2), route, broadcast result."""
@@ -408,7 +426,7 @@ async def handle_voice():
                 # fallback to per-call capture
                 audio = record_utterance(None, info=info)
             return audio, info
-        global mic_muted, voice_busy
+        global mic_muted, voice_busy, last_volume
         if mic_muted:
             print("voice: trigger ignored — mic is muted")
             await broadcast({"type": "voice_result", "transcript": "", "category": "fallback", "confidence": 0.0, "overridden": False, "error": "mic muted"})
@@ -503,6 +521,32 @@ async def handle_voice():
                 slots = {"seconds": secs} if secs else None
             elif best["category"] == "music":
                 slots = {"subintent": parse_music_subintent(best["text"])}
+                try:
+                    token = await spotify.get_access_token()
+                    if not token:
+                        action_ok, action_msg = False, "spotify not connected — open the music screen to connect"
+                    else:
+                        device = spotify_device_id or await asyncio.get_event_loop().run_in_executor(None, vspotify.get_device_id, token)
+                        sub = slots["subintent"]
+                        if sub in ("vol_up", "vol_down"):
+                            target = min(100, last_volume + 10) if sub == "vol_up" else max(0, last_volume - 10)
+                            code, body = await asyncio.get_event_loop().run_in_executor(
+                                None, vspotify.set_volume, token, target, device)
+                            if code in (200, 204):
+                                last_volume = target
+                        else:
+                            fns = {
+                                "play": lambda: vspotify.play_pause(token, True, device),
+                                "pause": lambda: vspotify.play_pause(token, False, device),
+                                "next": lambda: vspotify.next_track(token, device),
+                                "prev": lambda: vspotify.previous_track(token, device),
+                            }
+                            code, body = await asyncio.get_event_loop().run_in_executor(None, fns[sub])
+                        action_ok = code in (200, 201, 204)
+                        action_msg = f"music {sub}" if action_ok else spotify_error_msg(code, body)
+                except Exception as e:
+                    action_ok, action_msg = False, f"spotify error: {e}"
+                slots = None
             elif best["category"] == "weather":
                 slots = parse_weather_query(best["text"])
                 try:
@@ -695,6 +739,10 @@ async def handle_client(websocket):
                     store.settings.update(incoming)
                     store.save()
                     await broadcast(store.as_message())
+
+            elif action == "spotify_device":
+                # page's Web Playback SDK reported its device id (set on 'ready')
+                spotify_device_id = msg.get("device_id")
 
             elif action == "spotify_control":
                 cmd = msg.get("cmd")

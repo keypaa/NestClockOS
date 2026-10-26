@@ -1609,6 +1609,9 @@
       spotifyPlayer.addListener('ready', ({ device_id }) => {
         spotifyDeviceId = device_id;
         musicError = '';
+        if (ws && ws.readyState === WebSocket.OPEN) {
+          ws.send(JSON.stringify({ action: 'spotify_device', device_id }));
+        }
         spotifyPlayer.getVolume().then(v => {
           if (typeof v === 'number') document.getElementById('volumeSlider').value = Math.round(v * 100);
         });

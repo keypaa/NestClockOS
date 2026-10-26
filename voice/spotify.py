@@ -26,6 +26,16 @@ def play_pause(token, play=True, device_id=None):
         path += f"?device_id={device_id}"
     return _req(token, "PUT", path, {} if play else None)
 
+def start_playback(token, context_uri=None, device_id=None, uris=None):
+    """Start playback of a playlist/album (context_uri) or track list (uris)."""
+    body = {}
+    if context_uri:
+        body["context_uri"] = context_uri
+    if uris:
+        body["uris"] = uris
+    path = "/me/player/play" + (f"?device_id={device_id}" if device_id else "")
+    return _req(token, "PUT", path, body or None)
+
 def next_track(token, device_id=None):
     p = "/me/player/next" + (f"?device_id={device_id}" if device_id else "")
     return _req(token, "POST", p)
@@ -40,7 +50,7 @@ def set_volume(token, percent, device_id=None):
         p += f"&device_id={device_id}"
     return _req(token, "PUT", p)
 
-def get_device_id(token):
+async def get_device_id(token):
     code, body = _req(token, "GET", "/me/player/devices")
     devs = body.get("devices", []) if isinstance(body, dict) else []
     active = [d for d in devs if d.get("is_active")]
