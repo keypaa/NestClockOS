@@ -299,6 +299,7 @@ async def broadcast(message):
 # ---------------------------------------------------------------------------
 
 async def scheduler_loop():
+    global weather_cache
     fired_this_minute = set()
     current_minute = None
 
