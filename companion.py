@@ -41,7 +41,7 @@ from voice.slots import parse_alarm_set, parse_timer_start, parse_music_subinten
 import voice.spotify as vspotify
 from voice.weather import fetch as fetch_weather
 from voice.wakeword import run_loop as run_wake_loop
-from voice.actions import try_execute, is_destructive, cancel
+from voice.actions import try_execute, is_destructive, cancel, execute_music_action, execute_weather_action
 from stt_session import record_utterance, explain, make_client, SAMPLE_RATE
 
 STATE_PATH = Path(__file__).parent / "companion_state.json"
@@ -393,22 +393,6 @@ spotify = spotify_auth.SpotifyAuth(
 )
 
 
-def spotify_error_msg(code, body):
-    """Map a Spotify playback HTTP result into a short human message."""
-    msg = ""
-    if isinstance(body, dict):
-        err = body.get("error")
-        msg = err.get("message", "") if isinstance(err, dict) else str(err or "")
-    low = (msg or str(body or "")).lower()
-    if code == 404 or "no active device" in low or "not found" in low:
-        return "no spotify device active — open the music screen to connect"
-    if code == 403 or "premium" in low:
-        return "spotify premium required for playback control"
-    if code == 401:
-        return "spotify auth failed — reconnect on the music screen"
-    return f"spotify error {code}: {str(msg)[:80]}"
-
-
 async def handle_voice():
     try:
         """Push-to-talk capture: record, transcribe (P2), route, broadcast result."""
@@ -547,59 +531,25 @@ async def handle_voice():
             elif best["category"] == "timer":
                 secs = parse_timer_start(best["text"])
                 slots = {"seconds": secs} if secs else None
-            elif best["category"] == "music":
+            elif best["category"] == "music" and best["category_confidence"] >= 0.5:
                 sub = parse_music_subintent(best["text"])
                 slots = {"subintent": sub}
                 requested_music_subintent = sub
                 if sub == "pause":
-                    # Do not auto-resume captured-ducked music when pausing was the point
                     music_ducked = False
-                # Duck background music before recording speech so the microphone
-                # doesn't capture the music itself (self-echo).
                 try:
-                    token = await spotify.get_access_token()
-                    if not token:
-                        action_ok, action_msg = False, "spotify not connected — open the music screen to connect"
-                    else:
-                        device = spotify_device_id or await asyncio.get_event_loop().run_in_executor(None, vspotify.get_device_id, token)
-                        sub = slots["subintent"]
-                        print(f"music: token ok, device={device!r} sub={sub} sdk_device_id={spotify_device_id!r}")
-                        if sub in ("vol_up", "vol_down"):
-                            target = min(100, last_volume + 10) if sub == "vol_up" else max(0, last_volume - 10)
-                            code, body = await asyncio.get_event_loop().run_in_executor(
-                                None, vspotify.set_volume, token, target, device)
-                            if code in (200, 204):
-                                last_volume = target
-                        else:
-                            fns = {
-                                "play": lambda dev: vspotify.play_pause(token, True, dev),
-                                "pause": lambda dev: vspotify.play_pause(token, False, dev),
-                                "next": lambda dev: vspotify.next_track(token, dev),
-                                "prev": lambda dev: vspotify.previous_track(token, dev),
-                            }
-                            code, body = await asyncio.get_event_loop().run_in_executor(None, (lambda: fns[sub](device)))
-                            _stale_retry = (code == 404) and isinstance(body, dict) and "not found" in str(body.get("error", "")).lower()
-                            if _stale_retry:
-                                fresh = await asyncio.get_event_loop().run_in_executor(None, vspotify.get_device_id, token)
-                                print(f"music: device stale ({device!r}); retrying via fresh GET: {fresh!r}")
-                                if fresh and fresh != device:
-                                    device = fresh
-                                    code, body = await asyncio.get_event_loop().run_in_executor(None, (lambda: fns[sub](device)))
-                                    if code in (200, 201, 204):
-                                        print("music: retry succeeded on", fresh)
-                            action_ok = code in (200, 201, 204)
-                            action_msg = f"music {sub}" if action_ok else spotify_error_msg(code, body)
+                    action_ok, action_msg, last_volume, manual_pause = await execute_music_action(
+                        spotify.get_access_token, spotify_device_id, slots, last_volume)
+                    if manual_pause:
+                        music_ducked = False
                 except Exception as e:
                     action_ok, action_msg = False, f"spotify error: {e}"
                 slots = None
-            elif best["category"] == "weather":
+            elif best["category"] == "weather" and best["category_confidence"] >= 0.5:
                 slots = parse_weather_query(best["text"])
                 try:
-                    w = await asyncio.get_event_loop().run_in_executor(None, fetch_weather)
-                    public = {k: v for k, v in w.items() if not k.startswith("_")}
-                    await broadcast({"type": "weather", "data": public})
-                    action_ok = True
-                    action_msg = "weather: " + w["condition_" + ("fr" if store.language == "fr" else "en")] + f" {w['temp_c']}C"
+                    weather_data, action_ok, action_msg = await execute_weather_action(fetch_weather, store.language)
+                    await broadcast({"type": "weather", "data": weather_data})
                     slots = None
                 except Exception as e:
                     action_ok = False
