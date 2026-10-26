@@ -27,6 +27,7 @@ class RingBuffer:
     def __init__(self, seconds=10, sample_rate=SAMPLE_RATE):
         self.sample_rate = sample_rate
         self.capacity = max(1, int(seconds * sample_rate))
+        self.total_written = 0
         self._lock = threading.Lock()
         self.buf = np.zeros(self.capacity, dtype="float32")
         self.pos = 0
@@ -50,6 +51,12 @@ class RingBuffer:
                 self.buf[:n - first] = samples[first:]
             self.pos = (self.pos + n) % self.capacity
             self.filled = min(self.capacity, self.filled + n)
+            self.total_written += n
+
+    def written(self):
+        """Cumulative samples appended — keeps increasing even when the buffer is full."""
+        with self._lock:
+            return self.total_written
 
     def snapshot(self):
         with self._lock:

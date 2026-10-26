@@ -410,6 +410,7 @@ async def handle_voice():
             return audio, info
         global mic_muted, voice_busy
         if mic_muted:
+            print("voice: trigger ignored — mic is muted")
             await broadcast({"type": "voice_result", "transcript": "", "category": "fallback", "confidence": 0.0, "overridden": False, "error": "mic muted"})
             await broadcast({"type": "voice_state", "state": "idle"})
             return
@@ -418,6 +419,8 @@ async def handle_voice():
         await broadcast({"type": "voice_state", "state": "listening"})
         audio, info = await asyncio.get_event_loop().run_in_executor(None, _capture)
         if audio is None:
+            print(f"voice: no command captured (peak={info.get('peak', 0):.3f}, "
+                  f"threshold={info.get('threshold', 0):.3f}, {explain(info)})")
             await broadcast({"type": "voice_result", "transcript": "", "category": "fallback",
                              "confidence": 0.0, "overridden": False, "error": explain(info)})
             await broadcast({"type": "voice_state", "state": "idle"})
@@ -518,6 +521,8 @@ async def handle_voice():
                 action_ok, action_msg = try_execute(store, best["category"], best["text"], slots)
             if action_ok:
                 await broadcast(store.as_message())
+        print(f"voice result: cat={best['category']} conf={best['category_confidence']:.2f} "
+              f"audio={dur:.1f}s ok={action_ok} text={best['text']!r}")
         await broadcast({"type": "voice_result",
                         "transcript": best["text"],
                         "language": best.get("lang", ""),

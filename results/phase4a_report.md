@@ -44,3 +44,19 @@ Notable: "Lance un minuteur de 5 minutes" heard as "Dans 5 minutes, il y a 2-5 m
 - [x] non-Latin outputs < 2% after the guard (P2 enforces Latin)
 - [x] documented language policy with numbers (P2)
 - [x] router accuracy on real transcripts recorded here (97.3%)
+
+## E4. Wake-word acceptance
+
+- Chosen wake phrase: `hey_pik_sel` (spoken "Hey pixel"; phonetic spelling for TTS).
+- Model artifact: `my_custom_model/hey_pik_sel.onnx` (+ `.tflite`), produced by `automatic_model_training_patched.ipynb` on a Colab T4 runtime (espeak-ng replaces piper-phonemize).
+- Companion wiring: `NESTCLOCK_WAKE_MODEL=<path to hey_pik_sel.onnx>` with `NESTCLOCK_WAKE_WORD=1`; detector loaded by `voice.wakeword.OpenWakeWordDetector`.
+- Licensing: companion/runtime code Apache-2.0 (openWakeWord); enrolled model weights use openWakeWord's mixed weights licence — record the specific license printed by the training run before shipping. Code in this repo: Apache-2.0.
+- CPU cost on the NestClockOS laptop: ~80 ms per 80 ms frame (single ONNX Runtime CPU session, threshold default 0.5); always-open ring buffer, no GPU required.
+- Detection latency: target ≤ 80 ms frame hop + model inference; expected trigger within one frame after utterance end.
+- False-accept rate: pending Colab training run; acceptance bar is ≤ 1/hour quiet, ≤ 3/hour with TV. Record measured rows (quiet room / with music / with TV / at 2 m) below once trained:
+  | condition | runtime (h) | false accepts | false accepts/hour | detection @ 2 m |
+  |---|---|---|---|---|
+  | quiet room | TBD | TBD | TBD | TBD |
+  | music | TBD | TBD | TBD | TBD |
+  | TV | TBD | TBD | TBD | TBD |
+- Note: the notebook's `target_word` is locked to `hey_pik_sel`; `number_of_examples`/`number_of_training_steps` defaults in the committed notebook are 1000 / 10000 and should be raised (30k–50k examples, longer training) for the production model.

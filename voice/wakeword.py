@@ -53,6 +53,7 @@ class OpenWakeWordDetector(WakeWordDetector):
         self.threshold = float(threshold)
         self.cooldown_s = float(cooldown_s)
         self._last = 0.0
+        self._last_dbg = 0.0
         self._model = None
         self._lib = None
         self._error = None
@@ -108,7 +109,12 @@ class OpenWakeWordDetector(WakeWordDetector):
             return False
         scores = pred.values() if hasattr(pred, "values") else [pred]
         score = max((float(s) for s in scores), default=0.0)
+        self.last_score = score
         now = time.monotonic()
+        if os.environ.get("NESTCLOCK_WAKE_DEBUG") == "1":
+            if score >= 0.2 and (now - self._last_dbg) >= 2.0:
+                self._last_dbg = now
+                print(f"WakeWord: score {score:.2f} (threshold {self.threshold})")
         if score >= self.threshold and (now - self._last) >= self.cooldown_s:
             self._last = now
             return True
@@ -132,6 +138,7 @@ def build_detector():
             thr = 0.5
         d = OpenWakeWordDetector(path, threshold=thr)
         if d.available():
+            print(f"WakeWord: openWakeWord model '{path}' loaded (threshold {thr}).")
             return d
         print(f"WakeWord: falling back to EnergyTrigger ({d._error})")
     return EnergyTrigger()
@@ -144,17 +151,24 @@ def run_loop(mic_capture, on_trigger, frame_seconds=0.08, cooldown_s=2.0,
         detector = build_detector()
     sr = getattr(mic_capture, "rate", 16000) or 16000
     n = int(sr * frame_seconds)
-    last_len = 0
+    last_written = 0
     while True:
-        snap = mic_capture.ring.snapshot() if getattr(mic_capture, "ring", None) is not None else None
+        ring = getattr(mic_capture, "ring", None)
+        snap = ring.snapshot() if ring is not None else None
         if snap is None or len(snap) < n:
             time.sleep(frame_seconds)
             continue
-        frame = snap[-n:]
-        if len(snap) == last_len:
+        # Detect new audio by the cumulative write counter: a full ring buffer's
+        # snapshot length never changes, so length comparison would stop detection
+        # after the first `seconds` of uptime.
+        written = ring.written()
+        if written == last_written:
             time.sleep(frame_seconds)
             continue
-        last_len = len(snap)
+        last_written = written
+        frame = snap[-n:]
         if detector.detect(frame):
+            score = getattr(detector, "last_score", float("nan"))
+            print(f"WakeWord: trigger (score {score:.2f}) — starting voice pipeline")
             on_trigger()
         time.sleep(frame_seconds)
