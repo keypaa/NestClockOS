@@ -2061,9 +2061,9 @@
     function renderSpeaking() {
       const primary = uiLang === 'fr' ? (voiceReply.fr || voiceReply.en) : (voiceReply.en || voiceReply.fr);
       const other = uiLang === 'fr' ? voiceReply.en : voiceReply.fr;
-      document.getElementById('replyMain').textContent = primary ? `"${primary}"` : '';
-      document.getElementById('replyAlt').textContent = other && other !== primary ? `"${other}"` : '';
-      const q = voiceTranscript ? `${L('User', 'Utilisateur')}: "${voiceTranscript.toUpperCase()}"` : '';
+      document.getElementById('replyMain').textContent = primary || '';
+      document.getElementById('replyAlt').textContent = other && other !== primary ? other : '';
+      const q = voiceTranscript ? `${L('User', 'Utilisateur')}: ${voiceTranscript.toUpperCase()}` : '';
       const bar = document.getElementById('userQuery');
       bar.textContent = q;
       bar.style.display = q ? 'flex' : 'none';
