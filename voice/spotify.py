@@ -13,9 +13,24 @@ def _req(token, method, path, body=None):
     try:
         with urllib.request.urlopen(req, timeout=5) as r:
             raw = r.read()
-            return r.status, (json.loads(raw) if raw else {})
+            status = r.status
+            if raw.strip():
+                try:
+                    parsed = json.loads(raw)
+                except json.JSONDecodeError:
+                    parsed = {"_raw": raw.decode(errors="replace")}
+            else:
+                parsed = {}
+            return status, parsed
     except urllib.error.HTTPError as e:
-        return e.code, {"error": e.read().decode(errors="replace")}
+        try:
+            raw_err = e.read()
+            parsed_err = json.loads(raw_err) if raw_err.strip() else {}
+        except Exception:
+            parsed_err = {"error": raw_err.decode(errors="replace") if raw_err is not None else str(e)}
+        if isinstance(parsed_err, dict):
+            return e.code, parsed_err
+        return e.code, {"error": str(parsed_err)}
     except Exception as e:
         return 0, {"error": str(e)}
 

@@ -792,7 +792,9 @@ async def handle_client(websocket):
 
             elif action == "spotify_device":
                 # page's Web Playback SDK reported its device id (set on 'ready')
-                spotify_device_id = msg.get("device_id")
+                dev_id = msg.get("device_id")
+                print(f"spotify: page reported Web Playback SDK device_id={dev_id!r}")
+                spotify_device_id = dev_id
 
             elif action == "spotify_control":
                 cmd = msg.get("cmd")
