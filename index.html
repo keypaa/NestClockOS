@@ -1033,7 +1033,13 @@
     function connectCompanion() {
       ws = new WebSocket('ws://localhost:8765');
 
-      ws.onopen = () => { renderAlarmStatus(); renderAlarmsList(); renderTimerStatus(); };
+      ws.onopen = () => { renderAlarmStatus(); renderAlarmsList(); renderTimerStatus();
+        // Re-report our Spotify device id on every reconnect — the companion holds it
+        // in volatile memory and loses it after a companion restart
+        if (spotifyDeviceId && ws.readyState === WebSocket.OPEN) {
+          ws.send(JSON.stringify({ action: 'spotify_device', device_id: spotifyDeviceId }));
+        }
+      };
       ws.onclose = () => {
         alarmStatusEl.textContent = 'COMPANION OFFLINE \u00b7 SERVICE HORS LIGNE';
         setTimeout(connectCompanion, 3000);
@@ -1582,6 +1588,8 @@
         if (!ws || ws.readyState !== WebSocket.OPEN) { resolve(null); return; }
         tokenResolvers.push(resolve);
         ws.send(JSON.stringify({ action: 'spotify_token' }));
+        // Auto-resolve null if no reply within 4s, so the SDK callback doesn't hang
+        setTimeout(() => { if (tokenResolvers.includes(resolve)) { const i = tokenResolvers.indexOf(resolve); if (i >= 0) tokenResolvers.splice(i,1); resolve(null); } }, 4000);
       });
     }
 
@@ -1603,6 +1611,7 @@
         getOAuthToken: async (cb) => {
           const token = await requestSpotifyToken();
           if (token) cb(token);
+          else console.error('spotify SDK: no token available at connect time — voice fallback will use active Spotify device instead');
         },
       });
 
@@ -1624,7 +1633,7 @@
         renderMusic();
       });
       ['initialization_error', 'authentication_error', 'account_error', 'playback_error'].forEach(ev => {
-        spotifyPlayer.addListener(ev, ({ message }) => { musicError = `${ev}: ${message}`; renderMusic(); });
+        spotifyPlayer.addListener(ev, ({ message }) => { musicError = `${ev}: ${message}`; renderMusic(); console.error('spotify', ev, message); });
       });
 
       spotifyPlayer.connect();
