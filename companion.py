@@ -447,12 +447,14 @@ async def handle_voice():
                 if _tok:
                     _dev = spotify_device_id or await asyncio.get_event_loop().run_in_executor(None, vspotify.get_device_id, _tok)
                     if _dev:
-                        _code, _ = await asyncio.get_event_loop().run_in_executor(None, vspotify.play_pause, _tok, False, _dev)
+                        _code, _body = await asyncio.get_event_loop().run_in_executor(None, vspotify.play_pause, _tok, False, _dev)
                         if _code in (200, 204):
                             duck_token = _tok
                             duck_device = _dev
                             music_ducked = True
                             print("voice: ducked (paused) music before capture")
+                        else:
+                            print(f"voice: duck FAILED (code={_code}, device={_dev!r}, body={str(_body)[:120]})")
             except Exception as _e:
                 print("voice: duck music failed:", _e)
         audio, info = await asyncio.get_event_loop().run_in_executor(None, _capture)
@@ -553,18 +555,6 @@ async def handle_voice():
                     music_ducked = False
                 # Duck background music before recording speech so the microphone
                 # doesn't capture the music itself (self-echo).
-                if os.environ.get("NESTCLOCK_DUCK_MUSIC", "1") == "1" and sub != "pause":
-                    try:
-                        _tok = await spotify.get_access_token()
-                        _dev = spotify_device_id or await asyncio.get_event_loop().run_in_executor(None, vspotify.get_device_id, _tok)
-                        if _tok and _dev:
-                            _code, _ = await asyncio.get_event_loop().run_in_executor(None, vspotify.play_pause, _tok, False, _dev)
-                            if _code in (200, 204):
-                                music_ducked = True
-                                duck_token, duck_device = _tok, _dev
-                                print("voice: ducked music for capture")
-                    except Exception as _e:
-                        print("voice: duck music failed:", _e)
                 try:
                     token = await spotify.get_access_token()
                     if not token:
