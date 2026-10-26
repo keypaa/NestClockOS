@@ -704,6 +704,15 @@
         <div class="section-label">ALARM LABEL &middot; NOM</div>
         <input type="text" id="alarmLabelInput" class="label-input" placeholder="Morning / Matin">
       </div>
+
+      <div>
+        <div class="section-label">SOUND &middot; SON</div>
+        <select id="alarmSoundSelect" style="width:100%;padding:6px;font-family:inherit;">
+          <option value="default">Default beep / Sonnerie par défaut</option>
+          <option value="soft">Soft chime / Carillon doux</option>
+          <option value="ping">Bright ping / Sonnerie vive</option>
+        </select>
+      </div>
     </div>
 
     <div class="set-alarm-footer">
@@ -1161,10 +1170,10 @@
 
     // ---------------- set alarm screen ----------------
 
-    let editingAlarm = { hour: 8, minute: 0, days: new Set([0, 1, 2, 3, 4, 5, 6]), label: '' };
+    let editingAlarm = { hour: 8, minute: 0, days: new Set([0, 1, 2, 3, 4, 5, 6]), label: '', sound: 'default' };
 
     function openSetAlarm() {
-      editingAlarm = { hour: 8, minute: 0, days: new Set([0, 1, 2, 3, 4, 5, 6]), label: '' };
+      editingAlarm = { hour: 8, minute: 0, days: new Set([0, 1, 2, 3, 4, 5, 6]), label: '', sound: 'default' };
       syncSetAlarmUI();
       showScreen('setAlarmScreen');
     }
@@ -1188,6 +1197,7 @@
         chip.classList.toggle('active', editingAlarm.days.has(d));
       });
       document.getElementById('alarmLabelInput').value = editingAlarm.label;
+      document.getElementById('alarmSoundSelect').value = editingAlarm.sound || 'default';
     }
 
     document.querySelectorAll('#setAlarmScreen .step-btn').forEach(btn => {
@@ -1228,6 +1238,7 @@
 
     const alarmLabelInput = document.getElementById('alarmLabelInput');
     alarmLabelInput.addEventListener('input', (e) => { editingAlarm.label = e.target.value; });
+    document.getElementById('alarmSoundSelect').addEventListener('change', (e) => { editingAlarm.sound = e.target.value; });
     alarmLabelInput.addEventListener('click', (e) => e.stopPropagation());
 
     document.getElementById('cancelAlarmBtn').addEventListener('click', (e) => {
@@ -1244,6 +1255,7 @@
         days: [...editingAlarm.days],
         label: editingAlarm.label,
         once: editingAlarm.days.size === 0,
+        sound: editingAlarm.sound || 'default',
       }));
       showScreen('alarmsScreen');
     });

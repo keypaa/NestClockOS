@@ -78,6 +78,7 @@ def play_alarm_pattern():
 # ---------------------------------------------------------------------------
 
 MAX_RING_SECONDS = 600
+TONE_MAP = {"default": 880.0, "soft": 660.0, "ping": 1046.5}
 RAMP_SECONDS = 30
 ALARM_VOLUME_START = 0.15
 ALARM_VOLUME_END = 0.60
@@ -112,8 +113,8 @@ def make_beep_volume(volume, freq=880.0, duration=0.35):
     return (tone * volume).astype(np.float32)
 
 
-def make_burst(volume, pause=0.2):
-    beep = make_beep_volume(volume)
+def make_burst(volume, pause=0.2, freq=880.0):
+    beep = make_beep_volume(volume, freq=freq)
     gap = np.zeros(int(SAMPLE_RATE * pause), dtype=np.float32)
     return np.concatenate([beep, gap, beep, gap, beep, np.zeros(int(SAMPLE_RATE * 0.25))])
 
@@ -126,19 +127,21 @@ class Ringer:
         self.active = False
         self._stop_event = None
 
-    async def start(self, alarm=True):
+    async def start(self, alarm=True, sound="default"):
         if self.active:
             # do not stack a second playback
             return
         self.active = True
+        self._sound = sound
         self._stop_event = asyncio.Event()
         loop = asyncio.get_running_loop()
-        self._task = loop.create_task(self._run(alarm))
+        self._task = loop.create_task(self._run(alarm, sound))
         # attach done callback to reset state
         self._task.add_done_callback(self._done)
 
-    async def _run(self, alarm):
+    async def _run(self, alarm, sound="default"):
         start = time.monotonic()
+        freq = TONE_MAP.get(sound, 880.0)
         try:
             while not self._stop_event.is_set():
                 elapsed = time.monotonic() - start
@@ -149,11 +152,9 @@ class Ringer:
                     volume = ALARM_VOLUME_START + (ALARM_VOLUME_END - ALARM_VOLUME_START) * frac
                 else:
                     volume = TIMER_VOLUME
-                samples = make_burst(volume)
-                # play without blocking the loop
+                samples = make_burst(volume, freq=freq)
                 await asyncio.get_event_loop().run_in_executor(None, self.backend.play, samples, SAMPLE_RATE)
                 burst_dur = len(samples) / SAMPLE_RATE
-                # wait either stop or burst duration
                 try:
                     await asyncio.wait_for(self._stop_event.wait(), timeout=burst_dur)
                 except asyncio.TimeoutError:
@@ -162,6 +163,7 @@ class Ringer:
             await asyncio.get_event_loop().run_in_executor(None, self.backend.stop)
 
     def _done(self, _):
+
         self.active = False
         self._task = None
         self._stop_event = None
@@ -324,8 +326,15 @@ async def scheduler_loop():
             if alarm["id"] in fired_this_minute:
                 continue
             fired_this_minute.add(alarm["id"])
-            await ringer.start(alarm=True)
+            await ringer.start(alarm=True, sound=alarm.get("sound", "default"))
             await broadcast({"type": "alarm_fired", "alarm": alarm})
+            if alarm.get("spotify_playlist") and getattr(spotify, "connected", False):
+                try:
+                    token = await spotify.get_access_token()
+                    device = vspotify.get_device_id(token) if token else None
+                    await asyncio.get_event_loop().run_in_executor(None, vspotify.start_playback, token, alarm["spotify_playlist"], device)
+                except Exception as e:
+                    print("wake-to-spotify failed (beep continues):", e)
             if once:
                 store.alarms = [a for a in store.alarms if a["id"] != alarm["id"]]
                 store.save()
@@ -561,6 +570,8 @@ async def handle_client(websocket):
                     "enabled": True,
                     "once": once,
                     "date": msg.get("date"),
+                    "sound": msg.get("sound", "default"),
+                    "spotify_playlist": msg.get("spotify_playlist"),
                 }
                 store.alarms.append(alarm)
                 store.save()
